@@ -10,7 +10,7 @@ namespace LibraryManagement.Entities
     {
         public string Name { get; set; }
         public string DesignationID { get; set; }
-        public List<Designation> Designations { get; set; }
+        public virtual Designation Designations { get; set; }
         public string Contact { get; set; }
         public string Address { get; set; }
         public string City { get; set; }

@@ -9,12 +9,12 @@ namespace LibraryManagement.Entities
     public class Return : BaseEntities
     {
         public int BookID { get; set; }
-        public List<Book> Books { get; set; }
+        public virtual Book Books { get; set; }
         public DateTime ReturnDate { get; set; }
         public int StudentID { get; set; }
-        public List<Student> Students { get; set; }
+        public virtual Student Students { get; set; }
         public int StaffID { get; set; }
-        public List<Staff> Staffs { get; set; }
+        public virtual Staff Staffs { get; set; }
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace LibraryManagement.Entities
         public string City { get; set; }
         public string Phone { get; set; }
         public int DepartmentID { get; set; }
-        public List<Department> Departments { get; set; }
+        public virtual Department Departments { get; set; }
         public List<StudentPicture> StudentPictures { get; set; }
 
     }
