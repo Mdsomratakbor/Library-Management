@@ -19,6 +19,7 @@ namespace LibraryManagement.Entities
         public string Phone { get; set; }
         public int DepartmentID { get; set; }
         public List<Department> Departments { get; set; }
+        public List<StudentPicture> StudentPictures { get; set; }
 
     }
 }
