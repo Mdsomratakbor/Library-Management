@@ -17,5 +17,6 @@ namespace LibraryManagement.Entities
         public string City { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+        public List<StaffPicture> StaffPictures { get; set; }
     }
 }
