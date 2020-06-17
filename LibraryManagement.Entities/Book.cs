@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Entities
 {
-    public class Book
+    public class Book : BaseEntities
     {
         public int ID { get; set; }
         public int BookName { get; set; }
@@ -21,9 +21,6 @@ namespace LibraryManagement.Entities
         /// How many book in this name available are library
         /// </summary>
         public int BookQty { get; set; }
-        public DateTime EntryDate { get; set; }
-        public int LUserID { get; set; }
-        public DateTime UpdateDate { get; set; }
-        public int UpdateLUserID { get; set; }
+     
     }
 }
