@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Entities
 {
-    public class Designation
+    public class Designation : BaseEntities
     {
-        public int ID { get; set; }
         public string Name { get; set; }
 
     }

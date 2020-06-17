@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Entities
 {
-    public class Return
+    public class Return : BaseEntities
     {
-        public int ID { get; set; }
-        public int BooID { get; set; }
+        public int BookID { get; set; }
         public List<Book> Books { get; set; }
         public DateTime ReturnDate { get; set; }
         public int StudentID { get; set; }

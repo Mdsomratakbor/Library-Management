@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Entities
 {
-    public class Picture
+    public class Picture : BaseEntities
     {
-        public int ID { get; set; }
         public string URL { get; set; }
     }
 }
