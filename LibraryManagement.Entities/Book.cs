@@ -12,11 +12,14 @@ namespace LibraryManagement.Entities
         public int BookName { get; set; }
         public int Isbn { get; set; }
         public string AuthorName { get; set; }
+        public string BookPublish { get; set; }
+        public DateTime PurchaseDate { get; set; }
+        public decimal Price { get; set; }
         public string BookEdition { get; set; }
         /// <summary>
         /// How many book in this name available are library
         /// </summary>
-        public int TootalBook { get; set; }
+        public int BookQty { get; set; }
         public DateTime EntryDate { get; set; }
         public int LUserID { get; set; }
         public DateTime UpdateDate { get; set; }
