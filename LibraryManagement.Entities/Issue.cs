@@ -15,5 +15,6 @@ namespace LibraryManagement.Entities
         public DateTime ExpiraryDate { get; set; }
         public int StudentID { get; set; }
         public List<Student> Students { get; set; }
+        
     }
 }

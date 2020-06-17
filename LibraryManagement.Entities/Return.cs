@@ -14,6 +14,6 @@ namespace LibraryManagement.Entities
         public DateTime ReturnDate { get; set; }
         public int StudentID { get; set; }
         public List<Student> Students { get; set; }
-        public int StaffID { get; set; }
+
     }
 }
