@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Book.cs" />
     <Compile Include="Department.cs" />
+    <Compile Include="Designation.cs" />
     <Compile Include="Issue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Return.cs" />
