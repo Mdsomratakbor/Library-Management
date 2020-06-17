@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Entities
 {
-    public class Issue
+    public class Return
     {
         public int ID { get; set; }
-        public int BookID { get; set; }
+        public int BooID { get; set; }
         public List<Book> Books { get; set; }
-        public DateTime IssueDate { get; set; }
-        public DateTime ExpiraryDate { get; set; }
+        public DateTime ReturnDate { get; set; }
         public int StudentID { get; set; }
         public List<Student> Students { get; set; }
+        public int StaffID { get; set; }
     }
 }
