@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryManagement.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,10 @@ namespace LibraryManagement.Services.Interfaces
 {
     interface IBookService
     {
+        List<Book> GetAllBook();
+        Book GetBookById(int id);
+        bool SaveBook(Book model);
+        bool UpdateBook();
+        bool DeleteBook(Book model);
     }
 }
