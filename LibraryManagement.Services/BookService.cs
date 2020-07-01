@@ -11,6 +11,19 @@ namespace LibraryManagement.Services
 {
     public class BookService : IBookService
     {
+        #region Singletone
+        public static BookService Instance
+        {
+            get
+            {
+                if (instance == null) instance = new BookService();
+                return instance;
+            }
+        }
+        private static BookService instance { get; set; }
+        #endregion
+
+
         private LMContext _LMContext;
         public BookService()
         {
@@ -18,14 +31,9 @@ namespace LibraryManagement.Services
         }
 
         public List<Book> GetAllBook(int displayLength, int displayStart, int sortCol, string sortDir, string search = null)
-        {
-            //SET @FirstRec = @DisplayStart;
-            //SET @LastRec = @DisplayStart + @DisplayLength;
-            int firstRecord = displayStart;
-            int lastRecord = displayStart + displayLength;
+        {           
             string columnNameAsc = "";
             string columnNameDsc = "";
-            int rowNumber;
             List<Book> books = new List<Book>();
             if (sortCol == 0 && sortDir == "asc") columnNameAsc = "BookName";
             else if (sortCol == 0 && sortDir == "dsc") columnNameDsc = "BookName";
@@ -47,16 +55,16 @@ namespace LibraryManagement.Services
             if (sortDir == "asc")
             {
                 books = _LMContext.Books.OrderBy(x => columnNameAsc).Where(x => search.ToString().Contains("Null") || x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).ToList();
-                rowNumber = books.Count();
+          
             }
 
             else
             {
                 books = _LMContext.Books.OrderBy(x => columnNameDsc).Where(x => search.ToString().Contains("Null") || x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).ToList();
-                rowNumber = books.Count();
+               
             }
 
-            return books.Where(x => rowNumber > firstRecord && rowNumber < lastRecord).ToList();
+            return books;
         }
 
         public int TotalRowCount()

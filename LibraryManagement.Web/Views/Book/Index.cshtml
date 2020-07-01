@@ -1,0 +1,54 @@
+﻿<style>
+    .showHideColumn {
+        cursor: pointer;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $.noConflict();
+        var table= $("#emptable").DataTable({
+            columns: [
+                { 'data': 'BookName' },
+                { 'data': 'StdName' },
+                { 'data': 'StdFatherName' },
+                { 'data': 'StdMotherName' },
+                { 'data': 'dtBirth' },
+                {
+                    'data': 'GS',
+                    'searchable': false,
+                    'sortable': false,
+                    'render': function (GS) {
+                        return '$ ' + GS;
+                    }
+                }
+            ],
+            bServerSide: true,
+            sAjaxSource: '@Url.Action("ListOfBook", "Book")'
+
+        })
+    });
+
+</script>
+<div style="margin:2px">
+    <b>Show/Hide Columns</b>
+    <a class="showHideColumn btn btn-xs btn-info" data-columnIndex="0">ID</a>-
+    <a class="showHideColumn btn btn-xs btn-info" data-columnIndex="1">Name</a>-
+    <a class="showHideColumn btn btn-xs btn-info" data-columnIndex="2">Father Name</a>-
+    <a class="showHideColumn btn btn-xs btn-info" data-columnIndex="3">Mother Name</a>-
+    <a class="showHideColumn btn btn-xs btn-info" data-columnIndex="4">Date of Birth</a>-
+    <a class="showHideColumn btn btn-xs btn-info" data-columnIndex="5">Salary</a>
+</div>
+<table id="emptable" class="table table-responsive">
+    <thead>
+        <tr>
+            <th>BookName</th>
+            <th>Name</th>
+            <th>Father Name</th>
+            <th>Mother Name</th>
+            <th>Date of Birth</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
