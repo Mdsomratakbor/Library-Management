@@ -15,18 +15,19 @@ namespace LibraryManagement.Web.Controllers
         {
             return View();
         }
-        public JsonResult ListOfBook(int displayLength, int displayStart, int sortCol, string sortDir, string search = null)
+        public JsonResult ListOfBook(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
         {
-            int firstRecord = displayStart;
-            int lastRecord = displayStart + displayLength;
+            int firstRecord = iDisplayLength;
+            int lastRecord = iDisplayStart + iDisplayLength;
             int rowNumber;
-            JsonResult result = new JsonResult();
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+          
             List<Book> Books = new List<Book>();
 
-            Books = BookService.Instance.GetAllBook(displayLength, displayStart, sortCol, sortDir, search);
+            Books = BookService.Instance.GetAllBook(iDisplayLength, iDisplayStart, iSortCol_0, sSortDir_0, sSearch);
             rowNumber = Books.Count();
-            Books = Books.Where(x => rowNumber > firstRecord && rowNumber < lastRecord).ToList();
+            Books = Books.Skip(iDisplayStart).Take(iDisplayLength).ToList();
+              JsonResult result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             result.Data = new
             {
                 iTotalRecords = BookService.Instance.TotalRowCount(),

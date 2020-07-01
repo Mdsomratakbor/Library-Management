@@ -30,7 +30,7 @@ namespace LibraryManagement.Services
             _LMContext = new LMContext();
         }
 
-        public List<Book> GetAllBook(int displayLength, int displayStart, int sortCol, string sortDir, string search = null)
+        public List<Book> GetAllBook(int displayLength, int displayStart, int sortCol, string sortDir, string search)
         {           
             string columnNameAsc = "";
             string columnNameDsc = "";
@@ -52,16 +52,24 @@ namespace LibraryManagement.Services
             else if (sortCol == 7 && sortDir == "asc") columnNameAsc = "BookQty";
             else if (sortCol == 7 && sortDir == "dsc") columnNameDsc = "BookQty";
 
-            if (sortDir == "asc")
+            if (sortDir == "asc" && string.IsNullOrEmpty(search)==false)
             {
-                books = _LMContext.Books.OrderBy(x => columnNameAsc).Where(x => search.ToString().Contains("Null") || x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).ToList();
+                books = _LMContext.Books.OrderBy(x => columnNameAsc).Where(x =>  x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).ToList();
           
             }
 
+            else if(sortDir == "dsc" && string.IsNullOrEmpty(search) == false)
+            {
+                books = _LMContext.Books.OrderBy(x => columnNameDsc).Where(x =>  x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).ToList();
+               
+            }
+            else if (sortDir == "asc")
+            {
+                books = _LMContext.Books.OrderBy(x => columnNameDsc).ToList();
+            }
             else
             {
-                books = _LMContext.Books.OrderBy(x => columnNameDsc).Where(x => search.ToString().Contains("Null") || x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).ToList();
-               
+                books = _LMContext.Books.OrderBy(x => columnNameDsc).ToList();
             }
 
             return books;

@@ -5,22 +5,26 @@
 </style>
 <script>
     $(document).ready(function () {
-        $.noConflict();
-        var table= $("#emptable").DataTable({
-            columns: [
+
+         $("#emptable").DataTable({
+             columns: [
                 { 'data': 'BookName' },
-                { 'data': 'StdName' },
-                { 'data': 'StdFatherName' },
-                { 'data': 'StdMotherName' },
-                { 'data': 'dtBirth' },
+                 { 'data': 'Isbn' },
+                 { 'data': 'AuthorName' },
+                 { 'data': 'BookPublish' },
+                 { 'data': 'PurchaseDate' },
                 {
-                    'data': 'GS',
+                    'data': 'Price',
                     'searchable': false,
                     'sortable': false,
-                    'render': function (GS) {
-                        return '$ ' + GS;
+                    'render': function (Price) {
+                        return '$ ' + Price;
                     }
-                }
+                 }, 
+                 { 'data': 'BookEdition' },
+                 { 'data': 'BookQty' },
+                 { 'data': 'EntryDate' },
+
             ],
             bServerSide: true,
             sAjaxSource: '@Url.Action("ListOfBook", "Book")'
@@ -41,12 +45,16 @@
 <table id="emptable" class="table table-responsive">
     <thead>
         <tr>
+     
             <th>BookName</th>
-            <th>Name</th>
-            <th>Father Name</th>
-            <th>Mother Name</th>
-            <th>Date of Birth</th>
-            <th>Salary</th>
+            <th>Isbn</th>
+            <th>AuthorName</th>
+            <th>BookPublish</th>
+            <th>PurchaseDate</th>
+            <th>Price</th>
+            <th>BookEdition</th>
+            <th>BookQty</th>
+            <th>EntryDate</th>
         </tr>
     </thead>
     <tbody></tbody>
