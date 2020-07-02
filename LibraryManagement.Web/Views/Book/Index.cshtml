@@ -1,12 +1,47 @@
 ﻿<style>
-    .showHideColumn {
-        cursor: pointer;
+    table.dataTable {
+        width: 100% !important;
     }
 </style>
+<div class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Books List</h4>
+                </div>
+                <div class="card-body">
+                    <table id="booktable" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+
+                                <th>BookName</th>
+                                <th>ISBN</th>
+                                <th>AuthorName</th>
+                                <th>BookPublish</th>
+                                <th>PurchaseDate</th>
+                                <th>Price</th>
+                                <th>BookEdition</th>
+                                <th>BookQty</th>
+                                <th>EntryDate</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+    
 <script>
     $(document).ready(function () {
 
-         $("#emptable").DataTable({
+        $("#booktable").DataTable({
              columns: [
                 { 'data': 'BookName' },
                  { 'data': 'Isbn' },
@@ -20,12 +55,16 @@
                     'render': function (Price) {
                         return '$ ' + Price;
                     }
-                 }, 
+                 },
                  { 'data': 'BookEdition' },
                  { 'data': 'BookQty' },
                  { 'data': 'EntryDate' },
 
             ],
+            
+            "responsive": true,
+            "autoWidth": true,
+            "lengthChange": false,
             bServerSide: true,
             sAjaxSource: '@Url.Action("ListOfBook", "Book")'
 
@@ -33,30 +72,5 @@
     });
 
 </script>
-<div style="margin:2px">
-    <b>Show/Hide Columns</b>
-    <a class="showHideColumn btn btn-xs btn-info" data-columnIndex="0">ID</a>-
-    <a class="showHideColumn btn btn-xs btn-info" data-columnIndex="1">Name</a>-
-    <a class="showHideColumn btn btn-xs btn-info" data-columnIndex="2">Father Name</a>-
-    <a class="showHideColumn btn btn-xs btn-info" data-columnIndex="3">Mother Name</a>-
-    <a class="showHideColumn btn btn-xs btn-info" data-columnIndex="4">Date of Birth</a>-
-    <a class="showHideColumn btn btn-xs btn-info" data-columnIndex="5">Salary</a>
-</div>
-<table id="emptable" class="table table-responsive">
-    <thead>
-        <tr>
-     
-            <th>BookName</th>
-            <th>Isbn</th>
-            <th>AuthorName</th>
-            <th>BookPublish</th>
-            <th>PurchaseDate</th>
-            <th>Price</th>
-            <th>BookEdition</th>
-            <th>BookQty</th>
-            <th>EntryDate</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+
 

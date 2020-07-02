@@ -9,9 +9,9 @@ namespace LibraryManagement.Entities
     public class BaseEntities
     {
         public int ID { get; set; }
-        public DateTime EntryDate { get; set; }
-        public int LUserID { get; set; }
-        public DateTime UpdateDate { get; set; }
-        public int UpdateLUserID { get; set; }
+        public DateTime? EntryDate { get; set; }
+        public int? LUserID { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public int? UpdateLUserID { get; set; }
     }
 }

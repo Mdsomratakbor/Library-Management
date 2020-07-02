@@ -8,7 +8,7 @@ namespace LibraryManagement.Entities
 {
     public class Book : BaseEntities
     {
-        public int BookName { get; set; }
+        public string BookName { get; set; }
         public int Isbn { get; set; }
         public string AuthorName { get; set; }
         public string BookPublish { get; set; }
