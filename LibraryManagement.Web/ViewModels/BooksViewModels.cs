@@ -25,7 +25,7 @@ namespace LibraryManagement.Web.ViewModels
         public DateTime PurchaseDate { get; set; }
         public decimal Price { get; set; }
         public string BookEdition { get; set; }
-        public List<BookPicture> BookPictures { get; set; }
         public int BookQty { get; set; }
+        public List<BookPicture> Pictures { get; set; }
     }
 }

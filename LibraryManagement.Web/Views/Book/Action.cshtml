@@ -1,72 +1,117 @@
-﻿
-  <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-12">
-                    <h1>Book Add/Edit</h1>
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </section>
-<div class="card">
-    <div class="card-body">
-        <div class="row">
-  
-      
-                    <div class="col-md-4">
-                        <label class="font-weight-bold" for="BookName"> Book Name </label>
-                        <input type="text" required name="BookName" class="form-control" id="BookName" />
-
-                    </div>
-                    <div class="col-md-4">
-                        <label class="font-weight-bold" for="BookName"> Book Name </label>
-                        <input type="text" required name="BookName" class="form-control" id="BookName" />
-
-                    </div>
-                    <div class="col-md-4">
-                        <label class="font-weight-bold" for="BookName"> Book Name </label>
-                        <input type="text" required name="BookName" class="form-control" id="BookName" />
-
-                    </div>
-           
-                    <div class="col-md-4">
-                        <label class="font-weight-bold" for="BookName"> Book Name </label>
-                        <input type="text" required name="BookName" class="form-control" id="BookName" />
-
-                    </div>
-                    <div class="col-md-4">
-                        <label class="font-weight-bold" for="BookName"> Book Name </label>
-                        <input type="text" required name="BookName" class="form-control" id="BookName" />
-
-                    </div>
-                    <div class="col-md-4">
-                        <label class="font-weight-bold" for="BookName"> Book Name </label>
-                        <input type="text" required name="BookName" class="form-control" id="BookName" />
-
-                    </div>
-          
-        
-                    <div class="col-md-4">
-                        <label class="font-weight-bold" for="BookName"> Book Name </label>
-                        <input type="text" required name="BookName" class="form-control" id="BookName" />
-
-                    </div>
-                    <div class="col-md-4">
-                        <label class="font-weight-bold" for="BookName"> Book Name </label>
-                        <input type="text" required name="BookName" class="form-control" id="BookName" />
-
-                    </div>
-                    <div class="col-md-4">
-                        <label class="font-weight-bold" for="BookName"> Book Name </label>
-                        <input type="text" required name="BookName" class="form-control" id="BookName" />
+﻿@model LibraryManagement.Web.ViewModels.BookActionModel 
+    <div class="card mt-1">
+        <section class="card-header">
+                <div class="row">
+                    <div class="col-sm-12">
+                        @if (Model.ID > 0)
+                        {
+                            <h4>Book Edit</h4>
+                        }
+                        else
+                        {
+                            <h4>Book Add</h4>
+                        }
 
                     </div>
                 </div>
-            
+        </section>
+        <div class="card-body">
+            <from id="bookForm">
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <label class="font-weight-bold" for="BookName"> Book Name </label>
+                        <input type="text" required name="BookName" class="form-control" id="BookName" />
+
+                    </div>
+                    <div class="col-md-4">
+                        <label class="font-weight-bold" for="Isbn">ISBN</label>
+                        <input type="text" required name="Isbn" class="form-control" id="Isbn" />
+
+                    </div>
+                    <div class="col-md-4">
+                        <label class="font-weight-bold" for="AuthorName"> Author Name </label>
+                        <input type="text" required name="AuthorName" class="form-control" id="AuthorName" />
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="font-weight-bold" for="BookPublish"> Book Publisher</label>
+                        <input type="text" required name="BookPublish" class="form-control" id="BookPublish" />
+
+                    </div>
+                    <div class="col-md-4">
+                        <label class="font-weight-bold" for="PurchaseDate"> Purchase Date </label>
+                        <input type="text" required name="PurchaseDate" class="form-control" id="PurchaseDate" />
+
+                    </div>
+                    <div class="col-md-4">
+                        <label class="font-weight-bold" for="Price"> Price </label>
+                        <input type="text" required name="Price" class="form-control" id="Price" />
+
+                    </div>
 
 
+                    <div class="col-md-4">
+                        <label class="font-weight-bold" for="BookEdition"> Book Edition </label>
+                        <input type="text" required name="BookEdition" class="form-control" id="BookEdition" />
+
+                    </div>
+                    <div class="col-md-4">
+                        <label class="font-weight-bold" for="BookQty"> Book Qty </label>
+                        <input type="number" required name="BookQty" class="form-control" id="BookQty" />
+
+                    </div>
+                    <div class="col-md-4">
+                        <label class="font-weight-bold" for="BookName"> Book Name </label>
+                        <input type="text" required name="BookName" class="form-control" id="BookName" />
+
+                    </div>
+
+
+                </div>
+
+            </from>
+
+        </div>
+        <div class="card-footer">
+            <button id="btnSave" class="btn btn-success btn-sm"><i class="fas fa-save"></i> Save</button>
+            <button class="btn btn-danger btn-sm"><i class="fas fa-arrow-alt-circle-left"></i> Back To List</button>
         </div>
 
     </div>
 
-</div>
+<script>
+    $("#btnSave").on('click', function () {
+        $.ajax({
+            method:'Post'
+            url: '@Url.Action("Action","Book")',
+            data: $('#bookForm').serialize()
+        }).done(function (response) {
+            if (response.Success) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: response.Message,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                window.setTimeout(function () {
+                    window.location.reload();
+                }, 1500)
+            }
+            else {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: response.Message,
+                    showConfirmButton: true,
+
+                })
+            }
+
+        })
+
+    })
+</script>
+

@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.Entities;
+using LibraryManagement.Web.ViewModels.ImageInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.Interfaces
 {
-    interface IBook: IBaseEntities
+    interface IBook: IBaseEntities, IPicture<BookPicture>
     {
          string BookName { get; set; }
          int Isbn { get; set; }
@@ -16,7 +17,6 @@ namespace LibraryManagement.Web.ViewModels.Interfaces
          DateTime PurchaseDate { get; set; }
          decimal Price { get; set; }
          string BookEdition { get; set; }
-         List<BookPicture> BookPictures { get; set; }
         /// <summary>
         /// How many book in this name available are library
         /// </summary>
