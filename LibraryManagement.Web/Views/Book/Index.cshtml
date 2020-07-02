@@ -23,7 +23,9 @@
                                 <th>Price</th>
                                 <th>BookEdition</th>
                                 <th>BookQty</th>
+                                <th>Action</th>
                                 <th>EntryDate</th>
+
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -46,8 +48,15 @@
                 { 'data': 'BookName' },
                  { 'data': 'Isbn' },
                  { 'data': 'AuthorName' },
-                 { 'data': 'BookPublish' },
-                 { 'data': 'PurchaseDate' },
+                 { 'data': 'BookPublish' },               
+                {
+                    'data': 'PurchaseDate',
+                    'render': function (jsonDate) {
+                        var date = new Date(parseInt(jsonDate.substr(6)));
+                        var month = date.getMonth() + 1;
+                        return date.getDate() + "/" + month + "/" + date.getFullYear();
+                    }
+                },
                 {
                     'data': 'Price',
                     'searchable': false,
@@ -57,8 +66,24 @@
                     }
                  },
                  { 'data': 'BookEdition' },
-                 { 'data': 'BookQty' },
-                 { 'data': 'EntryDate' },
+                { 'data': 'BookQty' },
+                  {
+                    'data': null,
+                    render: function (data, type, row) {
+                        return '<button id="' + row.BookId + '" class="btn btn-sm btn-info" onclick="deleteClick()"><i class="fas fa-edit"></i></button> <button id="' + row.BookId + '" class="btn btn-danger btn-sm" onclick="deleteClick()"><i class="fas fa-trash"></i></button>';
+                    }
+                },
+                {
+                    'data': 'EntryDate',
+                    'render': function (jsonDate) {
+                        var date = new Date(parseInt(jsonDate.substr(6)));
+                        var month = date.getMonth() + 1;
+                        return date.getDate() + "/" + month + "/" + date.getFullYear();
+                    }
+                },
+               
+                
+
 
             ],
             

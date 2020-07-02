@@ -15,6 +15,11 @@ namespace LibraryManagement.Web.Controllers
         {
             return View();
         }
+        public ActionResult Action(int id)
+        {
+            return View();
+
+        }
         public JsonResult ListOfBook(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
         {
             int firstRecord = iDisplayLength;
