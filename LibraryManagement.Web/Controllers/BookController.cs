@@ -15,19 +15,20 @@ namespace LibraryManagement.Web.Controllers
         {
             return View();
         }
-        public ActionResult Action(int id)
+        public ActionResult Action()
         {
             return View();
 
         }
+        [HttpPost]
+        public ActionResult Action(Book model)
+        {
+            return View();
+        }
         public JsonResult ListOfBook(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
         {
-            int firstRecord = iDisplayLength;
-            int lastRecord = iDisplayStart + iDisplayLength;
-            int rowNumber;
-          
+            int rowNumber;       
             List<Book> Books = new List<Book>();
-
             Books = BookService.Instance.GetAllBook(iDisplayLength, iDisplayStart, iSortCol_0, sSortDir_0, sSearch);
             rowNumber = Books.Count();
             Books = Books.Skip(iDisplayStart).Take(iDisplayLength).ToList();

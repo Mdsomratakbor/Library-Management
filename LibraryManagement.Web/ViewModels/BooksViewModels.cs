@@ -11,4 +11,8 @@ namespace LibraryManagement.Web.ViewModels
     {
         public List<Book> Books { get; set; }
     }
+    public class BookActionModel
+    {
+
+    }
 }

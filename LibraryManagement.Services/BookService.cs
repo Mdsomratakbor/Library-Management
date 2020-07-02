@@ -55,13 +55,11 @@ namespace LibraryManagement.Services
             if (sortDir == "asc" && string.IsNullOrEmpty(search) == false)
             {
                 books = _LMContext.Books.OrderBy(x => columnNameAsc).Where(x => x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).ToList();
-
             }
 
             else if (sortDir == "dsc" && string.IsNullOrEmpty(search) == false)
             {
                 books = _LMContext.Books.OrderBy(x => columnNameDsc).Where(x => x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).ToList();
-
             }
             else if (sortDir == "asc")
             {
@@ -71,7 +69,6 @@ namespace LibraryManagement.Services
             {
                 books = _LMContext.Books.OrderBy(x => columnNameDsc).ToList();
             }
-
             return books;
         }
 

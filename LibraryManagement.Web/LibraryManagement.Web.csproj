@@ -210,6 +210,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\BooksViewModels.cs" />
+    <Compile Include="ViewModels\Interfaces\IBaseEntities.cs" />
     <Compile Include="ViewModels\Interfaces\IBook.cs" />
   </ItemGroup>
   <ItemGroup>
