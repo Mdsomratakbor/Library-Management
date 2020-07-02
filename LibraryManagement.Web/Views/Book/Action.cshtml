@@ -16,62 +16,55 @@
                 </div>
         </section>
         <div class="card-body">
-            <from id="bookForm">
+            <form id="bookForm">
                 <div class="row">
 
                     <div class="col-md-4">
                         <label class="font-weight-bold" for="BookName"> Book Name </label>
-                        <input type="text" required name="BookName" class="form-control" id="BookName" />
+                        <input type="text" name="BookName" autocomplete="off" class="form-control" value="@Model.BookName" id="BookName" placeholder="Please enter Book Name" />
 
                     </div>
                     <div class="col-md-4">
                         <label class="font-weight-bold" for="Isbn">ISBN</label>
-                        <input type="text" required name="Isbn" class="form-control" id="Isbn" />
+                        <input type="text" name="Isbn" class="form-control" id="Isbn" value="@Model.Isbn" placeholder="Please enter Book ISBN" />
 
                     </div>
                     <div class="col-md-4">
                         <label class="font-weight-bold" for="AuthorName"> Author Name </label>
-                        <input type="text" required name="AuthorName" class="form-control" id="AuthorName" />
+                        <input type="text" name="AuthorName" class="form-control" id="AuthorName" value="@Model.AuthorName" placeholder="Please enter Book Author Name" />
 
                     </div>
 
                     <div class="col-md-4">
                         <label class="font-weight-bold" for="BookPublish"> Book Publisher</label>
-                        <input type="text" required name="BookPublish" class="form-control" id="BookPublish" />
+                        <input type="text" name="BookPublish" class="form-control" id="BookPublish" value="@Model.BookPublish" placeholder="Please enter Book Publisher " />
 
                     </div>
                     <div class="col-md-4">
                         <label class="font-weight-bold" for="PurchaseDate"> Purchase Date </label>
-                        <input type="text" required name="PurchaseDate" class="form-control" id="PurchaseDate" />
+                        <input type="text" name="PurchaseDate" class="form-control" id="PurchaseDate" value="@Model.PurchaseDate" placeholder="Please enter Book Purchase Date " />
 
                     </div>
                     <div class="col-md-4">
                         <label class="font-weight-bold" for="Price"> Price </label>
-                        <input type="text" required name="Price" class="form-control" id="Price" />
+                        <input type="text" name="Price" class="form-control" id="Price" value="@Model.Price" placeholder="Please enter Book Price" />
 
                     </div>
 
 
                     <div class="col-md-4">
                         <label class="font-weight-bold" for="BookEdition"> Book Edition </label>
-                        <input type="text" required name="BookEdition" class="form-control" id="BookEdition" />
+                        <input type="text" name="BookEdition" class="form-control" id="BookEdition" value="@Model.BookEdition" placeholder="Please enter Book Edition" />
 
                     </div>
                     <div class="col-md-4">
                         <label class="font-weight-bold" for="BookQty"> Book Qty </label>
-                        <input type="number" required name="BookQty" class="form-control" id="BookQty" />
+                        <input type="number" name="BookQty" class="form-control" id="BookQty" value="@Model.BookQty" placeholder="Please enter Book Qty" />
 
                     </div>
-                    <div class="col-md-4">
-                        <label class="font-weight-bold" for="BookName"> Book Name </label>
-                        <input type="text" required name="BookName" class="form-control" id="BookName" />
-
-                    </div>
-
-
                 </div>
 
-            </from>
+            </form>
 
         </div>
         <div class="card-footer">
@@ -84,9 +77,9 @@
 <script>
     $("#btnSave").on('click', function () {
         $.ajax({
-            method:'Post'
+            method:'Post',
             url: '@Url.Action("Action","Book")',
-            data: $('#bookForm').serialize()
+            data: $("#bookForm").serialize()
         }).done(function (response) {
             if (response.Success) {
                 Swal.fire({

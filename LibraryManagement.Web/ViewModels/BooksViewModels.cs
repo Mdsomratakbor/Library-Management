@@ -27,5 +27,6 @@ namespace LibraryManagement.Web.ViewModels
         public string BookEdition { get; set; }
         public int BookQty { get; set; }
         public List<BookPicture> Pictures { get; set; }
+        public string PictureIDs { get; set; }
     }
 }
