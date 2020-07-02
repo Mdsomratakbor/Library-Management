@@ -212,6 +212,7 @@
     <Compile Include="ViewModels\BooksViewModels.cs" />
     <Compile Include="ViewModels\Interfaces\IBaseEntities.cs" />
     <Compile Include="ViewModels\Interfaces\IBook.cs" />
+    <Compile Include="ViewModels\Interfaces\IBookList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\dist\css\adminlte.css" />
