@@ -5,6 +5,7 @@ using LibraryManagement.Web.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -98,18 +99,18 @@ namespace LibraryManagement.Web.Controllers
             }
             return result;
         }
-        public JsonResult ListOfBook(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
+        public async  Task<JsonResult> ListOfBook(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
         {
             int rowNumber;       
             List<Book> Books = new List<Book>();
-            Books = BookService.Instance.GetAllBook(iDisplayLength, iDisplayStart, iSortCol_0, sSortDir_0, sSearch);
+            Books = await BookService.Instance.GetAllBook(iDisplayLength, iDisplayStart, iSortCol_0, sSortDir_0, sSearch);
             rowNumber = Books.Count();
             Books = Books.Skip(iDisplayStart).Take(iDisplayLength).ToList();
               JsonResult result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             result.Data = new
             {
-                iTotalRecords = BookService.Instance.TotalRowCount(),
+                iTotalRecords = await BookService.Instance.TotalRowCount(),
                 iTotalDisplayRecords = rowNumber,
                 aaData = Books
             };

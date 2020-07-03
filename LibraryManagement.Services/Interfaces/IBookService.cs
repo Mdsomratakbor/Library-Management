@@ -9,8 +9,8 @@ namespace LibraryManagement.Services.Interfaces
 {
     interface IBookService
     {
-        List<Book> GetAllBook(int displayLength, int displayStart, int sortCol, string sortDir, string search = null);
-        int TotalRowCount();
+         Task<List<Book>> GetAllBook(int displayLength, int displayStart, int sortCol, string sortDir, string search = null);
+        Task<int> TotalRowCount();
         Book GetBookById(int id);
         bool SaveBook(Book model);
         bool UpdateBook();
