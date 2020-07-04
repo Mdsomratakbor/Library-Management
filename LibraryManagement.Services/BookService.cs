@@ -30,7 +30,7 @@ namespace LibraryManagement.Services
             _LMContext = new LMContext();
         }
 
-        public async  Task<List<Book>> GetAllBook(int displayLength, int displayStart, int sortCol, string sortDir, string search)
+        public List<Book> GetAllBook(int displayLength, int displayStart, int sortCol, string sortDir, string search)
         {
             string columnNameAsc = "";
             string columnNameDsc = "";
@@ -54,27 +54,27 @@ namespace LibraryManagement.Services
 
             if (sortDir == "asc" && string.IsNullOrEmpty(search) == false)
             {
-                books =await Task.Run(()=> _LMContext.Books.OrderBy(x => columnNameAsc).Where(x => x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).ToList());
+                books = _LMContext.Books.OrderBy(x => columnNameAsc).Where(x => x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).ToList();
             }
 
             else if (sortDir == "dsc" && string.IsNullOrEmpty(search) == false)
             {
-                books =await Task.Run(() => _LMContext.Books.OrderBy(x => columnNameDsc).Where(x => x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).ToList());
+                books =_LMContext.Books.OrderBy(x => columnNameDsc).Where(x => x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).ToList();
             }
             else if (sortDir == "asc")
             {
-                books = await Task.Run(()=> _LMContext.Books.OrderBy(x => columnNameDsc).ToList());
+                books = _LMContext.Books.OrderBy(x => columnNameDsc).ToList();
             }
             else
             {
-                books = await Task.Run(() => _LMContext.Books.OrderBy(x => columnNameDsc).ToList());
+                books =  _LMContext.Books.OrderBy(x => columnNameDsc).ToList();
             }
             return books;
         }
 
-        public async Task<int> TotalRowCount()
+        public int TotalRowCount()
         {
-            return await Task.Run(()=> _LMContext.Books.Count());
+            return  _LMContext.Books.Count();
         }
 
         public Book GetBookById(int id)

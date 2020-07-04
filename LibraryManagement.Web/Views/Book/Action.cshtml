@@ -1,19 +1,19 @@
 ﻿@model LibraryManagement.Web.ViewModels.BookActionModel 
     <div class="card mt-1">
         <section class="card-header">
-                <div class="row">
-                    <div class="col-sm-12">
-                        @if (Model.ID > 0)
-                        {
-                            <h4>Book Edit</h4>
-                        }
-                        else
-                        {
-                            <h4>Book Add</h4>
-                        }
+            <div class="row">
+                <div class="col-sm-12">
+                    @if (Model.ID > 0)
+                    {
+                        <h4>Book Edit</h4>
+                    }
+                    else
+                    {
+                        <h4>Book Add</h4>
+                    }
 
-                    </div>
                 </div>
+            </div>
         </section>
         <div class="card-body">
             <form id="bookForm">
@@ -62,6 +62,20 @@
                         <input type="number" name="BookQty" class="form-control" id="BookQty" value="@Model.BookQty" placeholder="Please enter Book Qty" />
 
                     </div>
+                    <div class="col-md-4">
+                        <label for="exampleFormControlFile1">Pictures</label>
+                        <input id="selectFile" type="file" class="form-control-file" multiple>
+                    </div>
+                    <div class="col-md-4" id="pictureArea">
+                        @if (Model.Pictures != null && Model.Pictures.Count > 0)
+                        {
+                            foreach (var picture in Model.Pictures)
+                            {
+                                <img src="/Content/images/AccomodationPackage/@picture.Pictures.URL" class="img-fluid img-thumbnail" style="width:200px; height:200px; cursor:pointer; border:1px solid black" onclick="removeMe(this)" data-id="@picture.PictureID" />
+                            }
+                        }
+                        <input type="hidden" id="pictueIDs" name="PictureIDs" />
+                    </div>
                 </div>
 
             </form>
@@ -71,11 +85,19 @@
             <button id="btnSave" class="btn btn-success btn-sm"><i class="fas fa-save"></i> Save</button>
             <button class="btn btn-danger btn-sm"><i class="fas fa-arrow-alt-circle-left"></i> Back To List</button>
         </div>
-
+        <div id="imageTemplate">
+            <img src="" class="img-fluid" style="width:200px;" onclick="removeMe(this)" />
+        </div>
     </div>
 
-<script>
-    $("#btnSave").on('click', function () {
+    <script>
+        $("#btnSave").on('click', function () {
+            var imageIDs = [];
+            $("#pictureArea img").each(function () {
+                var imageID = $(this).attr("data-id");
+                imageIDs.push(imageID);
+            });
+            $("#pictueIDs").val(imageIDs.join());
         $.ajax({
             method:'Post',
             url: '@Url.Action("Action","Book")',
@@ -106,5 +128,36 @@
         })
 
     })
-</script>
+    $("#selectFile").on("change", function () {
+        var pictures = this.files;
+        var formData = new FormData();
+        for (var i = 0; i < pictures.length; i++) {
+            formData.append("Picture ",pictures[i]);
+        }
+        $.ajax({
+            method:'Post',
+            url: '@Url.Action("UploadPicture", "Picture")',
+            data: formData,
+            dataType: 'json',
+            processData: false,
+            contentType:false
+        }).done(function (response) {
+            for (var i = 0; i < response.pictuerJSON.length; i++) {
+                var picture = response.pictuerJSON[i];
+                var $imgHTML = $("#imageTemplate").clone();
+                $imgHTML.find('img').attr('src', '/Content/images/BookImage/' + picture.URL).addClass('img-thumbnail').css({ 'cursor': 'pointer', 'height': 200, 'border': '1px solid black' });
+                $imgHTML.find('img').attr('data-id',picture.ID );
+                $("#pictureArea").append($imgHTML.html());
+            }
+
+        }).fail(function (xhr, status, error) {
+            alert("Some error");
+            console.log(error);
+        })
+
+    })
+    function removeMe(element) {
+        element.remove();
+    }
+    </script>
 

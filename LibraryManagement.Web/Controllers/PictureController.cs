@@ -35,7 +35,7 @@ namespace LibraryManagement.Web.Controllers
                 {
                     var picture = files[i];
                     var fileName = Guid.NewGuid() + Path.GetExtension(picture.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Content/images/AccomodationPackage/"), fileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/BookImage/"), fileName);
                     picture.SaveAs(path);
                     var dbPictuer = new Picture();
                     dbPictuer.URL = fileName;

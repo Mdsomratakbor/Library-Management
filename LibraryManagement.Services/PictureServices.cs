@@ -11,6 +11,17 @@ namespace LibraryManagement.Services
 {
     public class PictureServices :IPicture
     {
+        #region Singletone
+        public static PictureServices Instance
+        {
+            get
+            {
+                if (instance == null) instance = new PictureServices();
+                return instance;
+            }
+        }
+        private static PictureServices instance { get; set; }
+        #endregion
         private LMContext _LMContext;
         public PictureServices()
         {
