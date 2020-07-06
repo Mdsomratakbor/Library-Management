@@ -71,7 +71,7 @@
                         {
                             foreach (var picture in Model.Pictures)
                             {
-                                <img src="/Content/images/AccomodationPackage/@picture.Pictures.URL" class="img-fluid img-thumbnail" style="width:200px; height:200px; cursor:pointer; border:1px solid black" onclick="removeMe(this)" data-id="@picture.PictureID" />
+                                <img src="/Content/images/BookImage/@picture.Pictures.URL" class="img-fluid img-thumbnail" style="width:200px; height:200px; cursor:pointer; border:1px solid black" onclick="removeMe(this)" data-id="@picture.PictureID" />
                             }
                         }
                         <input type="hidden" id="pictueIDs" name="PictureIDs" />

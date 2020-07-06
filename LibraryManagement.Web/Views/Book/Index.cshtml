@@ -67,8 +67,8 @@
                 { 'data': 'BookQty' },
                   {
                     'data': null,
-                    render: function (data, type, row) {
-                        return '<button id="' + row.BookId + '" class="btn btn-sm btn-info" onclick="deleteClick()"><i class="fas fa-edit"></i></button> <button id="' + row.BookId + '" class="btn btn-danger btn-sm" onclick="deleteClick()"><i class="fas fa-trash"></i></button>';
+                      render: function (data, type, row) {
+                          return '<a href ="../Book/Action/' + row.ID + '" class="btn btn-sm btn-info"><i class="fas fa-edit"></i></a> <button id="' + row.BookId + '" class="btn btn-danger btn-sm" onclick="deleteClick()"><i class="fas fa-trash"></i></button>';
                     }
                 },
                 {

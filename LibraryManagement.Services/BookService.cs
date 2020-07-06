@@ -3,6 +3,7 @@ using LibraryManagement.Entities;
 using LibraryManagement.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -79,7 +80,7 @@ namespace LibraryManagement.Services
 
         public Book GetBookById(int id)
         {
-            return _LMContext.Books.Find(id);
+            return _LMContext.Books.Where(x => x.ID == id).Include(y=>y.BookPictures.Select(x=>x.Pictures)).FirstOrDefault();
         }
 
         public bool SaveBook(Book model)

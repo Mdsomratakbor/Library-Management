@@ -28,8 +28,8 @@ namespace LibraryManagement.Web.Controllers
         public ActionResult Action(int? id)
         {
             _Book = BookService.Instance.GetBookById(id.Value);
-            _Book.ID = _Book.ID;
-            _Book.Isbn = _Book.Isbn;         
+            _IBook.ID = _Book.ID;
+            _IBook.Isbn = _Book.Isbn;         
             _IBook.BookName = _Book.BookName;
             _IBook.AuthorName = _Book.AuthorName;
             _IBook.BookEdition = _Book.BookEdition;
