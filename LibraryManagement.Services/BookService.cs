@@ -26,14 +26,12 @@ namespace LibraryManagement.Services
 
 
         private LMContext _LMContext;
-        public BookService()
-        {
-            _LMContext = new LMContext();
-        }
 
         public List<Book> GetAllBook(int displayLength, int displayStart, int sortCol, string sortDir, string search)
         {
-            string columnNameAsc = "";
+            using (_LMContext = new LMContext())
+            {
+                string columnNameAsc = "";
             string columnNameDsc = "";
             List <Book> books = new List<Book>();
             if (sortCol == 0 && sortDir == "asc") columnNameAsc = "BookName";
@@ -52,51 +50,73 @@ namespace LibraryManagement.Services
             else if (sortCol == 6 && sortDir == "dsc") columnNameDsc = "BookEdition";
             else if (sortCol == 7 && sortDir == "asc") columnNameAsc = "BookQty";
             else if (sortCol == 7 && sortDir == "dsc") columnNameDsc = "BookQty";
+          
+                if (sortDir == "asc" && string.IsNullOrEmpty(search) == false)
+                {
+                    books = _LMContext.Books.OrderBy(x => columnNameAsc).Where(x => x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).Include(y => y.BookPictures.Select(x => x.Pictures)).ToList();
+                }
 
-            if (sortDir == "asc" && string.IsNullOrEmpty(search) == false)
-            {
-                books = _LMContext.Books.OrderBy(x => columnNameAsc).Where(x => x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).ToList();
+                else if (sortDir == "dsc" && string.IsNullOrEmpty(search) == false)
+                {
+                    books = _LMContext.Books.OrderBy(x => columnNameDsc).Where(x => x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).Include(y => y.BookPictures.Select(x => x.Pictures)).ToList();
+                }
+                else if (sortDir == "asc")
+                {
+                    books = _LMContext.Books.OrderBy(x => columnNameDsc).Include(y => y.BookPictures.Select(x => x.Pictures)).ToList();
+                }
+                else
+                {
+                    books = _LMContext.Books.OrderBy(x => columnNameDsc).Include(y => y.BookPictures.Select(x => x.Pictures)).ToList();
+                }
+                return books;
             }
-
-            else if (sortDir == "dsc" && string.IsNullOrEmpty(search) == false)
-            {
-                books =_LMContext.Books.OrderBy(x => columnNameDsc).Where(x => x.BookName.ToString().ToLower().Contains(search.ToLower()) || x.Isbn.ToString().ToLower().Contains(search.ToLower()) || x.AuthorName.ToString().ToLower().Contains(search.ToLower()) || x.BookPublish.ToString().ToLower().Contains(search.ToLower()) || x.PurchaseDate.ToString().ToLower().Contains(search.ToLower()) || x.Price.ToString().ToLower().Contains(search.ToLower()) || x.BookEdition.ToString().ToLower().Contains(search.ToLower()) || x.BookQty.ToString().ToLower().Contains(search.ToLower())).ToList();
-            }
-            else if (sortDir == "asc")
-            {
-                books = _LMContext.Books.OrderBy(x => columnNameDsc).ToList();
-            }
-            else
-            {
-                books =  _LMContext.Books.OrderBy(x => columnNameDsc).ToList();
-            }
-            return books;
         }
 
         public int TotalRowCount()
         {
-            return  _LMContext.Books.Count();
+            using (_LMContext = new LMContext())
+            {
+                return _LMContext.Books.Count();
+
+            }
+                
         }
 
         public Book GetBookById(int id)
         {
-            return _LMContext.Books.Where(x => x.ID == id).Include(y=>y.BookPictures.Select(x=>x.Pictures)).FirstOrDefault();
+            using (_LMContext = new LMContext())
+            {
+                return _LMContext.Books.Where(x => x.ID == id).Include(y => y.BookPictures.Select(x => x.Pictures)).FirstOrDefault();
+            }
         }
 
         public bool SaveBook(Book model)
         {
-            _LMContext.Books.Add(model);
-            return _LMContext.SaveChanges() > 0;
+            using (_LMContext = new LMContext())
+            {
+                _LMContext.Books.Add(model);
+                return _LMContext.SaveChanges() > 0;
+            }
         }
 
-        public bool UpdateBook()
+        public bool UpdateBook(Book model)
         {
-            throw new NotImplementedException();
+            using (_LMContext = new LMContext())
+            {
+                var existingBook = _LMContext.Books.Find(model.ID);
+                _LMContext.BookPictures.RemoveRange(existingBook.BookPictures);
+                _LMContext.Entry(existingBook).CurrentValues.SetValues(model);
+                _LMContext.BookPictures.AddRange(model.BookPictures);
+                return _LMContext.SaveChanges() > 0;
+            }
         }
         public bool DeleteBook(Book model)
         {
-            _LMContext.Entry(model).State = System.Data.Entity.EntityState.Deleted;
-            return _LMContext.SaveChanges() > 0;
+            using (_LMContext = new LMContext())
+            {
+                _LMContext.Entry(model).State = System.Data.Entity.EntityState.Deleted;
+                return _LMContext.SaveChanges() > 0;
+            }
         }
     }
 }

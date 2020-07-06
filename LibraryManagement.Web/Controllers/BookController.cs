@@ -30,25 +30,28 @@ namespace LibraryManagement.Web.Controllers
         {
             try
             {
-                _Book = BookService.Instance.GetBookById(id.Value);
-                _IBook.ID = _Book.ID;
-                _IBook.Isbn = _Book.Isbn;
-                _IBook.BookName = _Book.BookName;
-                _IBook.AuthorName = _Book.AuthorName;
-                _IBook.BookEdition = _Book.BookEdition;
-                _IBook.BookPublish = _Book.BookPublish;
-                _IBook.PurchaseDate = _Book.PurchaseDate;
-                _IBook.Price = _Book.Price;
-                _IBook.Pictures = _Book.BookPictures;
+                if (id > 0)
+               {
+                    _Book = BookService.Instance.GetBookById(id.Value);
+                    _IBook.ID = _Book.ID;
+                    _IBook.Isbn = _Book.Isbn;
+                    _IBook.BookName = _Book.BookName;
+                    _IBook.AuthorName = _Book.AuthorName;
+                    _IBook.BookEdition = _Book.BookEdition;
+                    _IBook.BookPublish = _Book.BookPublish;
+                    _IBook.PurchaseDate = _Book.PurchaseDate;
+                    _IBook.Price = _Book.Price;
+                    _IBook.Pictures = _Book.BookPictures;
+                }
                 return View(_IBook);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 HandleErrorInfo error = new HandleErrorInfo(ex, "BookController", "Action");
                 return View("Error", ex.Message);
 
             }
-           
+
         }
         [HttpPost]
         public JsonResult Action(BookActionModel model)
@@ -67,15 +70,19 @@ namespace LibraryManagement.Web.Controllers
 
                     if (model.ID > 0)
                     {
-
-                        //_AccomodationPackage = _AccomodationPackagesService.GetAccomodationPackagesById(model.ID);
-                        //_AccomodationPackage.NoOfRoom = model.NoOfRoom;
-                        //_AccomodationPackage.Name = model.Name;
-                        //_AccomodationPackage.FeePerNight = model.FeePerNight;
-                        //_AccomodationPackage.AccomodationTypeID = model.AccomodationTypeID;
-                        //_AccomodationPackage.AccomodationPackagePictures.Clear();
-                        //_AccomodationPackage.AccomodationPackagePictures.AddRange(pictures.Select(x => new AccomodationPackagePictures() { PictuerID = x.ID, AccomodationPackageID = model.ID }));
-                        //data = _AccomodationPackagesService.UpdateAccomodationPackages(_AccomodationPackage);
+                        _Book = BookService.Instance.GetBookById(model.ID);
+                        _Book.BookPictures.Clear();
+                        _Book.BookPictures = new List<BookPicture>();
+                        _Book.BookPictures.AddRange(pictures.Select(x => new BookPicture() { PictureID = x.ID, BookID=model.ID }));           
+                        _Book.BookName = model.BookName;
+                        _Book.AuthorName = model.AuthorName;
+                        _Book.PurchaseDate = model.PurchaseDate;
+                        _Book.Isbn = model.Isbn;
+                        _Book.BookPublish = model.BookPublish;
+                        _Book.Price = model.Price;
+                        _Book.BookEdition = model.BookEdition;
+                        _Book.BookQty = model.BookQty;
+                        isSuccess = BookService.Instance.UpdateBook(_Book);
                     }
                     else
                     {
@@ -116,24 +123,24 @@ namespace LibraryManagement.Web.Controllers
             }
             return result;
         }
-        public async  Task<JsonResult> ListOfBook(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
+        public async Task<JsonResult> ListOfBook(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
         {
             int rowNumber;
             int totalRecord;
             List<Book> Books = new List<Book>();
-            Books = await Task.Run(()=> BookService.Instance.GetAllBook(iDisplayLength, iDisplayStart, iSortCol_0, sSortDir_0, sSearch));
+            Books = await Task.Run(() => BookService.Instance.GetAllBook(iDisplayLength, iDisplayStart, iSortCol_0, sSortDir_0, sSearch));
             totalRecord = await Task.Run(() => BookService.Instance.TotalRowCount());
             rowNumber = Books.Count();
             Books = Books.Skip(iDisplayStart).Take(iDisplayLength).ToList();
-              JsonResult result = new JsonResult();
+            JsonResult result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             result.Data = new
             {
                 iTotalRecords = totalRecord,
-               iTotalDisplayRecords = rowNumber,
+                iTotalDisplayRecords = rowNumber,
                 aaData = Books
             };
             return result;
         }
-}
+    }
 }

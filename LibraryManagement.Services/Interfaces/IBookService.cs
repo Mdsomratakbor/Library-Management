@@ -13,7 +13,7 @@ namespace LibraryManagement.Services.Interfaces
         int TotalRowCount();
         Book GetBookById(int id);
         bool SaveBook(Book model);
-        bool UpdateBook();
+        bool UpdateBook(Book model);
         bool DeleteBook(Book model);
     }
 }

@@ -15,7 +15,7 @@ namespace LibraryManagement.Entities
         public DateTime PurchaseDate { get; set; }
         public decimal Price { get; set; }
         public string BookEdition { get; set; }
-        public List<BookPicture> BookPictures { get; set; }
+        public virtual List<BookPicture> BookPictures { get; set; }
         /// <summary>
         /// How many book in this name available are library
         /// </summary>
