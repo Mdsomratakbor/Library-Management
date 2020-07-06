@@ -1,11 +1,11 @@
 ﻿@model System.Web.Mvc.HandleErrorInfo
-@{
+@*@{
     ViewBag.Title = ViewBag.Title ?? "Internal Server Error";
 }
 <div class="list-header clearfix">
     <span>Error : @ViewBag.Title</span>
-</div>
-<div class="list-sfs-holder">
+</div>*@
+@*<div class="list-sfs-holder">
     <div class="alert alert-error">
         An unexpected error has occurred. Please contact the system administrator.
     </div>
@@ -19,5 +19,34 @@
             </p>
         </div>
     }
-</div>
+</div>*@
 
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@Model.Exception.HResult Error Page</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="error-page">
+        <h2 class="headline text-danger">@Model.Exception.HResult</h2>
+
+        <div class="error-content">
+            <h3><i class="fas fa-exclamation-triangle text-danger"></i> Oops! Something went wrong. Please contact with administrator </h3>
+
+            <p>
+                We will work on fixing that right away.
+                Meanwhile, you may <a href="@Url.Action("Index","Dashboard")">return to dashboard</a> or try using the search form.
+            </p>
+        </div>
+    </div>
+    <!-- /.error-page -->
+
+</section>
+<!-- /.content -->

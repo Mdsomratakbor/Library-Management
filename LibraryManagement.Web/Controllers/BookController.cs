@@ -15,6 +15,7 @@ namespace LibraryManagement.Web.Controllers
     {
         private Book _Book;
         private IBook _IBook;
+        private HandleErrorInfo _HandleErrorInfo;
         public BookController()
         {
             _Book = new Book();
@@ -27,17 +28,28 @@ namespace LibraryManagement.Web.Controllers
         }
         public ActionResult Action(int? id)
         {
-            _Book = BookService.Instance.GetBookById(id.Value);
-            _IBook.ID = _Book.ID;
-            _IBook.Isbn = _Book.Isbn;         
-            _IBook.BookName = _Book.BookName;
-            _IBook.AuthorName = _Book.AuthorName;
-            _IBook.BookEdition = _Book.BookEdition;
-            _IBook.BookPublish = _Book.BookPublish;
-            _IBook.PurchaseDate = _Book.PurchaseDate;
-            _IBook.Price = _Book.Price;
-            _IBook.Pictures = _Book.BookPictures;
-            return View(_IBook);
+            try
+            {
+                _Book = BookService.Instance.GetBookById(id.Value);
+                _IBook.ID = _Book.ID;
+                _IBook.Isbn = _Book.Isbn;
+                _IBook.BookName = _Book.BookName;
+                _IBook.AuthorName = _Book.AuthorName;
+                _IBook.BookEdition = _Book.BookEdition;
+                _IBook.BookPublish = _Book.BookPublish;
+                _IBook.PurchaseDate = _Book.PurchaseDate;
+                _IBook.Price = _Book.Price;
+                _IBook.Pictures = _Book.BookPictures;
+                return View(_IBook);
+            }
+            catch(Exception ex)
+            {
+
+                _HandleErrorInfo = new HandleErrorInfo(ex, "BookController","Action");
+                return View("Error", _HandleErrorInfo);
+
+            }
+           
         }
         [HttpPost]
         public JsonResult Action(BookActionModel model)
