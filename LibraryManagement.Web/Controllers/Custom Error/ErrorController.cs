@@ -12,5 +12,21 @@ namespace LibraryManagement.Web.Controllers.Custom_Error
         {
             return View();
         }
+        public ActionResult ServiceUnavailableErrorPage()
+        {
+            return View();
+        }
+        public ActionResult ForbiddenPage()
+        {
+            return View();
+        }
+        public ActionResult IntervalServerErroPage()
+        {
+            return View();
+        }
+        public ActionResult BadRequestErroPage()
+        {
+            return View();
+        }
     }
 }

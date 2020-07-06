@@ -1147,6 +1147,7 @@
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Book\Action.cshtml" />
     <Content Include="Views\Error\NotFoundPage.cshtml" />
+    <Content Include="Views\Error\ServiceUnavailableErrorPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
