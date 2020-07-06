@@ -8,7 +8,6 @@ namespace LibraryManagement.Web.Controllers.Custom_Error
 {
     public class ErrorController : Controller
     {
-        // GET: Error
         public ActionResult NotFoundPage()
         {
             return View();
