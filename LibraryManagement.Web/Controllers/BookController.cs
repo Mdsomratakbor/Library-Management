@@ -15,7 +15,7 @@ namespace LibraryManagement.Web.Controllers
     {
         private Book _Book;
         private IBook _IBook;
-        private HandleErrorInfo _HandleErrorInfo;
+
         public BookController()
         {
             _Book = new Book();
@@ -44,9 +44,8 @@ namespace LibraryManagement.Web.Controllers
             }
             catch(Exception ex)
             {
-
-                _HandleErrorInfo = new HandleErrorInfo(ex, "BookController","Action");
-                return View("Error", _HandleErrorInfo);
+                HandleErrorInfo error = new HandleErrorInfo(ex, "BookController", "Action");
+                return View("Error", ex.Message);
 
             }
            
