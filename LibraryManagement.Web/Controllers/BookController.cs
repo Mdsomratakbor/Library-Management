@@ -27,9 +27,17 @@ namespace LibraryManagement.Web.Controllers
         }
         public ActionResult Action(int? id)
         {
-
+            _Book = BookService.Instance.GetBookById(id.Value);
+            _Book.ID = _Book.ID;
+            _Book.Isbn = _Book.Isbn;         
+            _IBook.BookName = _Book.BookName;
+            _IBook.AuthorName = _Book.AuthorName;
+            _IBook.BookEdition = _Book.BookEdition;
+            _IBook.BookPublish = _Book.BookPublish;
+            _IBook.PurchaseDate = _Book.PurchaseDate;
+            _IBook.Price = _Book.Price;
+            _IBook.Pictures = _Book.BookPictures;
             return View(_IBook);
-
         }
         [HttpPost]
         public JsonResult Action(BookActionModel model)
