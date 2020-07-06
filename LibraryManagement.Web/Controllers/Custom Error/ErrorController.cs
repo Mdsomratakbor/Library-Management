@@ -28,5 +28,13 @@ namespace LibraryManagement.Web.Controllers.Custom_Error
         {
             return View();
         }
+        public ActionResult RequestErroPage()
+        {
+            return View();
+        }
+        public ActionResult BadGatewayErrorPage()
+        {
+            return View();
+        }
     }
 }

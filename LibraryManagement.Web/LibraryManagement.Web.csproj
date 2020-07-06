@@ -1148,6 +1148,11 @@
     <Content Include="Views\Book\Action.cshtml" />
     <Content Include="Views\Error\NotFoundPage.cshtml" />
     <Content Include="Views\Error\ServiceUnavailableErrorPage.cshtml" />
+    <Content Include="Views\Error\ForbiddenPage.cshtml" />
+    <Content Include="Views\Error\IntervalServerErroPage.cshtml" />
+    <Content Include="Views\Error\BadRequestErroPage.cshtml" />
+    <Content Include="Views\Error\RequestErroPage.cshtml" />
+    <Content Include="Views\Error\BadGatewayErrorPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
