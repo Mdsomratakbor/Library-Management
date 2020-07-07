@@ -14,6 +14,6 @@ namespace LibraryManagement.Services.Interfaces
         Book GetBookById(int id);
         bool SaveBook(Book model);
         bool UpdateBook(Book model);
-        bool DeleteBook(Book model);
+        bool DeleteBook(int id);
     }
 }

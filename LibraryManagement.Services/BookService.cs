@@ -112,11 +112,11 @@ namespace LibraryManagement.Services
                 return _LMContext.SaveChanges() > 0;
             }
         }
-        public bool DeleteBook(Book model)
+        public bool DeleteBook(int id)
         {
             using (var _LMContext = new LMContext())
             {
-                var auction = _LMContext.Books.Find(model.ID);
+                var auction = _LMContext.Books.Find(id);
                 _LMContext.Entry(auction).State = System.Data.Entity.EntityState.Modified;
                 _LMContext.Books.Remove(auction);
                 return _LMContext.SaveChanges()>0;

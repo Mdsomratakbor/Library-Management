@@ -153,8 +153,7 @@ namespace LibraryManagement.Web.Controllers
             {
                 if (id > 0)
                 {
-                    _Book = await Task.Run(()=>BookService.Instance.GetBookById(id));
-                    data = await Task.Run(()=> BookService.Instance.DeleteBook(_Book));
+                    data = await Task.Run(()=> BookService.Instance.DeleteBook(id));
                 }
                 else
                 {
