@@ -142,5 +142,40 @@ namespace LibraryManagement.Web.Controllers
             };
             return result;
         }
+
+        public async Task<JsonResult> Delete(int id)
+        {
+            JsonResult result = new JsonResult();
+            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            dynamic message = "";
+            var data = false;
+            try
+            {
+                if (id > 0)
+                {
+                    _Book = await Task.Run(()=>BookService.Instance.GetBookById(id));
+                    data = await Task.Run(()=> BookService.Instance.DeleteBook(_Book));
+                }
+                else
+                {
+                    message = "Please click valid item";
+                }
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+            }
+            if (data)
+            {
+                message = "Data Delete Successfully !!";
+                result.Data = new { Success = true, Message = message };
+            }
+            else
+            {
+                result.Data = new { Success = false, Message = message };
+            }
+
+            return result;
+        }
     }
 }
