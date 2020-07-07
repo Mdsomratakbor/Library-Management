@@ -30,6 +30,7 @@ namespace LibraryManagement.Data
         public DbSet<Return> Returns { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<BookPicture> BookPictures { get; set; }
         public DbSet<StudentPicture> StudentPictures { get; set; }

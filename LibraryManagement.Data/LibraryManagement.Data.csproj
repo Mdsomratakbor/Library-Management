@@ -65,6 +65,10 @@
     <Compile Include="Migrations\202007011624464_SetBookNameString.designer.cs">
       <DependentUpon>202007011624464_SetBookNameString.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007071818145_AddCategory.cs" />
+    <Compile Include="Migrations\202007071818145_AddCategory.designer.cs">
+      <DependentUpon>202007071818145_AddCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -84,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007011624464_SetBookNameString.resx">
       <DependentUpon>202007011624464_SetBookNameString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007071818145_AddCategory.resx">
+      <DependentUpon>202007071818145_AddCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
