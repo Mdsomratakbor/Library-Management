@@ -1,5 +1,6 @@
 ﻿using LibraryManagement.Entities;
 using LibraryManagement.Services;
+using LibraryManagement.Services.Interfaces;
 using LibraryManagement.Web.ViewModels;
 using LibraryManagement.Web.ViewModels.Interfaces;
 using System;
@@ -15,11 +16,13 @@ namespace LibraryManagement.Web.Controllers
     {
         private Book _Book;
         private IBook _IBook;
+        private IBookService _IBookService;
 
         public BookController()
         {
             _Book = new Book();
             _IBook = new BookActionModel();
+            _IBookService = new BookService();
         }
         // GET: Book
         public ActionResult Index()
@@ -32,7 +35,7 @@ namespace LibraryManagement.Web.Controllers
             {
                 if (id > 0)
                {
-                    _Book = BookService.Instance.GetBookById(id.Value);
+                    _Book = _IBookService.GetDataById(id.Value);
                     _IBook.ID = _Book.ID;
                     _IBook.Isbn = _Book.Isbn;
                     _IBook.BookName = _Book.BookName;
@@ -70,7 +73,7 @@ namespace LibraryManagement.Web.Controllers
 
                     if (model.ID > 0)
                     {
-                        _Book = BookService.Instance.GetBookById(model.ID);
+                        _Book = _IBookService.GetDataById(model.ID);
                         _Book.BookPictures.Clear();
                         _Book.BookPictures = new List<BookPicture>();
                         _Book.BookPictures.AddRange(pictures.Select(x => new BookPicture() { PictureID = x.ID, BookID=model.ID }));           
@@ -82,7 +85,7 @@ namespace LibraryManagement.Web.Controllers
                         _Book.Price = model.Price;
                         _Book.BookEdition = model.BookEdition;
                         _Book.BookQty = model.BookQty;
-                        isSuccess = BookService.Instance.UpdateBook(_Book);
+                        isSuccess = _IBookService.UpdateData(_Book);
                     }
                     else
                     {
@@ -97,7 +100,7 @@ namespace LibraryManagement.Web.Controllers
                         _Book.Price = model.Price;
                         _Book.BookEdition = model.BookEdition;
                         _Book.BookQty = model.BookQty;
-                        isSuccess = BookService.Instance.SaveBook(_Book);
+                        isSuccess = _IBookService.SaveData(_Book);
                     }
                 }
                 else
@@ -128,8 +131,8 @@ namespace LibraryManagement.Web.Controllers
             int rowNumber;
             int totalRecord;
             List<Book> Books = new List<Book>();
-            Books = await Task.Run(() => BookService.Instance.GetAllBook(iDisplayLength, iDisplayStart, iSortCol_0, sSortDir_0, sSearch));
-            totalRecord = await Task.Run(() => BookService.Instance.TotalRowCount());
+            Books = await Task.Run(() => _IBookService.GetAllData(iDisplayLength, iDisplayStart, iSortCol_0, sSortDir_0, sSearch));
+            totalRecord = await Task.Run(() => _IBookService.TotalRowCount());
             rowNumber = Books.Count();
             Books = Books.Skip(iDisplayStart).Take(iDisplayLength).ToList();
             JsonResult result = new JsonResult();
@@ -153,7 +156,7 @@ namespace LibraryManagement.Web.Controllers
             {
                 if (id > 0)
                 {
-                    data = await Task.Run(()=> BookService.Instance.DeleteBook(id));
+                    data = await Task.Run(()=> _IBookService.DeleteData(id));
                 }
                 else
                 {

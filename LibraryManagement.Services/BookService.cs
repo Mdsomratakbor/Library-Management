@@ -12,22 +12,7 @@ namespace LibraryManagement.Services
 {
     public class BookService : IBookService
     {
-        #region Singletone
-        public static BookService Instance
-        {
-            get
-            {
-                if (instance == null) instance = new BookService();
-                return instance;
-            }
-        }
-        private static BookService instance { get; set; }
-        #endregion
-
-
-
-
-        public List<Book> GetAllBook(int displayLength, int displayStart, int sortCol, string sortDir, string search)
+        public List<Book> GetAllData(int displayLength, int displayStart, int sortCol, string sortDir, string search)
         {
 
             using (var _LMContext = new LMContext())
@@ -84,7 +69,7 @@ namespace LibraryManagement.Services
 
         }
 
-        public Book GetBookById(int id)
+        public Book GetDataById(int id)
         {
             using (var _LMContext = new LMContext())
             {
@@ -92,7 +77,7 @@ namespace LibraryManagement.Services
             }
         }
 
-        public bool SaveBook(Book model)
+        public bool SaveData(Book model)
         {
             using (var _LMContext = new LMContext())
             {
@@ -101,7 +86,7 @@ namespace LibraryManagement.Services
             }
         }
 
-        public bool UpdateBook(Book model)
+        public bool UpdateData(Book model)
         {
             using (var _LMContext = new LMContext())
             {
@@ -112,7 +97,7 @@ namespace LibraryManagement.Services
                 return _LMContext.SaveChanges() > 0;
             }
         }
-        public bool DeleteBook(int id)
+        public bool DeleteData(int id)
         {
             using (var _LMContext = new LMContext())
             {

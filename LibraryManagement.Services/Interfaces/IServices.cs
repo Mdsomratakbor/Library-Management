@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services.Interfaces
 {
-    interface IServices
+    public interface IServices<T> where T: class
     {
-        List<T> GetAllData<T>(int displayLength, int displayStart, int sortCol, string sortDir, string search = null);
+        List<T> GetAllData(int displayLength, int displayStart, int sortCol, string sortDir, string search = null);
+        int TotalRowCount();
+        T GetDataById(int id);
+        bool SaveData(T model);
+        bool UpdateData(T model);
+        bool DeleteData(int id);
     }
 }

@@ -7,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services.Interfaces
 {
-    interface IBookService
+    public interface IBookService: IServices<Book>
     {
-        List<Book> GetAllBook(int displayLength, int displayStart, int sortCol, string sortDir, string search = null);
-        int TotalRowCount();
-        Book GetBookById(int id);
-        bool SaveBook(Book model);
-        bool UpdateBook(Book model);
-        bool DeleteBook(int id);
+        
     }
 }
