@@ -21,5 +21,7 @@ namespace LibraryManagement.Web.ViewModels.Interfaces
         /// How many book in this name available are library
         /// </summary>
          int BookQty { get; set; }
+        int CategoryID { get; set; }
+        List<Category>Categories { get; set; }
     }
 }

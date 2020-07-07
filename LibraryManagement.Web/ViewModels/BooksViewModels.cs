@@ -38,5 +38,8 @@ namespace LibraryManagement.Web.ViewModels
         public int BookQty { get; set; }
         public List<BookPicture> Pictures { get; set; }
         public string PictureIDs { get; set; }
+        [Required(ErrorMessage = "Please enter book category")]
+        public int CategoryID { get; set; }
+        public List<Category> Categories { get; set; }
     }
 }
