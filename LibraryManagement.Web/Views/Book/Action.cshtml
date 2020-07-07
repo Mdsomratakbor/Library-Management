@@ -41,9 +41,16 @@
 
                     </div>
                     <div class="col-md-4">
-                        <label class="font-weight-bold" for="PurchaseDate"> Purchase Date </label>
-                        <input type="text" name="PurchaseDate" class="form-control" id="PurchaseDate" value="@Model.PurchaseDate" placeholder="Please enter Book Purchase Date " />
-
+                        <label class="font-weight-bold" for="reservation"> Purchase Date </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="far fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                            <input type="text" name="PurchaseDate" class="form-control" id="reservation" value="@Model.PurchaseDate"/>
+                        </div>
+                        <!-- /.input group -->
                     </div>
                     <div class="col-md-4">
                         <label class="font-weight-bold" for="Price"> Price </label>
@@ -91,6 +98,10 @@
     </div>
 
     <script>
+        //Date range picker
+        $('#reservation').datepicker({
+            format: 'mm/dd/yyyy'
+        })
         $("#btnSave").on('click', function () {
             var imageIDs = [];
             $("#pictureArea img").each(function () {
