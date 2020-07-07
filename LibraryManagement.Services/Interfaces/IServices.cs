@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services.Interfaces
 {
-    public interface ICategoryService
+    interface IServices
     {
-        List<Category> GetAllCategory(int displayLength, int displayStart, int sortCol, string sortDir, string search = null);
+        List<T> GetAllData<T>(int displayLength, int displayStart, int sortCol, string sortDir, string search = null);
     }
 }

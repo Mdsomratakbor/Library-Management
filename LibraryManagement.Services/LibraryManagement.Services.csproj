@@ -81,6 +81,7 @@
     <Compile Include="Interfaces\IBookService.cs" />
     <Compile Include="Interfaces\ICategoryService.cs" />
     <Compile Include="Interfaces\IPicture.cs" />
+    <Compile Include="Interfaces\IServices.cs" />
     <Compile Include="PictureServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
