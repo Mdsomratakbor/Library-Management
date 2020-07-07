@@ -20,6 +20,8 @@ namespace LibraryManagement.Entities
         /// How many book in this name available are library
         /// </summary>
         public int BookQty { get; set; }
-     
+        public int CategoryID { get; set; }
+        public virtual Category Categories { get; set; }
+
     }
 }

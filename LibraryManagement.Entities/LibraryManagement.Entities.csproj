@@ -59,6 +59,7 @@
     <Compile Include="BaseEntities.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="BookPicture.cs" />
+    <Compile Include="Category.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Designation.cs" />
     <Compile Include="Issue.cs" />
