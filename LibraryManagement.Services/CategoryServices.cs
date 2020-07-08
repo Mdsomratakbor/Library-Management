@@ -45,6 +45,13 @@ namespace LibraryManagement.Services
             }
         }
 
+        public List<Category> GetAllCategory()
+        {
+            using (var _LMContext = new LMContext())
+            {
+                return _LMContext.Categories.ToList();
+            }
+        }
         public int TotalRowCount()
         {
             using (var _LMContext = new LMContext())

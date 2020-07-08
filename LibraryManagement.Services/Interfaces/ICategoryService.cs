@@ -9,5 +9,7 @@ namespace LibraryManagement.Services.Interfaces
 {
     public interface ICategoryService: IServices<Category>
     {
+         List<Category> GetAllCategory();
+
     }
 }
