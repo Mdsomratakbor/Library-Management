@@ -15,7 +15,7 @@
                         <thead>
                             <tr>
                                 <th>Category Name</th>
-                                <th>Description</th>>
+                                <th>Description</th>
                                 <th>Action</th>
                                 @*<th>EntryDate</th>*@
                             </tr>
@@ -60,7 +60,7 @@
             "autoWidth": true,
             "lengthChange": true,
             bServerSide: true,
-            sAjaxSource: '@Url.Action("ListOfBook", "Book")'
+            sAjaxSource: '@Url.Action("ListOfCategory", "Category")'
 
         })
         $('.dataTable').on('click','.btn-trash',function () {
