@@ -17,12 +17,14 @@ namespace LibraryManagement.Web.Controllers
         private Book _Book;
         private IBook _IBook;
         private IBookService _IBookService;
+        private ICategoryService _ICategoryService;
 
         public BookController()
         {
             _Book = new Book();
             _IBook = new BookActionModel();
             _IBookService = new BookService();
+            _ICategoryService = new CategoryServices();
         }
         // GET: Book
         public ActionResult Index()
@@ -46,6 +48,7 @@ namespace LibraryManagement.Web.Controllers
                     _IBook.Price = _Book.Price;
                     _IBook.Pictures = _Book.BookPictures;
                 }
+                _IBook.Categories = _ICategoryService.GetAllCategory();
                 return View(_IBook);
             }
             catch (Exception ex)
