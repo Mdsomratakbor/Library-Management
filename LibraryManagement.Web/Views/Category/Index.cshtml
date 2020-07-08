@@ -77,7 +77,7 @@
                 if (result.value) {
                     $.ajax({
                         method: 'Get',
-                        url: '@Url.Action("Delete","Book")',
+                        url: '@Url.Action("Delete","Category")',
                         data: { id: bookId }
                     }).done(function (response) {
                         if (response.Success) {
