@@ -1157,11 +1157,12 @@
     <Content Include="Views\Error\BadRequestErroPage.cshtml" />
     <Content Include="Views\Error\RequestErroPage.cshtml" />
     <Content Include="Views\Error\BadGatewayErrorPage.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\Action.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\BookImage\" />
-    <Folder Include="Views\Category\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
