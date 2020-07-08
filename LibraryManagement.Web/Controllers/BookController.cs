@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace LibraryManagement.Web.Controllers
 {
+    [HandleError]
     public class BookController : Controller
     {
         private Book _Book;
@@ -29,15 +30,22 @@ namespace LibraryManagement.Web.Controllers
         // GET: Book
         public ActionResult Index()
         {
-            return View();
-        }
-        public ActionResult Action(int? id)
-        {
             try
             {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                HandleErrorInfo error = new HandleErrorInfo(ex, "BookController", "Action");
+                return View("Error", ex.Message);
+            }
+            
+        }
+        public async Task<ActionResult> Action(int? id)
+        {
                 if (id > 0)
                {
-                    _Book = _IBookService.GetDataById(id.Value);
+                    _Book = await Task.Run(()=> _IBookService.GetDataById(id.Value));
                     _IBook.ID = _Book.ID;
                     _IBook.Isbn = _Book.Isbn;
                     _IBook.BookName = _Book.BookName;
@@ -48,16 +56,8 @@ namespace LibraryManagement.Web.Controllers
                     _IBook.Price = _Book.Price;
                     _IBook.Pictures = _Book.BookPictures;
                 }
-                _IBook.Categories = _ICategoryService.GetAllCategory();
-                return View(_IBook);
-            }
-            catch (Exception ex)
-            {
-                HandleErrorInfo error = new HandleErrorInfo(ex, "BookController", "Action");
-                return View("Error", ex.Message);
-
-            }
-
+                _IBook.Categories = await Task.Run(() => _ICategoryService.GetAllCategory());
+                return View(_IBook);            
         }
         [HttpPost]
         public JsonResult Action(BookActionModel model)
@@ -68,7 +68,6 @@ namespace LibraryManagement.Web.Controllers
             bool isSuccess = false;
             try
             {
-
                 if (ModelState.IsValid)
                 {
                     List<int> picturesIDs = model.PictureIDs.Split(',').Select(x => int.Parse(x)).ToList();
