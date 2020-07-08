@@ -217,6 +217,7 @@
     <Compile Include="ViewModels\BookInterfaces\IBookList.cs" />
     <Compile Include="ViewModels\CategoryInterfaces\ICategory.cs" />
     <Compile Include="ViewModels\CategoryInterfaces\ICategoryList.cs" />
+    <Compile Include="ViewModels\CategoryViewModels.cs" />
     <Compile Include="ViewModels\ImageInterfaces\IPicture.cs" />
   </ItemGroup>
   <ItemGroup>
