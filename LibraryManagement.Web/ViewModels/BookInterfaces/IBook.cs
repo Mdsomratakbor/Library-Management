@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.Entities;
+using LibraryManagement.Web.ViewModels.CategoryInterfaces;
 using LibraryManagement.Web.ViewModels.ImageInterfaces;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.Interfaces
 {
-    interface IBook: IBaseEntities, IPicture<BookPicture>
+    interface IBook: IBaseEntities, IPicture<BookPicture>, ICategoryList
     {
          string BookName { get; set; }
          int Isbn { get; set; }
@@ -22,6 +23,5 @@ namespace LibraryManagement.Web.ViewModels.Interfaces
         /// </summary>
          int BookQty { get; set; }
         int CategoryID { get; set; }
-        List<Category>Categories { get; set; }
     }
 }
