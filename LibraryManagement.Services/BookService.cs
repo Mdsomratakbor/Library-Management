@@ -48,7 +48,7 @@ namespace LibraryManagement.Services
                 }
                 else if (sortDir == "asc")
                 {
-                    books = _LMContext.Books.OrderBy(x => columnNameDsc).Include(y => y.BookPictures.Select(x => x.Pictures)).ToList();
+                    books = _LMContext.Books.OrderBy(x => columnNameAsc).Include(y => y.BookPictures.Select(x => x.Pictures)).ToList();
                 }
                 else
                 {
@@ -64,7 +64,6 @@ namespace LibraryManagement.Services
             using (var _LMContext = new LMContext())
             {
                 return _LMContext.Books.Count();
-
             }
 
         }
@@ -101,9 +100,9 @@ namespace LibraryManagement.Services
         {
             using (var _LMContext = new LMContext())
             {
-                var auction = _LMContext.Books.Find(id);
-                _LMContext.Entry(auction).State = System.Data.Entity.EntityState.Modified;
-                _LMContext.Books.Remove(auction);
+                var book = _LMContext.Books.Find(id);
+                _LMContext.Entry(book).State = System.Data.Entity.EntityState.Modified;
+                _LMContext.Books.Remove(book);
                 return _LMContext.SaveChanges()>0;
             }
         }
