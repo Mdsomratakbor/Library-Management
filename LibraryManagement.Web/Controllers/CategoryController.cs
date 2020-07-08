@@ -13,7 +13,7 @@ using System.Web.Mvc;
 namespace LibraryManagement.Web.Controllers
 {
     [HandleError]
-    public class CategoryController : Controller
+    public class CategoryController : Controller, IDisposable
     {
         private ICategoryService _ICategoryService;
         private ICategory _ICategory;
@@ -62,7 +62,7 @@ namespace LibraryManagement.Web.Controllers
                     {
                         _category.Name = model.Name;
                         _category.Description = model.Description;
-                        isSuccess = await Task.Run(()=> _ICategoryService.SaveData(_category));
+                        isSuccess = await Task.Run(() => _ICategoryService.SaveData(_category));
                     }
                 }
                 else
@@ -108,5 +108,25 @@ namespace LibraryManagement.Web.Controllers
             };
             return result;
         }
+
+        public  void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        protected override  void Dispose(bool isDisposing)
+        {
+            if (isDisposing)
+            {
+                _ICategoryService = null;
+                _ICategory = null;
+                _category = null;
+            }
+        }
+        ~CategoryController()
+        {
+            Dispose(false);
+        }
+
     }
 }
