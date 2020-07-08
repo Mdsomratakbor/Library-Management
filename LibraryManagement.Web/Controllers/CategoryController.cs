@@ -22,6 +22,7 @@ namespace LibraryManagement.Web.Controllers
         {
             _ICategoryService = new CategoryServices();
             _ICategory = new CategoryActionModel();
+            _category = new Category();
         }
         // GET: Category
         public ActionResult Index()
@@ -40,7 +41,7 @@ namespace LibraryManagement.Web.Controllers
             return View(_ICategory);
         }
         [HttpPost]
-        public JsonResult Action(CategoryActionModel model)
+        public async Task<JsonResult> Action(CategoryActionModel model)
         {
             JsonResult result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
@@ -59,10 +60,9 @@ namespace LibraryManagement.Web.Controllers
                     }
                     else
                     {
-                        _category.ID = model.ID;
                         _category.Name = model.Name;
                         _category.Description = model.Description;
-                        isSuccess = _ICategoryService.SaveData(_category);
+                        isSuccess = await Task.Run(()=> _ICategoryService.SaveData(_category));
                     }
                 }
                 else
