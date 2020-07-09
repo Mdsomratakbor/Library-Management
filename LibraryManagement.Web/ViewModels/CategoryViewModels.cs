@@ -2,6 +2,7 @@
 using LibraryManagement.Web.ViewModels.CategoryInterfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -14,6 +15,7 @@ namespace LibraryManagement.Web.ViewModels
     public class CategoryActionModel : ICategory
     {
         public int ID { get; set; }
+        [Required(ErrorMessage = "Please enter Book Category Name")]
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime? EntryDate { get; set; }
