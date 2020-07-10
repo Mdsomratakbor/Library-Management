@@ -81,6 +81,7 @@
     <Compile Include="CategoryServices.cs" />
     <Compile Include="DepartmentServices.cs" />
     <Compile Include="DesignationServices.cs" />
+    <Compile Include="Enums\GenderEnums.cs" />
     <Compile Include="Interfaces\IBookService.cs" />
     <Compile Include="Interfaces\ICategoryService.cs" />
     <Compile Include="Interfaces\IDepartmentServices.cs" />

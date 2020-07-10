@@ -227,6 +227,7 @@
     <Compile Include="ViewModels\DesignationInterfaces\IDesignatioList.cs" />
     <Compile Include="ViewModels\DesignationInterfaces\IDesignation.cs" />
     <Compile Include="ViewModels\DesignationViewModels.cs" />
+    <Compile Include="ViewModels\GenderInterfaces\IGender.cs" />
     <Compile Include="ViewModels\ImageInterfaces\IPicture.cs" />
     <Compile Include="ViewModels\StudentInterfaces\IStudent.cs" />
     <Compile Include="ViewModels\StudentInterfaces\IStudentList.cs" />
