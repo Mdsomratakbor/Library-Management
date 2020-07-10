@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.DepartmentInterfaces
 {
-    interface IDepartment : IBaseEntities
+    interface IDepartmentList
     {
     }
 }
