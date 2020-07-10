@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.DesignationInterfaces
 {
-    interface IDesignation : IBaseEntties
+    interface IDesignatioList
     {
     }
 }

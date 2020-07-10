@@ -223,6 +223,8 @@
     <Compile Include="ViewModels\DepartmentInterfaces\IDepartment.cs" />
     <Compile Include="ViewModels\DepartmentInterfaces\IDepartmentList.cs" />
     <Compile Include="ViewModels\DepartmentViewModels.cs" />
+    <Compile Include="ViewModels\DesignationInterfaces\IDesignatioList.cs" />
+    <Compile Include="ViewModels\DesignationInterfaces\IDesignation.cs" />
     <Compile Include="ViewModels\ImageInterfaces\IPicture.cs" />
   </ItemGroup>
   <ItemGroup>
