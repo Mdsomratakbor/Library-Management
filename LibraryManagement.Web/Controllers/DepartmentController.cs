@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace LibraryManagement.Web.Controllers
 {
+    [HandleError]
     public class DepartmentController : Controller
     {
         // GET: Department
