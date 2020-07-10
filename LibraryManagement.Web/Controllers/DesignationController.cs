@@ -13,5 +13,9 @@ namespace LibraryManagement.Web.Controllers
         {
             return View();
         }
+        public ActionResult Action()
+        {
+            return View();
+        }
     }
 }
