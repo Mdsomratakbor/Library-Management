@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.Entities;
+using LibraryManagement.Services.Enums;
 using LibraryManagement.Web.ViewModels.StudentInterfaces;
 using System;
 using System.Collections.Generic;
@@ -35,5 +36,6 @@ namespace LibraryManagement.Web.ViewModels
         public int? LUserID { get; set; }
         public DateTime? UpdateDate { get; set; }
         public int? UpdateLUserID { get; set; }
+        public List<GenderEnums> Genders { get; set; }
     }
 }

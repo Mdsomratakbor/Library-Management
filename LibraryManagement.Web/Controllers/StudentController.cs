@@ -24,7 +24,7 @@ namespace LibraryManagement.Web.Controllers
         public StudentController()
         {
             _Student = new Student();
-            //_IStudent = new BookActionModel();
+            _IStudent = new StudentActionModel();
             _IStudentServices = new StudentServices();
             _IDepartmentServices = new DepartmentServices();
         }
@@ -44,12 +44,13 @@ namespace LibraryManagement.Web.Controllers
                 _IStudent.Address = _Student.Address;
                 _IStudent.City = _Student.City;
                 _IStudent.Email = _Student.Email;
-                _IStudent.DepartmentID = _Student.DepartmentID;
                 _IStudent.Semester = _Student.Semester;
                 _IStudent.Pictures = _Student.StudentPictures;
                 _IStudent.DepartmentID = _Student.DepartmentID;
-                _IStudent.Code = "STD-000"+ await Task.Run(()=>_IStudentServices.TotalRowCount());
+                _IStudent.Code = _Student.Code;           
+                _IStudent.Gender = _Student.Gender;
             }
+            _IStudent.Code = "STD-000"+ await Task.Run(()=>_IStudentServices.TotalRowCount());
             _IStudent.Departments = await Task.Run(() => _IDepartmentServices.GetAllDepartment());
             return View(_IStudent);
         }
@@ -73,34 +74,29 @@ namespace LibraryManagement.Web.Controllers
                     if (model.ID > 0)
                     {
                         _Student = await Task.Run(() => _IStudentServices.GetDataById(model.ID));
-                        _Student.BookPictures.Clear();
-                        _Student.BookPictures = new List<BookPicture>();
-                        _Student.BookPictures.AddRange(pictures.Select(x => new BookPicture() { PictureID = x.ID, BookID = model.ID }));
-                        _Student.BookName = model.BookName;
-                        _Student.AuthorName = model.AuthorName;
-                        _Student.PurchaseDate = model.PurchaseDate;
-                        _Student.Isbn = model.Isbn;
-                        _Student.BookPublish = model.BookPublish;
-                        _Student.Price = model.Price;
-                        _Student.BookEdition = model.BookEdition;
-                        _Student.BookQty = model.BookQty;
-                        _Student.CategoryID = model.CategoryID;
+                        _Student.StudentPictures.Clear();
+                        _Student.StudentPictures = new List<StudentPicture>();
+                        _Student.StudentPictures.AddRange(pictures.Select(x => new StudentPicture() { PictureID = x.ID, StudentID = model.ID }));
+                        _Student.Name = model.Name;
+                        _Student.Phone = model.Phone;
+                        _Student.Address = model.Address;
+                        _Student.City = model.City;
+                        _Student.Email = model.Email;
+                        _Student.DepartmentID = model.DepartmentID;
+                        _Student.Semester = model.Semester;
                         isSuccess = _IStudentServices.UpdateData(_Student);
                     }
                     else
                     {
-                        _Student.BookPictures = new List<BookPicture>();
-                        _Student.BookPictures.AddRange(pictures.Select(x => new BookPicture() { PictureID = x.ID }));
-                        _Student.ID = model.ID;
-                        _Student.BookName = model.BookName;
-                        _Student.AuthorName = model.AuthorName;
-                        _Student.PurchaseDate = model.PurchaseDate;
-                        _Student.Isbn = model.Isbn;
-                        _Student.BookPublish = model.BookPublish;
-                        _Student.Price = model.Price;
-                        _Student.BookEdition = model.BookEdition;
-                        _Student.BookQty = model.BookQty;
-                        _Student.CategoryID = model.CategoryID;
+                        _Student.StudentPictures = new List<StudentPicture>();
+                        _Student.StudentPictures.AddRange(pictures.Select(x => new StudentPicture() { PictureID = x.ID }));
+                        _Student.Name = model.Name;
+                        _Student.Phone = model.Phone;
+                        _Student.Address = model.Address;
+                        _Student.City = model.City;
+                        _Student.Email = model.Email;
+                        _Student.DepartmentID = model.DepartmentID;
+                        _Student.Semester = model.Semester;
                         isSuccess = _IStudentServices.SaveData(_Student);
                     }
                 }
@@ -180,5 +176,25 @@ namespace LibraryManagement.Web.Controllers
 
             return result;
         }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        protected override void Dispose(bool isDisposing)
+        {
+            if (isDisposing)
+            {
+                _IDepartmentServices = null;
+                _IStudent = null;
+                _IStudentServices = null;
+            }
+        }
+        ~StudentController()
+        {
+            Dispose(false);
+        }
+
     }
 }
