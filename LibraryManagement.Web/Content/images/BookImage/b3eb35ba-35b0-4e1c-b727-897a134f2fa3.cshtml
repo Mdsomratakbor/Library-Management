@@ -1,0 +1,506 @@
+﻿@using System.Data
+@model SoftifyDocuSign.Models.TransferOut
+@{
+    ViewBag.Title = "Transfer Out";
+}
+<header class="page-header">
+    <h2>@ViewBag.Title  </h2>
+</header>
+
+<!--Error messages will be shown here-->
+@Html.Partial("_FlashMessage")
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<!-- start: Comparitive Statement Add page -->
+<section class="panel" ng-app="ngGridApp" ng-controller="ngGridCtrl">
+
+    @Html.AntiForgeryToken()
+    <form name="DesChangeForm">
+        <div class="panel-body">
+            <div class="row">
+                <!-- Modal : Start -->
+                <div class="black no-print">
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Add New Item</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <section class="panel">
+                                            <div class="panel-body">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <div class="col-md-4">
+                                                                <label class="control-label">Item Name</label>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <input type="text" class="form-control" name="ItemName" ng-model="Item.ItemName" autocomplete="off" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="col-md-4">
+                                                                <label class="control-label">Item Code</label>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <input type="text" class="form-control" name="ItemCode" ng-model="Item.ItemCode" autocomplete="off" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" ng-disabled="!Item.ItemName|| !Item.ItemCode" class="btn btn-danger" data-dismiss="modal" ng-click="showModal(0,'submit')">Submit</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--Modal : End -->
+                <!--Modla Start File Upload-->
+                <div class="black no-print">
+                    <div class="modal fade" id="myModalFileUpload" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Add New Item</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <section class="panel">
+                                            <div class="panel-body">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-6">
+                                                            <label class="control-label text-bold">Upload File</label>
+                                                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                                                <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 235px; max-height: 180px;
+                                    line-height: 20px !important;"></div>
+                                                                <input type="hidden">
+                                                                <div class="input-append ml-xs">
+                                                                    <span class="btn btn-default btn-file btn-sm">
+                                                                        <span class="fileupload-exists">Change</span>
+                                                                        <span class="fileupload-new">Select File</span>
+                                                                        <input type="file" id="uploadPhoto" name="FileName" size="100" accept=".xlsx" value=Server.MapPath("~/Content/assets/images/ItemImg") ngf-select="FileInsert($files)">
+                                                                    </span>
+                                                                    <a href="#" class="btn btn-default fileupload-exists btn-sm" data-dismiss="fileupload">Remove</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger btn-info" type="button" name="btnSubmit" data-dismiss="modal" ng-click="FileInsert('Submit')">
+                                        Submit <i class="fa fa-arrow-circle-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--Modal End File Uplaod-->
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.TransferOutNo, "Transfer Out No", htmlAttributes: new { @class = "control-label text-bold" })
+                            @Html.TextBoxFor(model => model.TransferOutNo, new { @class = "form-control", ng_model = "model.TransferOutNo", @required="true" })
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.dtTransferOut, "Stock Transfer Out Date", htmlAttributes: new { @class = "control-label text-bold" })
+                            @Html.TextBoxFor(model => model.dtTransferOut, new { @class = "form-control", datepicker = "", @id = "date", @ng_equired = "", @Value = "datepicker", ng_model = "model.dtTransferOut", @required = "true" })
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.TransporterName, "Transporter Name", htmlAttributes: new { @class = "control-label text-bold" })
+                            @Html.TextBoxFor(model => model.TransporterName, new { @class = "form-control", ng_model = "model.TransporterName", @required = "true" })
+                        </div>
+
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.DeptId, "Transfer To", htmlAttributes: new { @class = "control-label text-bold" })
+                            <select ng-model="model.DeptId"
+                                    style="width:90%;"
+                                    select2=""
+                                    data-ng-options="d.DeptId as d.DeptName for d in DepartmentList">
+                                <option value="" selected>--Select Department--</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 ">
+                            @Html.LabelFor(model => model.StockTransferNo, "StockTransfer No", htmlAttributes: new { @class = "control-label text-bold" })
+                            @Html.TextBoxFor(model => model.StockTransferNo, new { @class = "form-control", ng_model = "model.StockTransferNo" })
+                        </div>
+                        <div class="col-md-3 ">
+                            @Html.LabelFor(model => model.Remarks, "Remarks", htmlAttributes: new { @class = "control-label text-bold" })
+                            @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", ng_model = "model.Remarks" })
+                        </div>
+                    </div>                    
+
+                     <!-- end : row-->
+                        </div>
+                 
+                </div>
+
+              
+      
+
+            <div class="col-md-12 mt-none p-none">
+                <button class="mb-xs mt-xs mr-xs mt-md btn btn-sm btn-primary pull-right" type="button" ng-click="addItem()">
+                    Add <i class="fa fa-plus"></i>
+                </button>
+
+                <a href="~/Content/TransferOut_Sample.xlsx" class="mb-xs mt-xs mr-xs mt-md btn btn-sm btn-primary pull-left">
+                    Download Template <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                </a>
+
+                <button class="mb-xs mt-xs mr-xs mt-md btn btn-sm btn-success pull-left" data-toggle="modal" data-target="#myModalFileUpload" type="button">
+                    Import Data <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="col-md-12 col-xs-12">
+               
+                <div ui-grid="gridOptions" ui-grid-exporter ui-grid-auto-fit-columns ui-grid-resize-columns ui-grid-auto-resize
+                     style="font-family: 'Open Sans', Arial, sans-serif; color: #252222 !important; height: 45vh;" class="grid">
+                    
+                </div>
+               
+            </div>
+         
+        </div>
+        <div ng-show="showLoader" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.8;">
+            <img src="~/Content/assets/images/demo_wait.gif" alt="loading" style="position: absolute; top: 50%; left: 45%;" /> Loading..
+        </div>
+
+
+        <footer class="panel-footer">
+            <div class="pull-left">
+                <label style="color:black; font-weight:bold">Total Item : </label><b style="color:red">{{GetRow()}}</b>
+            </div>
+            <div class="pull-right">
+            <label style="color:black; font-weight:bold">Total Amount :</label><b style="color:red">{{GetSum() |currency:"Tk ":0}}</b>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-9 col-sm-offset-3">
+                    <button class="btn btn-danger btn-wide mr-md" type="button" name="btnSubmit" ng-disabled="DesChangeForm.$invalid" ng-click="InsertItem(model)">
+                        Submit <i class="fa fa-arrow-circle-right"></i>
+                    </button>
+                    <a href="@Url.Action("Index", "TransferOut")" class="btn btn-info">
+                        <i class="fa fa-arrow-circle-left"></i> Back to list
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </form>
+
+</section>
+<script>
+
+    ngGridApp.controller('ngGridCtrl', ['$scope', '$http', '$log', '$filter', 'Upload', '$timeout', '$interval', function ($scope, $http, $log, $filter, Upload, $timeout, $interval) {
+
+        $scope.ItemList = [];
+        $scope.DepartmentList = [];
+        $scope.Rowid = 0;
+        $scope.data = [
+            { Code: '', ItemId: 0, BatchNo: '', Qty: 0, Rate: 0, MRP: 0 }
+        ];
+        $scope.model = { dtTransferOut: $filter("date")(Date.now(), 'dd-MMM-yyyy'), TransferOutSubList: [] }
+        $scope.filedata = [];
+        $scope.File = { FileName: [] };
+        $scope.gridOptions = {
+            onRegisterApi: function (gridApi) {
+                $scope.gridApi = gridApi;
+                $interval(function () {
+                    $scope.gridApi.core.handleWindowResize();
+                }, 500, 10);
+            },
+            data: $scope.data
+        }
+
+        //// Amount Show
+        //$scope.GetMRP = function (RowEntity) {
+        //    var total = RowEntity.Rate * RowEntity.Qty;
+        //    total = total.toFixed(2);
+        //};
+        // Total Amount Show
+        $scope.GetSum = function () {
+            var total = 0;
+            for(var i=0; i<$scope.gridOptions.data.length; i++){
+                total = total + $scope.gridOptions.data[i].MRP;
+            }
+            $scope.model.Totalamount = total;
+            return total;
+        }
+        // Total Row Show
+        $scope.GetRow = function () {
+            var total = 0;
+            total = total + $scope.gridOptions.data.length;
+            return total;
+        }
+        $scope.GetRow();
+
+        // data push grid
+        $scope.addItem = function () {
+            $scope.gridOptions.data.push(
+                { Code: '', ItemId: 0, BatchNo: '', Qty: 0, Rate: 0, MRP: 0 }
+            );
+        };
+
+        $scope.LoadCombo = function () {
+            $http({
+                method: 'Post',
+                url: '../TransferOut/getComboData'
+            }).then(function (data) {
+                $scope.ItemList = data.data.Table;
+                $scope.DepartmentList = data.data.Table1;
+
+            }, function (error) {
+                alert(error);
+                console.log(error);
+            });
+        }
+        $scope.LoadCombo();
+
+        $scope.FileInsert = function (filedata) {
+            if (filedata != 'Submit') {
+                $scope.filedata = filedata
+
+            } else {
+                $scope.File.FileName = $scope.filedata;
+                Upload.upload({
+                    url: '../FileUpload/prcUploadExcelNext',
+                    data: {
+                        model: $scope.File
+                    }
+                }).then(function (response) {
+
+                    $scope.gridOptions.data = response.data;
+                    for (var i = 0; i < $scope.gridOptions.data.length; i++) {
+                        $scope.Code($scope.gridOptions.data[i], "ItemCode");
+                    }
+                })
+            }
+
+        }
+        $scope.gridOptions.columnDefs = [
+             {
+                 name: 'Code', width: 85, enableColumnMenu: false, cellTemplate: ' <div>' +
+             ' <input type="text"  ng-model="row.entity.Code" ng-change="grid.appScope.Code(row.entity,\'ItemCode\')" class="pl-sm" />' +
+             ' </div>'
+             },
+              {
+                  name: ' Item Name', width: 300, enableColumnMenu: false, cellTemplate:
+                  ' <div>' +
+                  ' <select ng-model="row.entity.ItemName" style = "width:85%;" valu="model.ItemName" ng-change="grid.appScope.Code(row.entity,\'ItemName\')" select2="" data-ng-options="d.ItemName as d.ItemName for d in grid.appScope.ItemList">' +
+                  '     <option value="" selected>--Select Item--</option>' +
+                  ' </select>' +
+                  '<a id="add-customer" class="btn btn-info btn-xs ml-xs " ng-click="grid.appScope.showModal(grid.renderContainers.body.visibleRowCache.indexOf(row),0)" data-toggle="modal" data-target="#myModal">' +
+                  '<i class="fa fa-plus-circle" id="addIcon" style="padding:2px 8px;color:black;"></i>' +
+                   '</a>' +
+                   ' </div>'
+              },
+            {
+                name: 'Batch No', width: 150, enableColumnMenu: false, cellTemplate: ' <div>' +
+                ' <input type="text" required="" ng-model="row.entity.BatchNo" class="pl-sm" />' +
+                ' </div>'
+            },
+            {
+                name: 'Qty', width: 120, enableColumnMenu: false, cellTemplate: ' <div>' +
+                ' <input type="number" required="" ng-model="row.entity.Qty"  class="pl-sm" />' +
+                ' </div>'
+            },
+            {
+                name: 'Rate', width: 120, enableColumnMenu: false, cellTemplate: ' <div>' +
+                ' <input type="text" required="" ng-model="row.entity.Rate"  class="pl-sm" />' +
+                ' </div>'
+            },
+            {
+                name: 'MRP', width: 80, enableColumnMenu: false,
+                cellTemplate: ' <div>' +
+                ' <input required="" type="number" step="any" ng-model="row.entity.MRP" class="pl-sm" />' +
+                ' </div>'
+            },
+            {
+                name: ' ', enableColumnMenu: false, width: 40, cellTemplate:
+                '<a href="javascript:void(0)" class="ml-md black" ng-click="grid.appScope.removeItem(row)"><i class="fa fa-close fa-sm" aria-hidden="true"></i></a>'
+            }
+        ];
+
+
+
+        /*   For Remove Item */
+        $scope.removeItem = function (row) {
+            var index = $scope.gridOptions.data.indexOf(row.entity);
+            if (index == 0) {
+            } else {
+                $scope.gridOptions.data.splice(index,1);
+            }
+        }
+        $scope.Code = function (rowEntity, type) {
+            for (var i = 0; i < $scope.ItemList.length; i++) {
+                if (type == "ItemName") {
+                    if ($scope.ItemList[i].ItemName == rowEntity.ItemName) {
+                        rowEntity.Code = $scope.ItemList[i].Code;
+                        rowEntity.ItemId = $scope.ItemList[i].ItemId;
+                    }
+                }
+                else {
+                    if ($scope.ItemList[i].Code == rowEntity.Code) {
+                        rowEntity.ItemName = $scope.ItemList[i].ItemName;
+                        rowEntity.ItemId = $scope.ItemList[i].ItemId;
+                    }
+                }
+            }
+        }
+        $scope.fromDataClear = function () {
+            $scope.gridOptions.data = [];
+            $scope.gridOptions.data = [{ Code: '', ItemId: 0, BatchNo: '', Qty: 0, Rate: 0, MRP: 0 }]
+            $scope.model = { dtTransferOut: $filter("date")(Date.now(), 'dd-MMM-yyyy'), TransferOutSubList: [] }
+        }
+
+      $scope.showModal = function (rowid, flag) {
+            if (flag == 'submit') {
+                var ProductId = 0;
+                $http.post('@Url.Action("prcDataSaveItem", "DesChange")', { model: $scope.Item }).then(function (result) {
+                    ProductId = result.data.ProductId;
+                    $scope.ItemList.push({ ItemId: result.data.ProductId, ItemName: result.data.ItemName });
+                    $scope.gridOptions.data[$scope.Rowid].ItemId = parseInt(ProductId)
+                    $scope.Item = {};
+                })
+            }
+            else {
+                $scope.Rowid = rowid;
+            }
+        }
+
+        $scope.InsertItem = function () {
+
+            $scope.model.TransferOutSubList = $scope.gridOptions.data;
+            $scope.showLoader = true;
+            $http.post("../TransferOut/Create", { models: $scope.model }).then(function (data) {
+                var res = data.data.match(/Successfully/g);
+                console.log(res);
+                if (res != null) {
+                    new PNotify({
+                        title: 'Notification',
+                        text: data.data,
+                        type: 'custom',
+                        addclass: 'notification-success',
+                        icon: 'fa fa-check'
+                    });
+                    $scope.showLoader = false;
+                    $scope.fromDataClear();
+                }
+
+                else {
+                    new PNotify({
+                        title: 'Notification',
+                        text: '!! Failure : ' + data.data,
+                        type: 'custom',
+                        addclass: 'notification-danger',
+                        icon: 'fa fa-exclamation-triangle'
+                    });
+                    $scope.showLoader = false;
+                }
+            });
+        }
+
+    }]);
+
+
+
+    ngGridApp.directive("select2", function ($timeout, $parse) {
+        return {
+            restrict: 'AC',
+            require: 'ngModel',
+            link: function (scope, element, attrs) {
+                $timeout(function () {
+                    element.select2();
+                    element.select2Initialized = true;
+                });
+
+                var refreshSelect = function () {
+                    if (!element.select2Initialized) return;
+                    $timeout(function () {
+                        element.trigger('change');
+                    });
+                };
+
+                var recreateSelect = function () {
+                    if (!element.select2Initialized) return;
+                    $timeout(function () {
+                        element.select2('destroy');
+                        element.select2();
+                    });
+                };
+
+                scope.$watch(attrs.ngModel, refreshSelect);
+
+                if (attrs.ngOptions) {
+                    var list = attrs.ngOptions.match(/ in ([^ ]*)/)[1];
+                    // watch for option list change
+                    scope.$watch(list, recreateSelect);
+                }
+
+                if (attrs.ngDisabled) {
+                    scope.$watch(attrs.ngDisabled, refreshSelect);
+                }
+            }
+        };
+    });
+
+    // this datepicker also work chcnge event in angular js
+    ngGridApp.directive('datepicker', function ($filter) {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            compile: function () {
+                return {
+                    pre: function (scope, element, attrs, ngModelCtrl) {
+                        var format, dateObj;
+                        format = (!attrs.dpFormat) ? 'dd-M-yyyy' : attrs.dpFormat;
+                        if (!attrs.initDate && !attrs.dpFormat) {
+                            // If there is no initDate attribute than we will get todays date as the default
+                            dateObj = new Date();
+
+                            //scope[attrs.ngModel] = dateObj.getDate() + '/' + (dateObj.getMonth() + 1) + '/' + dateObj.getFullYear();
+                            scope[attrs.ngModel] = $filter("date")(dateObj, 'dd-MMM-yyyy')
+
+                        } else if (!attrs.initDate) {
+                            // Otherwise set as the init date
+                            scope[attrs.ngModel] = attrs.initDate;
+                        } else {
+                            // I could put some complex logic that changes the order of the date string I
+                            // create from the dateObj based on the format, but I'll leave that for now
+                            // Or I could switch case and limit the types of formats...
+                        }
+                        // Initialize the date-picker
+                        $(element).datepicker({
+                            format: format,
+                        }).on('changeDate', function (ev) {
+                            // To me this looks cleaner than adding $apply(); after everything.
+                            scope.$apply(function () {
+                                ngModelCtrl.$setViewValue(ev.format(format));
+                            });
+                        });
+                    }
+                }
+            }
+        }
+    });
+</script>

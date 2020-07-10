@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-md-4">
                         <label class="font-weight-bold" for="CategoryID">Category</label>
-                        <select class="form-control" name="CategoryID">
+                        <select class="form-control select2bs4" name="CategoryID">
                             <option selected disabled>Please select category</option>
                             @foreach (var category in Model.Categories)
                             {
@@ -81,12 +81,12 @@
                         <label for="exampleFormControlFile1">Pictures</label>
                         <input id="selectFile" type="file" class="form-control-file" multiple>
                     </div>
-                    <div class="col-md-4" id="pictureArea">
+                    <div class="col-md-8 p-2 mt-2" id="pictureArea">
                         @if (Model.Pictures != null && Model.Pictures.Count > 0)
                         {
                             foreach (var picture in Model.Pictures)
                             {
-                                <img src="/Content/images/BookImage/@picture.Pictures.URL" class="img-fluid img-thumbnail" style="width:200px; height:200px; cursor:pointer; border:1px solid black" onclick="removeMe(this)" data-id="@picture.PictureID" />
+                                <img src="/Content/images/BookImage/@picture.Pictures.URL" class="img-fluid img-thumbnail p-1" style="width:200px; height:200px; cursor:pointer; border:1px solid black" onclick="removeMe(this)" data-id="@picture.PictureID" />
                             }
                         }
                         <input type="hidden" id="pictueIDs" name="PictureIDs" />
@@ -106,6 +106,14 @@
     </div>
 
     <script>
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+
         //Date range picker
         $('#reservation').datepicker({
             format: 'mm/dd/yyyy'
