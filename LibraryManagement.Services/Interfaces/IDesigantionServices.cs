@@ -9,5 +9,6 @@ namespace LibraryManagement.Services.Interfaces
 {
     public interface IDesigantionServices : IServices<Designation>
     {
+        List<Designation> GetAllDesignation();
     }
 }
