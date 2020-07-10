@@ -221,6 +221,7 @@
     <Compile Include="ViewModels\CategoryViewModels.cs" />
     <Compile Include="ViewModels\DepartmentInterfaces\IDepartment.cs" />
     <Compile Include="ViewModels\DepartmentInterfaces\IDepartmentList.cs" />
+    <Compile Include="ViewModels\DepartmentViewModels.cs" />
     <Compile Include="ViewModels\ImageInterfaces\IPicture.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1165,11 +1166,12 @@
     <Content Include="Views\Error\BadGatewayErrorPage.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\Action.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Department\Action.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\BookImage\" />
-    <Folder Include="Views\Department\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

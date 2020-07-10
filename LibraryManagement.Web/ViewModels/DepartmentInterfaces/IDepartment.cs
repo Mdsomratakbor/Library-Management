@@ -9,5 +9,6 @@ namespace LibraryManagement.Web.ViewModels.DepartmentInterfaces
 {
     interface IDepartment : IBaseEntities
     {
+        string Name { get; set; }
     }
 }
