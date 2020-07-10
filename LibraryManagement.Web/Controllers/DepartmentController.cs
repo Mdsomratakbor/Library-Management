@@ -85,7 +85,7 @@ namespace LibraryManagement.Web.Controllers
             return result;
         }
 
-        public async Task<JsonResult> ListOfCategory(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
+        public async Task<JsonResult> ListOfDepartment(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
         {
             int rowNumber;
             int totalRecord;
