@@ -87,8 +87,10 @@
     <Compile Include="Interfaces\IDesigantionServices.cs" />
     <Compile Include="Interfaces\IPicture.cs" />
     <Compile Include="Interfaces\IServices.cs" />
+    <Compile Include="Interfaces\IStudentServices.cs" />
     <Compile Include="PictureServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StudentServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LibraryManagement.Data\LibraryManagement.Data.csproj">
