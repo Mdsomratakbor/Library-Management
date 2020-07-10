@@ -1,6 +1,8 @@
 ﻿using LibraryManagement.Entities;
 using LibraryManagement.Services;
 using LibraryManagement.Services.Interfaces;
+using LibraryManagement.Web.ViewModels;
+using LibraryManagement.Web.ViewModels.StudentInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +17,16 @@ namespace LibraryManagement.Web.Controllers
     {
         // GET: Student
         private Student _Student;
-        //private IBook _IStudent;
+        private IStudent _IStudent;
         private IStudentServices _IStudentServices;
-        private IDesigantionServices _IDesigantionServices;
+        private IDepartmentServices _IDepartmentServices;
 
         public StudentController()
         {
             _Student = new Student();
             //_IStudent = new BookActionModel();
             _IStudentServices = new StudentServices();
-            _IDesigantionServices = new DesignationServices();
+            _IDepartmentServices = new DepartmentServices();
         }
         // GET: Book
         public ActionResult Index()
@@ -37,17 +39,18 @@ namespace LibraryManagement.Web.Controllers
             {
                 _Student = await Task.Run(() => _IStudentServices.GetDataById(id.Value));
                 _IStudent.ID = _Student.ID;
-                _IStudent.Isbn = _Student.Isbn;
-                _IStudent.BookName = _Student.BookName;
-                _IStudent.AuthorName = _Student.AuthorName;
-                _IStudent.BookEdition = _Student.BookEdition;
-                _IStudent.BookPublish = _Student.BookPublish;
-                _IStudent.PurchaseDate = _Student.PurchaseDate;
-                _IStudent.Price = _Student.Price;
-                _IStudent.Pictures = _Student.BookPictures;
-                _IStudent.CategoryID = _Student.CategoryID;
+                _IStudent.Name = _Student.Name;
+                _IStudent.Phone = _Student.Phone;
+                _IStudent.Address = _Student.Address;
+                _IStudent.City = _Student.City;
+                _IStudent.Email = _Student.Email;
+                _IStudent.DepartmentID = _Student.DepartmentID;
+                _IStudent.Semester = _Student.Semester;
+                _IStudent.Pictures = _Student.StudentPictures;
+                _IStudent.DepartmentID = _Student.DepartmentID;
+                _IStudent.Code = "STD-000"+ await Task.Run(()=>_IStudentServices.TotalRowCount());
             }
-            _IStudent.Designations = await Task.Run(() => _IDesigantionServices.GetAllDesignation());
+            _IStudent.Departments = await Task.Run(() => _IDepartmentServices.GetAllDepartment());
             return View(_IStudent);
         }
         [HttpPost]

@@ -230,6 +230,7 @@
     <Compile Include="ViewModels\ImageInterfaces\IPicture.cs" />
     <Compile Include="ViewModels\StudentInterfaces\IStudent.cs" />
     <Compile Include="ViewModels\StudentInterfaces\IStudentList.cs" />
+    <Compile Include="ViewModels\StudentViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\dist\css\adminlte.css" />

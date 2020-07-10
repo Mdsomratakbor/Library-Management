@@ -11,7 +11,6 @@ namespace LibraryManagement.Services
 {
     public class DepartmentServices : IDepartmentServices
     {
-        
 
         public List<Department> GetAllData(int displayLength, int displayStart, int sortCol, string sortDir, string search = null)
         {
@@ -52,6 +51,14 @@ namespace LibraryManagement.Services
             }
         }
 
+        public List<Department> GetAllDepartment()
+        {
+            using (var _LMContext = new LMContext())
+            {
+                return _LMContext.Departments.ToList();
+            }
+            
+        }
         public Department GetDataById(int id)
         {
             using (var _LMContext = new LMContext())

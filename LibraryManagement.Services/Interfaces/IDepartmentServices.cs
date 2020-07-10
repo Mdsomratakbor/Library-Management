@@ -9,5 +9,6 @@ namespace LibraryManagement.Services.Interfaces
 {
     public interface IDepartmentServices : IServices<Department>
     {
+        List<Department> GetAllDepartment();
     }
 }
