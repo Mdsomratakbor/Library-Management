@@ -10,7 +10,6 @@ namespace LibraryManagement.Web.ViewModels.DesignationInterfaces
 {
     interface IDesignation : IBaseEntities
     {
-        [Required (ErrorMessage="Please enter Designation")]
         string Name { get; set; }
     }
 }

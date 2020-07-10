@@ -225,6 +225,7 @@
     <Compile Include="ViewModels\DepartmentViewModels.cs" />
     <Compile Include="ViewModels\DesignationInterfaces\IDesignatioList.cs" />
     <Compile Include="ViewModels\DesignationInterfaces\IDesignation.cs" />
+    <Compile Include="ViewModels\DesignationViewModels.cs" />
     <Compile Include="ViewModels\ImageInterfaces\IPicture.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1171,11 +1172,12 @@
     <Content Include="Views\Category\Action.cshtml" />
     <Content Include="Views\Department\Index.cshtml" />
     <Content Include="Views\Department\Action.cshtml" />
+    <Content Include="Views\Designation\Index.cshtml" />
+    <Content Include="Views\Designation\Action.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\BookImage\" />
-    <Folder Include="Views\Designation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
