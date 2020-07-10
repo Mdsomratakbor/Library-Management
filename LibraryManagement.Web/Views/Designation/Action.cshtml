@@ -1,7 +1,73 @@
-﻿
-@{
-    ViewBag.Title = "Action";
-}
+﻿@model LibraryManagement.Web.ViewModels.DesignationActionModel
+<div class="card mt-1">
+    <section class="card-header">
+        <div class="row">
+            <div class="col-sm-12">
+                @if (Model.ID > 0)
+                {
+                    <h4>Designation Edit</h4>
+                }
+                else
+                {
+                    <h4>Designation Add</h4>
+                }
 
-<h2>Action</h2>
+            </div>
+        </div>
+    </section>
+    <div class="card-body">
+        <form id="designationForm">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <label class="font-weight-bold" for="Name">Designation Name</label>
+                    <input type="text" name="Name" autocomplete="off" class="form-control" value="@Model.Name" id="Name" placeholder="Please enter Designation" />
+
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="card-footer">
+        <button id="btnSave" class="btn btn-success btn-sm"><i class="fas fa-save"></i> Save</button>
+        <a class="btn btn-danger btn-sm" href="@Url.Action("Index","Designation")"><i class="fas fa-arrow-alt-circle-left"></i> Back To List</a>
+    </div>
+</div>
+
+<script>
+
+        $("#btnSave").on('click', function () {
+        $.ajax({
+            method:'Post',
+            url: '@Url.Action("Action", "Designation")',
+            data: $("#designationForm").serialize()
+        }).done(function (response) {
+            if (response.Success) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: response.Message,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                window.setTimeout(function () {
+                    window.location.href = "@Url.Action("Index", "Designation")";
+                }, 1500)
+            }
+            else {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: response.Message,
+                    showConfirmButton: true,
+
+                })
+            }
+
+        })
+
+    })
+</script>
+
 
