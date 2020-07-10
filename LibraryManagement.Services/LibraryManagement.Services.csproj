@@ -79,8 +79,10 @@
   <ItemGroup>
     <Compile Include="BookService.cs" />
     <Compile Include="CategoryServices.cs" />
+    <Compile Include="DepartmentServices.cs" />
     <Compile Include="Interfaces\IBookService.cs" />
     <Compile Include="Interfaces\ICategoryService.cs" />
+    <Compile Include="Interfaces\IDepartmentServices.cs" />
     <Compile Include="Interfaces\IPicture.cs" />
     <Compile Include="Interfaces\IServices.cs" />
     <Compile Include="PictureServices.cs" />
