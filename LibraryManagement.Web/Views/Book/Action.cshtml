@@ -34,10 +34,20 @@
                         <input type="text" name="AuthorName" class="form-control" id="AuthorName" value="@Model.AuthorName" placeholder="Please enter Book Author Name" />
 
                     </div>
-
                     <div class="col-md-4">
-                        <label class="font-weight-bold" for="BookPublish"> Book Publisher</label>
-                        <input type="text" name="BookPublish" class="form-control" id="BookPublish" value="@Model.BookPublish" placeholder="Please enter Book Publisher " />
+                        <label class="font-weight-bold" for="CategoryID">Category</label>
+                        <select class="form-control" name="CategoryID">
+                            <option selected disabled>Please select category</option>
+                            @foreach (var category in Model.Categories)
+                            {
+                                var selected = Model.CategoryID == category.ID ? category.ID : 0;
+                                <option value="@category.ID" @selected>@category.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="font-weight-bold" for="BookPublish">Book Publisher</label>
+                        <input type="text" name="BookPublish" autocomplete="off" class="form-control" id="BookPublish" value="@Model.BookPublish" placeholder="Please enter Book Publisher " />
 
                     </div>
                     <div class="col-md-4">
@@ -55,14 +65,12 @@
                     <div class="col-md-4">
                         <label class="font-weight-bold" for="Price"> Price </label>
                         <input type="text" name="Price" class="form-control" id="Price" value="@Model.Price" placeholder="Please enter Book Price" />
-
                     </div>
 
 
                     <div class="col-md-4">
                         <label class="font-weight-bold" for="BookEdition"> Book Edition </label>
-                        <input type="text" name="BookEdition" class="form-control" id="BookEdition" value="@Model.BookEdition" placeholder="Please enter Book Edition" />
-
+                        <input type="text" name="BookEdition" autocomplete="off" class="form-control" id="BookEdition" value="@Model.BookEdition" placeholder="Please enter Book Edition" />
                     </div>
                     <div class="col-md-4">
                         <label class="font-weight-bold" for="BookQty"> Book Qty </label>

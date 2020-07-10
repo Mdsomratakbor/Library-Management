@@ -39,46 +39,50 @@ namespace LibraryManagement.Web.Controllers
                 HandleErrorInfo error = new HandleErrorInfo(ex, "BookController", "Action");
                 return View("Error", ex.Message);
             }
-            
+
         }
         public async Task<ActionResult> Action(int? id)
         {
-               if (id > 0)
-               {
-                    _Book = await Task.Run(()=> _IBookService.GetDataById(id.Value));
-                    _IBook.ID = _Book.ID;
-                    _IBook.Isbn = _Book.Isbn;
-                    _IBook.BookName = _Book.BookName;
-                    _IBook.AuthorName = _Book.AuthorName;
-                    _IBook.BookEdition = _Book.BookEdition;
-                    _IBook.BookPublish = _Book.BookPublish;
-                    _IBook.PurchaseDate = _Book.PurchaseDate;
-                    _IBook.Price = _Book.Price;
-                    _IBook.Pictures = _Book.BookPictures;
-                }
-                _IBook.Categories = await Task.Run(() => _ICategoryService.GetAllCategory());
-                return View(_IBook);            
+            if (id > 0)
+            {
+                _Book = await Task.Run(() => _IBookService.GetDataById(id.Value));
+                _IBook.ID = _Book.ID;
+                _IBook.Isbn = _Book.Isbn;
+                _IBook.BookName = _Book.BookName;
+                _IBook.AuthorName = _Book.AuthorName;
+                _IBook.BookEdition = _Book.BookEdition;
+                _IBook.BookPublish = _Book.BookPublish;
+                _IBook.PurchaseDate = _Book.PurchaseDate;
+                _IBook.Price = _Book.Price;
+                _IBook.Pictures = _Book.BookPictures;
+                _IBook.CategoryID = _Book.CategoryID;
+            }
+            _IBook.Categories = await Task.Run(() => _ICategoryService.GetAllCategory());
+            return View(_IBook);
         }
         [HttpPost]
-        public JsonResult Action(BookActionModel model)
+        public async Task<JsonResult> Action(BookActionModel model)
         {
             JsonResult result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             var message = "";
             bool isSuccess = false;
+            List<Picture> pictures = new List<Picture>();
             try
             {
                 if (ModelState.IsValid)
                 {
-                    List<int> picturesIDs = model.PictureIDs.Split(',').Select(x => int.Parse(x)).ToList();
-                    var pictures = PictureServices.Instance.GetPicturesByIDs(picturesIDs);
-
+                    if (!string.IsNullOrEmpty(model.PictureIDs))
+                    {
+                        List<int> picturesIDs = model.PictureIDs.Split(',').Select(x => int.Parse(x)).ToList();
+                         pictures = await Task.Run(() => PictureServices.Instance.GetPicturesByIDs(picturesIDs));
+                    }
                     if (model.ID > 0)
                     {
-                        _Book = _IBookService.GetDataById(model.ID);
+                        _Book = await Task.Run(()=>_IBookService.GetDataById(model.ID));
                         _Book.BookPictures.Clear();
                         _Book.BookPictures = new List<BookPicture>();
-                        _Book.BookPictures.AddRange(pictures.Select(x => new BookPicture() { PictureID = x.ID, BookID=model.ID }));           
+                        _Book.BookPictures.AddRange(pictures.Select(x => new BookPicture() { PictureID = x.ID, BookID = model.ID }));
                         _Book.BookName = model.BookName;
                         _Book.AuthorName = model.AuthorName;
                         _Book.PurchaseDate = model.PurchaseDate;
@@ -87,6 +91,7 @@ namespace LibraryManagement.Web.Controllers
                         _Book.Price = model.Price;
                         _Book.BookEdition = model.BookEdition;
                         _Book.BookQty = model.BookQty;
+                        _Book.CategoryID = model.CategoryID;
                         isSuccess = _IBookService.UpdateData(_Book);
                     }
                     else
@@ -102,6 +107,7 @@ namespace LibraryManagement.Web.Controllers
                         _Book.Price = model.Price;
                         _Book.BookEdition = model.BookEdition;
                         _Book.BookQty = model.BookQty;
+                        _Book.CategoryID = model.CategoryID;
                         isSuccess = _IBookService.SaveData(_Book);
                     }
                 }
@@ -158,7 +164,7 @@ namespace LibraryManagement.Web.Controllers
             {
                 if (id > 0)
                 {
-                    data = await Task.Run(()=> _IBookService.DeleteData(id));
+                    data = await Task.Run(() => _IBookService.DeleteData(id));
                 }
                 else
                 {
