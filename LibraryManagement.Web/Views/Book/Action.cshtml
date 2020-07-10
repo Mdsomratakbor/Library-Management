@@ -40,7 +40,7 @@
                             <option selected disabled>Please select category</option>
                             @foreach (var category in Model.Categories)
                             {
-                                var selected = Model.CategoryID == category.ID ? category.ID : 0;
+                                var selected = Model.CategoryID == category.ID ? "selected" : string.Empty;
                                 <option value="@category.ID" @selected>@category.Name</option>
                             }
                         </select>
