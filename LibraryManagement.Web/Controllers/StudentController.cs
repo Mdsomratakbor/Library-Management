@@ -1,5 +1,6 @@
 ﻿using LibraryManagement.Entities;
 using LibraryManagement.Services;
+using LibraryManagement.Services.Enums;
 using LibraryManagement.Services.Interfaces;
 using LibraryManagement.Web.ViewModels;
 using LibraryManagement.Web.ViewModels.StudentInterfaces;
@@ -52,6 +53,7 @@ namespace LibraryManagement.Web.Controllers
             }
             _IStudent.Code = "STD-000"+ await Task.Run(()=>_IStudentServices.TotalRowCount());
             _IStudent.Departments = await Task.Run(() => _IDepartmentServices.GetAllDepartment());
+            _IStudent.Genders = Enum.GetValues(typeof(GenderEnums)).Cast<GenderEnums>().ToList();
             return View(_IStudent);
         }
         [HttpPost]
@@ -123,7 +125,7 @@ namespace LibraryManagement.Web.Controllers
             }
             return result;
         }
-        public async Task<JsonResult> ListOfBook(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
+        public async Task<JsonResult> ListOfStudent(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
         {
             int rowNumber;
             int totalRecord;
@@ -177,7 +179,7 @@ namespace LibraryManagement.Web.Controllers
             return result;
         }
 
-        public void Dispose()
+        public new void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);

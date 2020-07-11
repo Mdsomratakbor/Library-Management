@@ -1179,11 +1179,12 @@
     <Content Include="Views\Department\Action.cshtml" />
     <Content Include="Views\Designation\Index.cshtml" />
     <Content Include="Views\Designation\Action.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Student\Action.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\BookImage\" />
-    <Folder Include="Views\Student\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

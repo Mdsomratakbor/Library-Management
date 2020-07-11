@@ -24,13 +24,13 @@ namespace LibraryManagement.Web.ViewModels
         [Required(ErrorMessage = "Please enter Address")]
         public string Address { get; set; }
         [Required(ErrorMessage = "Please enter City")]
-        public string City { get; set; }
-        [Required(ErrorMessage = "Please enter Phone")]
+        public string City { get; set; }    
         public List<StudentPicture> Pictures { get; set; }
         public string PictureIDs { get; set; }
         [Required(ErrorMessage = "Please enter Department")]
         public int DepartmentID { get; set; }
         public List<Department> Departments { get; set; }
+        [Required(ErrorMessage = "Please enter Phone Number")]
         public string Phone { get; set; }
         public DateTime? EntryDate { get; set; }
         public int? LUserID { get; set; }
