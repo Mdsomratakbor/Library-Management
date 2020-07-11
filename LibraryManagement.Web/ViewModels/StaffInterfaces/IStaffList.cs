@@ -8,5 +8,6 @@ namespace LibraryManagement.Web.ViewModels.StaffInterfaces
 {
     interface IStaffList
     {
+        List<Staff> Staffs { get; set; }
     }
 }

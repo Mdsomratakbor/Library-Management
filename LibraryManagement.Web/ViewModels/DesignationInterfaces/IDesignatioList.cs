@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.DesignationInterfaces
 {
-    interface IDesignatioList
+    public interface IDesignatioList
     {
          List<Designation> Designations { get; set; }
     }
