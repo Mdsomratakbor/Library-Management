@@ -18,12 +18,7 @@
     <div class="card-body">
         <form id="studentForm">
             <div class="row">
-
-                <div class="col-md-4">
-                    <label class="font-weight-bold" for="Code">Code</label>
-                    <input type="text" name="Code" class="form-control" id="Code" value="@Model.Code" disabled />
-
-                </div>
+                    <input type="hidden" name="Code" class="form-control" id="Code" value="@Model.Code"  />
                 <div class="col-md-4">
                     <label class="font-weight-bold" for="Name"> Name </label>
                     <input type="text" name="Name" autocomplete="off" class="form-control" value="@Model.Name" id="Name" placeholder="Please enter  Name" />

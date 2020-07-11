@@ -32,7 +32,7 @@ namespace LibraryManagement.Web.Controllers
         // GET: Book
         public ActionResult Index()
         {
-                return View();           
+            return View();
         }
         public async Task<ActionResult> Action(int? id)
         {
@@ -48,10 +48,10 @@ namespace LibraryManagement.Web.Controllers
                 _IStudent.Semester = _Student.Semester;
                 _IStudent.Pictures = _Student.StudentPictures;
                 _IStudent.DepartmentID = _Student.DepartmentID;
-                _IStudent.Code = _Student.Code;           
+                _IStudent.Code = _Student.Code;
                 _IStudent.Gender = _Student.Gender;
             }
-            _IStudent.Code = "STD-000"+ await Task.Run(()=>_IStudentServices.TotalRowCount());
+            _IStudent.Code = "STD-0001" + await Task.Run(() => _IStudentServices.TotalRowCount());
             _IStudent.Departments = await Task.Run(() => _IDepartmentServices.GetAllDepartment());
             _IStudent.Genders = Enum.GetValues(typeof(GenderEnums)).Cast<GenderEnums>().ToList();
             return View(_IStudent);
@@ -86,6 +86,7 @@ namespace LibraryManagement.Web.Controllers
                         _Student.Email = model.Email;
                         _Student.DepartmentID = model.DepartmentID;
                         _Student.Semester = model.Semester;
+                        _Student.Gender = model.Gender;
                         isSuccess = _IStudentServices.UpdateData(_Student);
                     }
                     else
@@ -99,6 +100,8 @@ namespace LibraryManagement.Web.Controllers
                         _Student.Email = model.Email;
                         _Student.DepartmentID = model.DepartmentID;
                         _Student.Semester = model.Semester;
+                        _Student.Gender = model.Gender;
+                        _Student.Code = model.Code;
                         isSuccess = _IStudentServices.SaveData(_Student);
                     }
                 }

@@ -69,7 +69,7 @@ namespace LibraryManagement.Services
         {
             using (var _LMContext = new LMContext())
             {
-                return _LMContext.Students.Where(x => x.ID == id).Include(y => y.StudentPictures.Select(x => x.Pictures)).FirstOrDefault();
+                return _LMContext.Students.Where(x => x.ID == id).Include(y => y.StudentPictures.Select(x => x.Pictures)).Include(w=>w.Departments).FirstOrDefault();
             }
         }
 
