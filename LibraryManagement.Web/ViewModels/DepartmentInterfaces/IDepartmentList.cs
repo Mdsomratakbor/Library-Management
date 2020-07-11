@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.DepartmentInterfaces
 {
-    interface IDepartmentList
+    public interface IDepartmentList
     {
          List<Department> Departments { get; set; }
     }

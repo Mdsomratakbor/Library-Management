@@ -22,12 +22,12 @@ namespace LibraryManagement.Web.Controllers
         private IStudentServices _IStudentServices;
         private IDepartmentServices _IDepartmentServices;
 
-        public StudentController()
+        public StudentController(IStudentServices studentServices, IStudent student, IDepartmentServices departmentServices)
         {
             _Student = new Student();
-            _IStudent = new StudentActionModel();
-            _IStudentServices = new StudentServices();
-            _IDepartmentServices = new DepartmentServices();
+            _IStudent = student;
+            _IStudentServices = studentServices;
+            _IDepartmentServices = departmentServices;
         }
         // GET: Book
         public ActionResult Index()

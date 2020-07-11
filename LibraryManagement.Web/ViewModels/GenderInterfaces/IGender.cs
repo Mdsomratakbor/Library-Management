@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.GenderInterfaces
 {
-    interface IGender
+   public  interface IGender
     {
         List<GenderEnums> Genders { get; set; }
     }

@@ -11,7 +11,7 @@ using System.Web;
 
 namespace LibraryManagement.Web.ViewModels.StudentInterfaces
 {
-     interface IStudent : IBaseEntities, IDepartmentList, IPicture<StudentPicture>, IGender
+    public interface IStudent : IBaseEntities, IDepartmentList, IPicture<StudentPicture>, IGender
     {
          string Name { get; set; }
          string Code { get; set; }

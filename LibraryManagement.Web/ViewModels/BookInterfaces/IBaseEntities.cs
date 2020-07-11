@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.Interfaces
 {
-    interface IBaseEntities
+    public interface IBaseEntities
     {
          int ID { get; set; }
          DateTime? EntryDate { get; set; }

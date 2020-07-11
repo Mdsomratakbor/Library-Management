@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.ImageInterfaces
 {
-    interface IPicture<T> where T: class
+    public interface IPicture<T> where T: class
     {
          List<T> Pictures { get; set; }
          string PictureIDs { get; set; }
