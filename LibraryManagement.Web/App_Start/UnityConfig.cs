@@ -1,6 +1,7 @@
 using LibraryManagement.Services;
 using LibraryManagement.Services.Interfaces;
 using LibraryManagement.Web.ViewModels;
+using LibraryManagement.Web.ViewModels.StaffInterfaces;
 using LibraryManagement.Web.ViewModels.StudentInterfaces;
 using System.Web.Mvc;
 using Unity;
@@ -20,7 +21,10 @@ namespace LibraryManagement.Web
              container.RegisterType<IStudentServices, StudentServices>();
             container.RegisterType<IStudent, StudentActionModel>();
             container.RegisterType<IDepartmentServices, DepartmentServices>();
-            
+            container.RegisterType<IStaffServices, StaffServices>();
+            container.RegisterType<IStaff, StaffActionModel>();
+            container.RegisterType<IDesigantionServices, DesignationServices>();
+
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }
