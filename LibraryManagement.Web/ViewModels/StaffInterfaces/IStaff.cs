@@ -1,5 +1,6 @@
 ﻿using LibraryManagement.Entities;
 using LibraryManagement.Web.ViewModels.DesignationInterfaces;
+using LibraryManagement.Web.ViewModels.GenderInterfaces;
 using LibraryManagement.Web.ViewModels.ImageInterfaces;
 using LibraryManagement.Web.ViewModels.Interfaces;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.StaffInterfaces
 {
-    public interface IStaff : IBaseEntities, IDesignatioList, IPicture<StaffPicture>
+    public interface IStaff : IBaseEntities, IDesignatioList, IPicture<StaffPicture>, IGender
     {
         string Name { get; set; }
         string DesignationID { get; set; }
