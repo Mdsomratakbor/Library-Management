@@ -14,7 +14,7 @@ namespace LibraryManagement.Web.ViewModels.StaffInterfaces
     public interface IStaff : IBaseEntities, IDesignatioList, IPicture<StaffPicture>, IGender
     {
         string Name { get; set; }
-        string DesignationID { get; set; }
+        int DesignationID { get; set; }
         string Contact { get; set; }
         string Address { get; set; }
         string City { get; set; }

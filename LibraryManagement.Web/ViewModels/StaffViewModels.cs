@@ -31,7 +31,7 @@ namespace LibraryManagement.Web.ViewModels
         public DateTime? UpdateDate { get; set; }
         public int? UpdateLUserID { get; set; }
         [Required(ErrorMessage = "Please enter Designation")]
-        public string DesignationID { get; set; }
+        public int DesignationID { get; set; }
         public List<Designation> Designations { get; set; }
         public List<StaffPicture> Pictures { get; set; }
         public string PictureIDs { get; set; }

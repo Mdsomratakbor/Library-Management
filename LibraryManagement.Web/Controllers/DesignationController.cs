@@ -140,7 +140,7 @@ namespace LibraryManagement.Web.Controllers
 
             return result;
         }
-        public void Dispose()
+        public new void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
