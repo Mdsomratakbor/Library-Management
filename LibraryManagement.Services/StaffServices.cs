@@ -24,8 +24,6 @@ namespace LibraryManagement.Services
                 else if (sortCol == 0 && sortDir == "dsc") columnNameDsc = "Name";
                 else if (sortCol == 1 && sortDir == "asc") columnNameAsc = "Contact";
                 else if (sortCol == 1 && sortDir == "dsc") columnNameDsc = "Contact";
-                else if (sortCol == 2 && sortDir == "asc") columnNameAsc = "Address";
-                else if (sortCol == 2 && sortDir == "dsc") columnNameDsc = "Address";
                 else if (sortCol == 3 && sortDir == "asc") columnNameAsc = "Gender";
                 else if (sortCol == 3 && sortDir == "dsc") columnNameDsc = "Gender";
                 else if (sortCol == 4 && sortDir == "asc") columnNameAsc = "Address";

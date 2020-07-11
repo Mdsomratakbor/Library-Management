@@ -73,6 +73,10 @@
     <Compile Include="Migrations\202007111654432_AddgenderColumn.designer.cs">
       <DependentUpon>202007111654432_AddgenderColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007111751142_DesignationIdIntConvert.cs" />
+    <Compile Include="Migrations\202007111751142_DesignationIdIntConvert.designer.cs">
+      <DependentUpon>202007111751142_DesignationIdIntConvert.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007111654432_AddgenderColumn.resx">
       <DependentUpon>202007111654432_AddgenderColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007111751142_DesignationIdIntConvert.resx">
+      <DependentUpon>202007111751142_DesignationIdIntConvert.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,7 +9,7 @@ namespace LibraryManagement.Entities
     public class Staff : BaseEntities
     {
         public string Name { get; set; }
-        public string DesignationID { get; set; }
+        public int DesignationID { get; set; }
         public virtual Designation Designations { get; set; }
         public string Contact { get; set; }
         public string Address { get; set; }
