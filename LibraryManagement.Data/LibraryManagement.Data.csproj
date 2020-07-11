@@ -69,6 +69,10 @@
     <Compile Include="Migrations\202007071818145_AddCategory.designer.cs">
       <DependentUpon>202007071818145_AddCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007111654432_AddgenderColumn.cs" />
+    <Compile Include="Migrations\202007111654432_AddgenderColumn.designer.cs">
+      <DependentUpon>202007111654432_AddgenderColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007071818145_AddCategory.resx">
       <DependentUpon>202007071818145_AddCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007111654432_AddgenderColumn.resx">
+      <DependentUpon>202007111654432_AddgenderColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
