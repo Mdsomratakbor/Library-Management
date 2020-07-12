@@ -77,6 +77,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractclass\OperationMethod.cs" />
     <Compile Include="BookService.cs" />
     <Compile Include="CategoryServices.cs" />
     <Compile Include="DepartmentServices.cs" />
