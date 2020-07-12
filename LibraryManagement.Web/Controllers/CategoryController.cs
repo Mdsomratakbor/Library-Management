@@ -18,10 +18,10 @@ namespace LibraryManagement.Web.Controllers
         private ICategoryService _ICategoryService;
         private ICategory _ICategory;
         private Category _category;
-        public CategoryController()
+        public CategoryController(ICategoryService categoryService, ICategory categorymodel)
         {
-            _ICategoryService = new CategoryServices();
-            _ICategory = new CategoryActionModel();
+            _ICategoryService = categoryService;
+            _ICategory = categorymodel;
             _category = new Category();
         }
         // GET: Category
@@ -43,8 +43,10 @@ namespace LibraryManagement.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> Action(CategoryActionModel model)
         {
-            JsonResult result = new JsonResult();
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            JsonResult result = new JsonResult
+            {
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
             var message = "";
             bool isSuccess = false;
             try
@@ -98,21 +100,25 @@ namespace LibraryManagement.Web.Controllers
             totalRecord = await Task.Run(() => _ICategoryService.TotalRowCount());
             rowNumber = categories.Count();
             categories = categories.Skip(iDisplayStart).Take(iDisplayLength).ToList();
-            JsonResult result = new JsonResult();
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            result.Data = new
+            JsonResult result = new JsonResult
             {
-                iTotalRecords = totalRecord,
-                iTotalDisplayRecords = rowNumber,
-                aaData = categories
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                Data = new
+                {
+                    iTotalRecords = totalRecord,
+                    iTotalDisplayRecords = rowNumber,
+                    aaData = categories
+                }
             };
             return result;
         }
 
         public async Task<JsonResult> Delete(int id)
         {
-            JsonResult result = new JsonResult();
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            JsonResult result = new JsonResult
+            {
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
             dynamic message = "";
             var data = false;
             try
@@ -147,7 +153,7 @@ namespace LibraryManagement.Web.Controllers
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        protected override  void Dispose(bool isDisposing)
+        protected override void Dispose(bool isDisposing)
         {
             if (isDisposing)
             {

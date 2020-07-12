@@ -49,7 +49,7 @@ namespace LibraryManagement.Web.Controllers
                 _IBook.Pictures = _Book.BookPictures;
                 _IBook.CategoryID = _Book.CategoryID;
             }
-            _IBook.Categories = await Task.Run(() => _ICategoryService.GetAllCategory());
+            _IBook.Categories = await Task.Run(() => _ICategoryService.GetAllData());
             return View(_IBook);
         }
         [HttpPost]

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace LibraryManagement.Web.ViewModels.CategoryInterfaces
 {
-    interface ICategory : IBaseEntities
+    public interface ICategory : IBaseEntities
     {
         string Name { get; set; }
         string Description { get; set; }

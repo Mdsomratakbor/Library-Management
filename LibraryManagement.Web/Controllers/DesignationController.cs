@@ -43,8 +43,10 @@ namespace LibraryManagement.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> Action(DepartmentActionModel model)
         {
-            JsonResult result = new JsonResult();
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            JsonResult result = new JsonResult
+            {
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
             var message = "";
             bool isSuccess = false;
             try
@@ -96,21 +98,25 @@ namespace LibraryManagement.Web.Controllers
             totalRecord = await Task.Run(() => _IDesigantionServices.TotalRowCount());
             rowNumber = designations.Count();
             designations = designations.Skip(iDisplayStart).Take(iDisplayLength).ToList();
-            JsonResult result = new JsonResult();
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            result.Data = new
+            JsonResult result = new JsonResult
             {
-                iTotalRecords = totalRecord,
-                iTotalDisplayRecords = rowNumber,
-                aaData = designations
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                Data = new
+                {
+                    iTotalRecords = totalRecord,
+                    iTotalDisplayRecords = rowNumber,
+                    aaData = designations
+                }
             };
             return result;
         }
 
         public async Task<JsonResult> Delete(int id)
         {
-            JsonResult result = new JsonResult();
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            JsonResult result = new JsonResult
+            {
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
             dynamic message = "";
             var data = false;
             try
