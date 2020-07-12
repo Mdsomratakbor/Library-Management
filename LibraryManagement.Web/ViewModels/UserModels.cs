@@ -1,4 +1,4 @@
-﻿using HMS.Entities;
+﻿using LibraryManagement.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace LibraryManagement.Web.ViewModels
 {
     public class UserListingModel :Pagination
     {
-        public IEnumerable<HMSUser> Users { get; set; }
+        public IEnumerable<LMUser> Users { get; set; }
         public string RoleID { get; set; }
         public IEnumerable<IdentityRole> Roles { get; set; }
 

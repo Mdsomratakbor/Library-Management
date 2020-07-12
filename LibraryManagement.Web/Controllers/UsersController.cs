@@ -1,4 +1,6 @@
-﻿using LibraryManagement.Services;
+﻿using LibraryManagement.Entities;
+using LibraryManagement.Services;
+using LibraryManagement.Web.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -103,7 +105,7 @@ namespace LibraryManagement.Web.Areas.Dashboard.Controllers
         public async Task<JsonResult> Action(UserModel model)
         {
             JsonResult result = new JsonResult();
-            var user = new HMSUser();
+            var user = new LMUser();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             var message = "";
             bool isSuccess = false;
@@ -171,7 +173,7 @@ namespace LibraryManagement.Web.Areas.Dashboard.Controllers
         {
             JsonResult result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            dynamic message = "";
+            dynamic message;
             IdentityResult data = null;
             try
             {
@@ -273,7 +275,7 @@ namespace LibraryManagement.Web.Areas.Dashboard.Controllers
         }
 
 
-        public List<HMSUser> SearchUsers(string searchTearm, string roleId, int? pageNo, int pageSize)
+        public List<LMUser> SearchUsers(string searchTearm, string roleId, int? pageNo, int pageSize)
         {
             var users = UserManager.Users.AsQueryable();
             if (string.IsNullOrEmpty(searchTearm) == false)

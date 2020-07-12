@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.Services;
+using LibraryManagement.Web.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -99,7 +100,7 @@ namespace LibraryManagement.Web.Areas.Dashboard.Controllers
         {
             JsonResult result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            var message = "";
+            dynamic message;
             IdentityResult data = null;
             try
             {
@@ -148,8 +149,8 @@ namespace LibraryManagement.Web.Areas.Dashboard.Controllers
         {
             JsonResult result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            dynamic message = "";
             IdentityResult data = null;
+            dynamic message;
             try
             {
                 if (!string.IsNullOrEmpty(id))
