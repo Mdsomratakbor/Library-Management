@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services.Abstractclass
 {
-    public abstract class OperationMethod<T> where T: class
+    public abstract class LibraryMangementServices<T> where T: class
     {
 
         public bool UpdateData(T model)
