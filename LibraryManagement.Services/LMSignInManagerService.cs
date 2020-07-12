@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HMS.Services
+namespace LibraryManagement.Services
 {
     public class LMSignInManagerService : SignInManager<LMUser, string>
     {
