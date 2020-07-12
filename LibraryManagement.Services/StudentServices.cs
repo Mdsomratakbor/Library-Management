@@ -1,5 +1,6 @@
 ﻿using LibraryManagement.Data;
 using LibraryManagement.Entities;
+using LibraryManagement.Services.Abstractclass;
 using LibraryManagement.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services
 {
-    public class StudentServices : IStudentServices
+    public class StudentServices :LibraryManagementServices<Student>, IStudentServices
     {
         public List<Student> GetAllData(int displayLength, int displayStart, int sortCol, string sortDir, string search)
         {
@@ -56,16 +57,8 @@ namespace LibraryManagement.Services
             }
 
         }
-        public int TotalRowCount()
-        {
-            using (var _LMContext = new LMContext())
-            {
-                return _LMContext.Students.Count();
-            }
 
-        }
-
-        public Student GetDataById(int id)
+        public override Student GetDataById(int id)
         {
             using (var _LMContext = new LMContext())
             {
@@ -73,16 +66,7 @@ namespace LibraryManagement.Services
             }
         }
 
-        public bool SaveData(Student model)
-        {
-            using (var _LMContext = new LMContext())
-            {
-                _LMContext.Students.Add(model);
-                return _LMContext.SaveChanges() > 0;
-            }
-        }
-
-        public bool UpdateData(Student model)
+        public override bool UpdateData(Student model)
         {
             using (var _LMContext = new LMContext())
             {
@@ -90,16 +74,6 @@ namespace LibraryManagement.Services
                 _LMContext.StudentPictures.RemoveRange(existingStudent.StudentPictures);
                 _LMContext.Entry(existingStudent).CurrentValues.SetValues(model);
                 _LMContext.StudentPictures.AddRange(model.StudentPictures);
-                return _LMContext.SaveChanges() > 0;
-            }
-        }
-        public bool DeleteData(int id)
-        {
-            using (var _LMContext = new LMContext())
-            {
-                var Student = _LMContext.Students.Find(id);
-                _LMContext.Entry(Student).State = System.Data.Entity.EntityState.Modified;
-                _LMContext.Students.Remove(Student);
                 return _LMContext.SaveChanges() > 0;
             }
         }

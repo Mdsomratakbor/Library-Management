@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services
 {
-    public class CategoryServices : LibraryMangementServices<Category>, ICategoryService
+    public class CategoryServices : LibraryManagementServices<Category>, ICategoryService
     {
         
 

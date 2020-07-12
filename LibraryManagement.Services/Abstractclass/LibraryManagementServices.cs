@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services.Abstractclass
 {
-    public abstract class LibraryMangementServices<T> where T: class 
+    public abstract class LibraryManagementServices<T> where T: class 
     {
 
         public virtual bool UpdateData(T model)

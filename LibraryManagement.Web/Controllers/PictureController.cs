@@ -25,8 +25,10 @@ namespace LibraryManagement.Web.Controllers
         }
         public JsonResult UploadPicture()
         {
-            JsonResult result = new JsonResult();
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            JsonResult result = new JsonResult
+            {
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
             var files = Request.Files;
             List<object> pictuerJSON = new List<object>();
             try

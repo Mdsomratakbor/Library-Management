@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services
 {
-    public class DepartmentServices : LibraryMangementServices<Department>, IDepartmentServices
+    public class DepartmentServices : LibraryManagementServices<Department>, IDepartmentServices
     {
 
         public List<Department> GetAllData(int displayLength, int displayStart, int sortCol, string sortDir, string search = null)

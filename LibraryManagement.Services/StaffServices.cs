@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services
 {
-    public class StaffServices : LibraryMangementServices<Staff>, IStaffServices
+    public class StaffServices : LibraryManagementServices<Staff>, IStaffServices
     {
         public List<Staff> GetAllData(int displayLength, int displayStart, int sortCol, string sortDir, string search)
         {
