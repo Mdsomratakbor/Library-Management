@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.Interfaces
 {
-    interface IBook: IBaseEntities, IPicture<BookPicture>, ICategoryList
+    public interface IBook: IBaseEntities, IPicture<BookPicture>, ICategoryList
     {
          string BookName { get; set; }
          int Isbn { get; set; }

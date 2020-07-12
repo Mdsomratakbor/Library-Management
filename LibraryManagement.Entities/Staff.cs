@@ -17,6 +17,6 @@ namespace LibraryManagement.Entities
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Gender { get; set; }
-        public List<StaffPicture> StaffPictures { get; set; }
+        public virtual List<StaffPicture> StaffPictures { get; set; }
     }
 }

@@ -58,8 +58,10 @@ namespace LibraryManagement.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> Action(StaffActionModel model)
         {
-            JsonResult result = new JsonResult();
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            JsonResult result = new JsonResult
+            {
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
             var message = "";
             bool isSuccess = false;
             List<Picture> pictures = new List<Picture>();
@@ -135,21 +137,25 @@ namespace LibraryManagement.Web.Controllers
             totalRecord = await Task.Run(() => _IStaffServices.TotalRowCount());
             rowNumber = Staffs.Count();
             Staffs = Staffs.Skip(iDisplayStart).Take(iDisplayLength).ToList();
-            JsonResult result = new JsonResult();
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            result.Data = new
+            JsonResult result = new JsonResult
             {
-                iTotalRecords = totalRecord,
-                iTotalDisplayRecords = rowNumber,
-                aaData = Staffs
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                Data = new
+                {
+                    iTotalRecords = totalRecord,
+                    iTotalDisplayRecords = rowNumber,
+                    aaData = Staffs
+                }
             };
             return result;
         }
 
         public async Task<JsonResult> Delete(int id)
         {
-            JsonResult result = new JsonResult();
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            JsonResult result = new JsonResult
+            {
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
             dynamic message = "";
             var data = false;
             try

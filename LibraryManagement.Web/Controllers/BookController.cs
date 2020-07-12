@@ -15,31 +15,23 @@ namespace LibraryManagement.Web.Controllers
     [HandleError]
     public class BookController : Controller
     {
-        private Book _Book;
-        private IBook _IBook;
-        private IBookService _IBookService;
-        private ICategoryService _ICategoryService;
+        private  Book _Book;
+        private  IBook _IBook;
+        private  IBookService _IBookService;
+        private  ICategoryService _ICategoryService;
 
-        public BookController()
+        public BookController(IBookService bookService, ICategoryService categoryService, IBook book)
         {
             _Book = new Book();
-            _IBook = new BookActionModel();
-            _IBookService = new BookService();
-            _ICategoryService = new CategoryServices();
+            _IBook = book;
+            _IBookService = bookService;
+            _ICategoryService = categoryService;
         }
         // GET: Book
         public ActionResult Index()
         {
-            try
-            {
-                return View();
-            }
-            catch (Exception ex)
-            {
-                HandleErrorInfo error = new HandleErrorInfo(ex, "BookController", "Action");
-                return View("Error", ex.Message);
-            }
 
+                return View();          
         }
         public async Task<ActionResult> Action(int? id)
         {
@@ -63,8 +55,10 @@ namespace LibraryManagement.Web.Controllers
         [HttpPost]
         public async Task<JsonResult> Action(BookActionModel model)
         {
-            JsonResult result = new JsonResult();
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            JsonResult result = new JsonResult
+            {
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
             var message = "";
             bool isSuccess = false;
             List<Picture> pictures = new List<Picture>();
@@ -143,21 +137,25 @@ namespace LibraryManagement.Web.Controllers
             totalRecord = await Task.Run(() => _IBookService.TotalRowCount());
             rowNumber = Books.Count();
             Books = Books.Skip(iDisplayStart).Take(iDisplayLength).ToList();
-            JsonResult result = new JsonResult();
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            result.Data = new
+            JsonResult result = new JsonResult
             {
-                iTotalRecords = totalRecord,
-                iTotalDisplayRecords = rowNumber,
-                aaData = Books
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+                Data = new
+                {
+                    iTotalRecords = totalRecord,
+                    iTotalDisplayRecords = rowNumber,
+                    aaData = Books
+                }
             };
             return result;
         }
 
         public async Task<JsonResult> Delete(int id)
         {
-            JsonResult result = new JsonResult();
-            result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            JsonResult result = new JsonResult
+            {
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
             dynamic message = "";
             var data = false;
             try

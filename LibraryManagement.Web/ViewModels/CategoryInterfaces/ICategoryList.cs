@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.CategoryInterfaces
 {
-    interface ICategoryList
+    public interface ICategoryList
     {
         List<Category> Categories { get; set; }
     }
