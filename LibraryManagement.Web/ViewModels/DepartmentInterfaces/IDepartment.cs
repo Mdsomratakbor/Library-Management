@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.DepartmentInterfaces
 {
-    interface IDepartment : IBaseEntities
+    public interface IDepartment : IBaseEntities
     {
         string Name { get; set; }
     }

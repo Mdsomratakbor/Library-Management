@@ -1,6 +1,7 @@
 using LibraryManagement.Services;
 using LibraryManagement.Services.Interfaces;
 using LibraryManagement.Web.ViewModels;
+using LibraryManagement.Web.ViewModels.DepartmentInterfaces;
 using LibraryManagement.Web.ViewModels.Interfaces;
 using LibraryManagement.Web.ViewModels.StaffInterfaces;
 using LibraryManagement.Web.ViewModels.StudentInterfaces;
@@ -28,6 +29,8 @@ namespace LibraryManagement.Web
             container.RegisterType<IBookService, BookService>();
             container.RegisterType<IBook, BookActionModel>();
             container.RegisterType<ICategoryService, CategoryServices>();
+            container.RegisterType<IDepartment, DepartmentActionModel>();
+            
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

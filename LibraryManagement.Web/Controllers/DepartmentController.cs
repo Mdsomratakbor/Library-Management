@@ -19,10 +19,10 @@ namespace LibraryManagement.Web.Controllers
         private IDepartmentServices _IDepartmentServices;
         private IDepartment _IDepartment;
         private Department _deparment;
-        public DepartmentController()
+        public DepartmentController(IDepartmentServices departmentService, IDepartment department)
         {
-            _IDepartmentServices = new DepartmentServices();
-            _IDepartment = new DepartmentActionModel();
+            _IDepartmentServices = departmentService;
+            _IDepartment = department;
             _deparment = new Department();
         }
         public ActionResult Index()
