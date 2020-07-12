@@ -1,5 +1,6 @@
 ﻿using LibraryManagement.Data;
 using LibraryManagement.Entities;
+using LibraryManagement.Services.Abstractclass;
 using LibraryManagement.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services
 {
-    public class StaffServices : IStaffServices
+    public class StaffServices : LibraryMangementServices<Staff>, IStaffServices
     {
         public List<Staff> GetAllData(int displayLength, int displayStart, int sortCol, string sortDir, string search)
         {
@@ -54,16 +55,8 @@ namespace LibraryManagement.Services
             }
 
         }
-        public int TotalRowCount()
-        {
-            using (var _LMContext = new LMContext())
-            {
-                return _LMContext.Staffs.Count();
-            }
 
-        }
-
-        public Staff GetDataById(int id)
+        public override Staff GetDataById(int id)
         {
             using (var _LMContext = new LMContext())
             {
@@ -71,16 +64,7 @@ namespace LibraryManagement.Services
             }
         }
 
-        public bool SaveData(Staff model)
-        {
-            using (var _LMContext = new LMContext())
-            {
-                _LMContext.Staffs.Add(model);
-                return _LMContext.SaveChanges() > 0;
-            }
-        }
-
-        public bool UpdateData(Staff model)
+        public override bool UpdateData(Staff model)
         {
             using (var _LMContext = new LMContext())
             {
@@ -88,16 +72,6 @@ namespace LibraryManagement.Services
                 _LMContext.StaffPictures.RemoveRange(existingStaff.StaffPictures);
                 _LMContext.Entry(existingStaff).CurrentValues.SetValues(model);
                 _LMContext.StaffPictures.AddRange(model.StaffPictures);
-                return _LMContext.SaveChanges() > 0;
-            }
-        }
-        public bool DeleteData(int id)
-        {
-            using (var _LMContext = new LMContext())
-            {
-                var Staff = _LMContext.Staffs.Find(id);
-                _LMContext.Entry(Staff).State = System.Data.Entity.EntityState.Modified;
-                _LMContext.Staffs.Remove(Staff);
                 return _LMContext.SaveChanges() > 0;
             }
         }
