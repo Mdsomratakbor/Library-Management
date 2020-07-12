@@ -51,7 +51,7 @@ namespace LibraryManagement.Web.Controllers
                 _IStaff.Pictures = _Staff.StaffPictures;
                 _IStaff.Gender = _Staff.Gender;
             }
-            _IStaff.Designations = await Task.Run(() => _IDesigantionServices.GetAllDesignation());
+            _IStaff.Designations = await Task.Run(() => _IDesigantionServices.GetAllData());
             _IStaff.Genders = Enum.GetValues(typeof(GenderEnums)).Cast<GenderEnums>().ToList();
             return View(_IStaff);
         }

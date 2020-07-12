@@ -1,4 +1,5 @@
 ﻿using LibraryManagement.Data;
+using LibraryManagement.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services.Abstractclass
 {
-    public abstract class LibraryMangementServices<T> where T: class
+    public abstract class LibraryMangementServices<T> where T: class 
     {
 
-        public bool UpdateData(T model)
+        public virtual bool UpdateData(T model)
         {
             using (var _LMContext = new LMContext())
             {
@@ -19,7 +20,7 @@ namespace LibraryManagement.Services.Abstractclass
                 return _LMContext.SaveChanges() > 0;
             }
         }
-        public bool SaveData(T model)
+        public virtual bool SaveData(T model)
         {
             using (var _LMContext = new LMContext())
             {
@@ -27,7 +28,7 @@ namespace LibraryManagement.Services.Abstractclass
                 return _LMContext.SaveChanges() > 0;
             }
         }
-        public bool DeleteData(int id)
+        public virtual bool DeleteData(int id)
         {
             using (var _LMContext = new LMContext())
             {
@@ -35,6 +36,27 @@ namespace LibraryManagement.Services.Abstractclass
                 _LMContext.Entry(designation).State = System.Data.Entity.EntityState.Modified;
                 _LMContext.Set<T>().Remove(designation);
                 return _LMContext.SaveChanges() > 0;
+            }
+        }
+        public virtual int TotalRowCount()
+        {
+            using (var _LMContext = new LMContext())
+            {
+                return _LMContext.Set<T>().Count();
+            }
+        }
+        public virtual T GetDataById(int id)
+        {
+            using (var _LMContext = new LMContext())
+            {
+                return _LMContext.Set<T>().Find(id);
+            }
+        }
+        public List<T> GetAllData()
+        {
+            using (var _LMContext = new LMContext())
+            {
+                return _LMContext.Set<T>().ToList();
             }
         }
     }

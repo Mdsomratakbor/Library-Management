@@ -52,7 +52,7 @@ namespace LibraryManagement.Web.Controllers
                 _IStudent.Gender = _Student.Gender;
             }
             _IStudent.Code = "STD-0001" + await Task.Run(() => _IStudentServices.TotalRowCount());
-            _IStudent.Departments = await Task.Run(() => _IDepartmentServices.GetAllDepartment());
+            _IStudent.Departments = await Task.Run(() => _IDepartmentServices.GetAllData());
             _IStudent.Genders = Enum.GetValues(typeof(GenderEnums)).Cast<GenderEnums>().ToList();
             return View(_IStudent);
         }

@@ -42,53 +42,6 @@ namespace LibraryManagement.Services
                 }
                 return categories;
             }
-        }
-        public List<Designation> GetAllDesignation()
-        {
-            using (var _LMContext = new LMContext())
-            {
-                return _LMContext.Designations.ToList();
-            }
-        }
-        public int TotalRowCount()
-        {
-            using (var _LMContext = new LMContext())
-            {
-                return _LMContext.Designations.Count();
-            }
-        }
-        public Designation GetDataById(int id)
-        {
-            using (var _LMContext = new LMContext())
-            {
-                return _LMContext.Designations.Where(x => x.ID == id).FirstOrDefault();
-            }
-        }
-        //public bool SaveData(Designation model)
-        //{
-        //    using (var _LMContext = new LMContext())
-        //    {
-        //        _LMContext.Designations.Add(model);
-        //        return _LMContext.SaveChanges() > 0;
-        //    }
-        //}    
-        //public bool UpdateData(Designation model)
-        //{
-        //    using (var _LMContext = new LMContext())
-        //    {
-        //        _LMContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
-        //        return _LMContext.SaveChanges() > 0;
-        //    }
-        //}
-        //public bool DeleteData(int id)
-        //{
-        //    using (var _LMContext = new LMContext())
-        //    {
-        //        var designation = _LMContext.Designations.Find(id);
-        //        _LMContext.Entry(designation).State = System.Data.Entity.EntityState.Modified;
-        //        _LMContext.Designations.Remove(designation);
-        //        return _LMContext.SaveChanges() > 0;
-        //    }
-        //}
+        }         
     }
 }

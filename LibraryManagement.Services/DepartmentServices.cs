@@ -1,5 +1,6 @@
 ﻿using LibraryManagement.Data;
 using LibraryManagement.Entities;
+using LibraryManagement.Services.Abstractclass;
 using LibraryManagement.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services
 {
-    public class DepartmentServices : IDepartmentServices
+    public class DepartmentServices : LibraryMangementServices<Department>, IDepartmentServices
     {
 
         public List<Department> GetAllData(int displayLength, int displayStart, int sortCol, string sortDir, string search = null)
@@ -41,59 +42,6 @@ namespace LibraryManagement.Services
                     categories = _LMContext.Departments.OrderBy(x => columnNameDsc).ToList();
                 }
                 return categories;
-            }
-        }
-        public int TotalRowCount()
-        {
-            using (var _LMContext = new LMContext())
-            {
-                return _LMContext.Departments.Count();
-            }
-        }
-
-        public List<Department> GetAllDepartment()
-        {
-            using (var _LMContext = new LMContext())
-            {
-                return _LMContext.Departments.ToList();
-            }
-            
-        }
-        public Department GetDataById(int id)
-        {
-            using (var _LMContext = new LMContext())
-            {
-                return _LMContext.Departments.Where(x => x.ID == id).FirstOrDefault();
-            }
-        }
-
-        public bool SaveData(Department model)
-        {
-            using (var _LMContext = new LMContext())
-            {
-                _LMContext.Departments.Add(model);
-                return _LMContext.SaveChanges() > 0;
-            }
-        }
-
-     
-
-        public bool UpdateData(Department model)
-        {
-            using (var _LMContext = new LMContext())
-            {
-                _LMContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
-                return _LMContext.SaveChanges() > 0;
-            }
-        }
-        public bool DeleteData(int id)
-        {
-            using (var _LMContext = new LMContext())
-            {
-                var deparment = _LMContext.Departments.Find(id);
-                _LMContext.Entry(deparment).State = System.Data.Entity.EntityState.Modified;
-                _LMContext.Departments.Remove(deparment);
-                return _LMContext.SaveChanges() > 0;
             }
         }
     }
