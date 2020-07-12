@@ -15,10 +15,10 @@ namespace LibraryManagement.Web.Controllers
     [HandleError]
     public class BookController : Controller
     {
-        private  Book _Book;
-        private  IBook _IBook;
-        private  IBookService _IBookService;
-        private  ICategoryService _ICategoryService;
+        private Book _Book;
+        private readonly IBook _IBook;
+        private readonly IBookService _IBookService;
+        private readonly ICategoryService _ICategoryService;
 
         public BookController(IBookService bookService, ICategoryService categoryService, IBook book)
         {
@@ -31,7 +31,7 @@ namespace LibraryManagement.Web.Controllers
         public ActionResult Index()
         {
 
-                return View();          
+            return View();
         }
         public async Task<ActionResult> Action(int? id)
         {
@@ -69,11 +69,11 @@ namespace LibraryManagement.Web.Controllers
                     if (!string.IsNullOrEmpty(model.PictureIDs))
                     {
                         List<int> picturesIDs = model.PictureIDs.Split(',').Select(x => int.Parse(x)).ToList();
-                         pictures = await Task.Run(() => PictureServices.Instance.GetPicturesByIDs(picturesIDs));
+                        pictures = await Task.Run(() => PictureServices.Instance.GetPicturesByIDs(picturesIDs));
                     }
                     if (model.ID > 0)
                     {
-                        _Book = await Task.Run(()=>_IBookService.GetDataById(model.ID));
+                        _Book = await Task.Run(() => _IBookService.GetDataById(model.ID));
                         _Book.BookPictures.Clear();
                         _Book.BookPictures = new List<BookPicture>();
                         _Book.BookPictures.AddRange(pictures.Select(x => new BookPicture() { PictureID = x.ID, BookID = model.ID }));

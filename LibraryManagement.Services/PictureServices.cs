@@ -22,7 +22,7 @@ namespace LibraryManagement.Services
         }
         private static PictureServices instance { get; set; }
         #endregion
-        private LMContext _LMContext;
+        private readonly LMContext _LMContext;
         public PictureServices()
         {
             _LMContext = new LMContext();

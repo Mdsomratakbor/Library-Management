@@ -1,5 +1,6 @@
 ﻿using LibraryManagement.Data;
 using LibraryManagement.Entities;
+using LibraryManagement.Services.Abstractclass;
 using LibraryManagement.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services
 {
-    public class BookService : IBookService
+    public class BookService : LibraryManagementServices<Book>, IBookService
     {
         public List<Book> GetAllData(int displayLength, int displayStart, int sortCol, string sortDir, string search)
         {
@@ -59,16 +60,7 @@ namespace LibraryManagement.Services
 
         }
 
-        public int TotalRowCount()
-        {
-            using (var _LMContext = new LMContext())
-            {
-                return _LMContext.Books.Count();
-            }
-
-        }
-
-        public Book GetDataById(int id)
+        public override Book GetDataById(int id)
         {
             using (var _LMContext = new LMContext())
             {
@@ -76,16 +68,7 @@ namespace LibraryManagement.Services
             }
         }
 
-        public bool SaveData(Book model)
-        {
-            using (var _LMContext = new LMContext())
-            {
-                _LMContext.Books.Add(model);
-                return _LMContext.SaveChanges() > 0;
-            }
-        }
-
-        public bool UpdateData(Book model)
+        public override bool UpdateData(Book model)
         {
             using (var _LMContext = new LMContext())
             {
@@ -94,16 +77,6 @@ namespace LibraryManagement.Services
                 _LMContext.Entry(existingBook).CurrentValues.SetValues(model);
                 _LMContext.BookPictures.AddRange(model.BookPictures);
                 return _LMContext.SaveChanges() > 0;
-            }
-        }
-        public bool DeleteData(int id)
-        {
-            using (var _LMContext = new LMContext())
-            {
-                var book = _LMContext.Books.Find(id);
-                _LMContext.Entry(book).State = System.Data.Entity.EntityState.Modified;
-                _LMContext.Books.Remove(book);
-                return _LMContext.SaveChanges()>0;
             }
         }
     }

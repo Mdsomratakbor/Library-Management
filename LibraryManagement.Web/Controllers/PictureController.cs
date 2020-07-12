@@ -11,7 +11,7 @@ namespace LibraryManagement.Web.Controllers
 {
     public class PictureController : Controller
     {
-        private PictureServices _PictureServices;
+        private readonly PictureServices _PictureServices;
 
         public PictureController()
         {
@@ -39,8 +39,10 @@ namespace LibraryManagement.Web.Controllers
                     var fileName = Guid.NewGuid() + Path.GetExtension(picture.FileName);
                     var path = Path.Combine(Server.MapPath("~/Content/images/BookImage/"), fileName);
                     picture.SaveAs(path);
-                    var dbPictuer = new Picture();
-                    dbPictuer.URL = fileName;
+                    var dbPictuer = new Picture
+                    {
+                        URL = fileName
+                    };
                     int pictureID = _PictureServices.SavePicture(dbPictuer);
                     pictuerJSON.Add(new { ID = pictureID, URL = dbPictuer.URL });
 
