@@ -1197,6 +1197,13 @@
     <Content Include="Views\Student\Action.cshtml" />
     <Content Include="Views\Staff\Index.cshtml" />
     <Content Include="Views\Staff\Action.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\_Action.cshtml" />
+    <Content Include="Views\Roles\_Listing.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\_Action.cshtml" />
+    <Content Include="Views\Users\_Listing.cshtml" />
+    <Content Include="Views\Users\_UserRoles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
