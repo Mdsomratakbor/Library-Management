@@ -95,7 +95,7 @@ namespace LibraryManagement.Web.Controllers
                 model.FullName = user.FullName;
                 model.Email = user.Email;
                 model.UserName = user.UserName;
-            
+
             }
             return PartialView("_Action", model);
         }
@@ -112,10 +112,10 @@ namespace LibraryManagement.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                   
+
                     if (!string.IsNullOrEmpty(model.ID))
                     {
-                         user = await UserManager.FindByIdAsync(model.ID);
+                        user = await UserManager.FindByIdAsync(model.ID);
                         user.FullName = model.FullName;
                         user.Email = model.Email;
                         user.UserName = model.UserName;
@@ -124,7 +124,7 @@ namespace LibraryManagement.Web.Controllers
                     }
                     else
                     {
-                        
+
                         user.FullName = model.FullName;
                         user.Email = model.Email;
                         user.UserName = model.UserName;
@@ -135,9 +135,9 @@ namespace LibraryManagement.Web.Controllers
                 }
                 else
                 {
-                   message = string.Join("; ", ModelState.Values
-                                          .SelectMany(x => x.Errors)
-                                          .Select(x => x.ErrorMessage));
+                    message = string.Join("; ", ModelState.Values
+                                           .SelectMany(x => x.Errors)
+                                           .Select(x => x.ErrorMessage));
 
                 }
 
@@ -148,13 +148,13 @@ namespace LibraryManagement.Web.Controllers
             }
             if (isSuccess)
             {
-                 await UserManager.AddToRoleAsync(user.Id, "Users");
+                await UserManager.AddToRoleAsync(user.Id, "Users");
                 message = "Data Save Successfully!!";
                 result.Data = new { Success = true, Message = message };
             }
             else
             {
-                if(ModelState.IsValid) message = string.Join(",", data.Errors);
+                if (ModelState.IsValid) message = string.Join(",", data.Errors);
                 result.Data = new { Success = false, Message = message };
             }
             return result;
@@ -212,9 +212,9 @@ namespace LibraryManagement.Web.Controllers
             }
             return PartialView("_UserRoles", model);
         }
-   
+
         [HttpPost]
-        public async Task<JsonResult> UserRoleOperation( string userId, string roleId, bool isDelete = false)
+        public async Task<JsonResult> UserRoleOperation(string userId, string roleId, bool isDelete = false)
         {
             JsonResult result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
@@ -225,7 +225,7 @@ namespace LibraryManagement.Web.Controllers
                 if (!string.IsNullOrEmpty(userId) && !string.IsNullOrEmpty(roleId))
                 {
                     var user = await UserManager.FindByIdAsync(userId);
-                    var role = await RoleManager.FindByIdAsync(roleId); 
+                    var role = await RoleManager.FindByIdAsync(roleId);
                     if (user != null && role != null)
                     {
                         if (!isDelete)
@@ -261,7 +261,7 @@ namespace LibraryManagement.Web.Controllers
             else
             {
                 result.Data = new { Success = false, Message = string.Join(",", data.Errors) };
-            } 
+            }
             return result;
 
         }
@@ -272,11 +272,11 @@ namespace LibraryManagement.Web.Controllers
             var users = UserManager.Users.AsQueryable();
             if (string.IsNullOrEmpty(searchTearm) == false)
             {
-                users = users.Where(x => x.Email.ToLower().Contains(searchTearm.ToLower())|| x.FullName.ToLower().Contains(searchTearm.ToLower()) || x.UserName.ToLower().Contains(searchTearm.ToLower()));
+                users = users.Where(x => x.Email.ToLower().Contains(searchTearm.ToLower()) || x.FullName.ToLower().Contains(searchTearm.ToLower()) || x.UserName.ToLower().Contains(searchTearm.ToLower()));
             }
             if (!string.IsNullOrEmpty(roleId))
             {
-                users = users.Where(x => x.Roles.Select(y=>y.RoleId).Contains(roleId));
+                users = users.Where(x => x.Roles.Select(y => y.RoleId).Contains(roleId));
             }
             return users.OrderByDescending(x => x.Email).Skip((pageNo.Value - 1) * pageSize).Take(pageSize).ToList();
         }

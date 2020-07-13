@@ -39,7 +39,8 @@ namespace LibraryManagement.Web
             container.RegisterType<ICategory, CategoryActionModel>();
             container.RegisterType<RolesController>(new InjectionConstructor());
             container.RegisterType<UsersController>(new InjectionConstructor());
-    
+            container.RegisterType<AccountController>(new InjectionConstructor());
+
 
 
 
