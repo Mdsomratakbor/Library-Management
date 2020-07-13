@@ -203,27 +203,23 @@ namespace LibraryManagement.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Find the user by email
                 var user = await UserManager.FindByEmailAsync(model.Email);
-                // If the user is found AND Email is confirmed
-                if (user != null && await UserManager.IsEmailConfirmedAsync(user.Id))
+                //if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                //{
+                //    // Don't reveal that the user does not exist or is not confirmed
+                //    return View("ForgotPasswordConfirmation");
+                //}
+
+                var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account",
+            new { UserId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                await UserManager.SendEmailAsync(user.Id, "Reset Password",
+            "Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
+                var result = await UserManager.ConfirmEmailAsync(user.Id, code);
+                if (result.Succeeded)
                 {
-                    // Generate the reset password token
-                    var token = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-
-                    // Build the password reset link
-                    var passwordResetLink = Url.Action("ResetPassword", "Account",
-                            new { email = model.Email, token = token }, Request.Url.Scheme);
-
-                    // Log the password reset link
-                    Logger.Log(LogLevel.Warning, passwordResetLink);
-
-                    // Send the user to Forgot Password Confirmation view
-                    return View("ForgotPasswordConfirmation");
+                    return View("ConfirmEmail");
                 }
-
-                // To avoid account enumeration and brute force attacks, don't
-                // reveal that the user does not exist or is not confirmed
                 return View("ForgotPasswordConfirmation");
             }
 
