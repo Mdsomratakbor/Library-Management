@@ -77,6 +77,10 @@
     <Compile Include="Migrations\202007111751142_DesignationIdIntConvert.designer.cs">
       <DependentUpon>202007111751142_DesignationIdIntConvert.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007131357380_userinformationChange.cs" />
+    <Compile Include="Migrations\202007131357380_userinformationChange.designer.cs">
+      <DependentUpon>202007131357380_userinformationChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -105,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007111751142_DesignationIdIntConvert.resx">
       <DependentUpon>202007111751142_DesignationIdIntConvert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007131357380_userinformationChange.resx">
+      <DependentUpon>202007131357380_userinformationChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

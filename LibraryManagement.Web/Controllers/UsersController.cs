@@ -95,10 +95,7 @@ namespace LibraryManagement.Web.Controllers
                 model.FullName = user.FullName;
                 model.Email = user.Email;
                 model.UserName = user.UserName;
-                model.Address = user.Address;
-                model.Country = user.Country;
-                model.City = user.City;               
-
+            
             }
             return PartialView("_Action", model);
         }
@@ -122,9 +119,6 @@ namespace LibraryManagement.Web.Controllers
                         user.FullName = model.FullName;
                         user.Email = model.Email;
                         user.UserName = model.UserName;
-                        user.Address = model.Address;
-                        user.Country = model.Country;
-                        user.City = model.City;
                         data = await UserManager.UpdateAsync(user);
                         isSuccess = data.Succeeded;
                     }
@@ -134,9 +128,6 @@ namespace LibraryManagement.Web.Controllers
                         user.FullName = model.FullName;
                         user.Email = model.Email;
                         user.UserName = model.UserName;
-                        user.Address = model.Address;
-                        user.Country = model.Country;
-                        user.City = model.City;
                         data = await UserManager.CreateAsync(user, model.Password);
                         isSuccess = data.Succeeded;
                     }
@@ -281,7 +272,7 @@ namespace LibraryManagement.Web.Controllers
             var users = UserManager.Users.AsQueryable();
             if (string.IsNullOrEmpty(searchTearm) == false)
             {
-                users = users.Where(x => x.Email.ToLower().Contains(searchTearm.ToLower())|| x.FullName.ToLower().Contains(searchTearm.ToLower()) || x.UserName.ToLower().Contains(searchTearm.ToLower()) || x.Country.ToLower().Contains(searchTearm.ToLower())|| x.City.ToLower().Contains(searchTearm.ToLower()));
+                users = users.Where(x => x.Email.ToLower().Contains(searchTearm.ToLower())|| x.FullName.ToLower().Contains(searchTearm.ToLower()) || x.UserName.ToLower().Contains(searchTearm.ToLower()));
             }
             if (!string.IsNullOrEmpty(roleId))
             {
@@ -295,9 +286,6 @@ namespace LibraryManagement.Web.Controllers
             if (string.IsNullOrEmpty(searchTearm) == false)
             {
                 data = data.Where(x => x.Email.ToLower().Contains(searchTearm.ToLower()));
-            }
-            {
-                // data = data.Where(x => x.AccomodationPackageID == accomodationPackageId).ToList();
             }
             return data.Count();
         }
