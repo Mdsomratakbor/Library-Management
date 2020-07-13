@@ -1,84 +1,68 @@
-﻿@model HMS.Web.Models.RegisterViewModel
+﻿@model LibraryManagement.Web.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
 }
 <!--Sweetalert add-->
-<link href="~/Areas/Dashboard/Content/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
-<script src="~/Areas/Dashboard/Content/plugins/sweetalert2/sweetalert2.min.js"></script>
-
-
-<div class="container">
-    <div class="panel jumbotron " style="background:#f3f3f3">
-        <div class="panel-heading justify-content-center" style="background: #e8e8e8;text-align: center;font-family: fantasy;">
+<link href="~/Content/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+<script src="~/Content/plugins/sweetalert2/sweetalert2.min.js"></script>
+<div class="d-flex justify-content-center">
+    <div class="card bg-gradient-gray-dark">
+        <div class="card-header">
             <h3 class="">Create a new account</h3>
         </div>
         @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-warning" })
 
 
-        <div class="panel-body">
-            <form id="registerForm">
-                <div class="row form-group">
-                    <div class="col-md-6">
+        <div class="card-body">      
+                <form id="registerForm">
+
+                    <div class="col-md-12">
                         <label class="font-weight-bold">Full Name</label>
                         <input type="text" autocomplete="off" required="" name="FullName" class="form-control" placeholder="Please Enter your Full Name" />
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label class="font-weight-bold">Email</label>
                         <input type="email" autocomplete="off" required="" name="Email" class="form-control" placeholder="Please Enter your Email" />
                     </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-6">
+
+                    <div class="col-md-12">
                         <label class="font-weight-bold">User Name</label>
                         <input type="text" autocomplete="off" required="" name="UserName" class="form-control" placeholder="Please Enter your UserName" />
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label class="font-weight-bold">Password</label>
                         <input type="password" autocomplete="off" required="" name="Password" class="form-control" placeholder="Please Enter your Password" />
                     </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label class="font-weight-bold">Confirm Password</label>
                         <input type="password" autocomplete="off" required="" name="ConfirmPassword" class="form-control" placeholder="Please Enter your Confirm Password" />
                     </div>
-                    <div class="col-md-6">
-                        <label class="font-weight-bold">Country</label>
-                        <input type="text" autocomplete="off" required="" name="Country" class="form-control" placeholder="Please Enter your Country" />
-                    </div>
-                </div>
 
-                <div class="row form-group">
-                    <div class="col-md-6">
-                        <label class="font-weight-bold">City</label>
-                        <input type="text" required="" name="City" class="form-control" placeholder="Please Enter your City" />
-                    </div>
-                    <div class="col-md-6">
-                        <label class="font-weight-bold">Address</label>
-                        <textarea type="text" required="" name="Address" rows="2" class="form-control" placeholder="Please Enter your Address"></textarea>
-                    </div>
-                </div>
 
-            </form>
+                </form>
+
+            
+
 
         </div>
-        <div class="panel-footer">
+        <div class="card-footer">
 
-                <div class="justify-content-center links">
-                    Don't have an account?<a href="@Url.Action("Login","Account")">Sign In</a>
-                </div>
-                <button class="btn btn-success btn-sm" id="btnSave">Save</button>
+            <div class="justify-content-center links">
+                Don't have an account?<a href="@Url.Action("Login","Account")">Sign In</a>
+            </div>
+            <button class="btn btn-success btn-sm" id="btnSave">Save</button>
 
-           
+
         </div>
     </div>
-
 </div>
+
+
 <script>
  $("#btnSave").on('click', function () {
         $.ajax({
             method: 'post',
-            url: '@Url.Action("Action", "Users",new { area = "Dashboard" })',
+            url: '@Url.Action("Action", "Users")',
             data: $("#registerForm").serialize()
             }).done(function (response) {
     if (response.Success) {
@@ -102,8 +86,6 @@
 
             })
             }
-
-})
-
+            })
             })
 </script>
