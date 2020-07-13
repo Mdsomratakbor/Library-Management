@@ -203,19 +203,28 @@ namespace LibraryManagement.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                // Find the user by email
+                var user = await UserManager.FindByEmailAsync(model.Email);
+                // If the user is found AND Email is confirmed
+                if (user != null && await UserManager.IsEmailConfirmedAsync(user.Id))
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
+                    // Generate the reset password token
+                    var token = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+
+                    // Build the password reset link
+                    var passwordResetLink = Url.Action("ResetPassword", "Account",
+                            new { email = model.Email, token = token }, Request.Url.Scheme);
+
+                    // Log the password reset link
+                    Logger.Log(LogLevel.Warning, passwordResetLink);
+
+                    // Send the user to Forgot Password Confirmation view
                     return View("ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                // To avoid account enumeration and brute force attacks, don't
+                // reveal that the user does not exist or is not confirmed
+                return View("ForgotPasswordConfirmation");
             }
 
             // If we got this far, something failed, redisplay form
