@@ -5,8 +5,9 @@
 <!--Sweetalert add-->
 <link href="~/Content/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
 <script src="~/Content/plugins/sweetalert2/sweetalert2.min.js"></script>
+
 <div class="d-flex justify-content-center">
-    <div class="card bg-gradient-gray-dark">
+    <div class="card bg-gradient-gray-dark" style="width:450px">
         <div class="card-header">
             <h3 class="">Create a new account</h3>
         </div>
@@ -16,29 +17,37 @@
         <div class="card-body">      
                 <form id="registerForm">
 
-                    <div class="col-md-12">
-                        <label class="font-weight-bold">Full Name</label>
+                    <div class="col-md-12 input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-user"></i></span>  
+                        </div>
                         <input type="text" autocomplete="off" required="" name="FullName" class="form-control" placeholder="Please Enter your Full Name" />
                     </div>
-                    <div class="col-md-12">
-                        <label class="font-weight-bold">Email</label>
+                    <div class="col-md-12 input-group mt-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
                         <input type="email" autocomplete="off" required="" name="Email" class="form-control" placeholder="Please Enter your Email" />
                     </div>
 
-                    <div class="col-md-12">
-                        <label class="font-weight-bold">User Name</label>
+                    <div class="col-md-12 input-group mt-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
                         <input type="text" autocomplete="off" required="" name="UserName" class="form-control" placeholder="Please Enter your UserName" />
                     </div>
-                    <div class="col-md-12">
-                        <label class="font-weight-bold">Password</label>
+                    <div class="col-md-12 mt-2 input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
                         <input type="password" autocomplete="off" required="" name="Password" class="form-control" placeholder="Please Enter your Password" />
                     </div>
-                    <div class="col-md-12">
-                        <label class="font-weight-bold">Confirm Password</label>
+                    <div class="col-md-12 input-group mt-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
                         <input type="password" autocomplete="off" required="" name="ConfirmPassword" class="form-control" placeholder="Please Enter your Confirm Password" />
                     </div>
-
-
                 </form>
 
             
@@ -47,10 +56,10 @@
         </div>
         <div class="card-footer">
 
-            <div class="justify-content-center links">
+            <div class="float-left links">
                 Don't have an account?<a href="@Url.Action("Login","Account")">Sign In</a>
             </div>
-            <button class="btn btn-success btn-sm" id="btnSave">Save</button>
+            <button class="btn btn-primary btn-sm float-right" id="btnSave"><i class="fas fa-registered"></i> Save</button>
 
 
         </div>

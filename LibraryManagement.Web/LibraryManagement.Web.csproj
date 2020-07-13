@@ -281,6 +281,7 @@
     <Content Include="Content\dist\img\credit\visa.png" />
     <Content Include="Content\dist\img\default-150x150.png" />
     <Content Include="Content\dist\img\icons.png" />
+    <Content Include="Content\dist\img\loginImage\library-100616524-large.jpg" />
     <Content Include="Content\dist\img\photo1.png" />
     <Content Include="Content\dist\img\photo2.png" />
     <Content Include="Content\dist\img\photo3.jpg" />
