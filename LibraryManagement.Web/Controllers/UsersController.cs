@@ -10,8 +10,9 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LibraryManagement.Web.Areas.Dashboard.Controllers
+namespace LibraryManagement.Web.Controllers
 {
+    [HandleError]
     public class UsersController : Controller
     {
         private LMSignInManagerService _signInManager;
@@ -269,7 +270,7 @@ namespace LibraryManagement.Web.Areas.Dashboard.Controllers
             else
             {
                 result.Data = new { Success = false, Message = string.Join(",", data.Errors) };
-            }
+            } 
             return result;
 
         }

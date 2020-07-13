@@ -6,6 +6,9 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using LibraryManagement.Web.Models;
+using LibraryManagement.Data;
+using LibraryManagement.Services;
+using LibraryManagement.Entities;
 
 namespace LibraryManagement.Web
 {
@@ -15,9 +18,10 @@ namespace LibraryManagement.Web
         public void ConfigureAuth(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+            app.CreatePerOwinContext(LMContext.Create);
+            app.CreatePerOwinContext<LMUserManagerService>(LMUserManagerService.Create);
+            app.CreatePerOwinContext<LMSignInManagerService>(LMSignInManagerService.Create);
+            app.CreatePerOwinContext<LMRolesManagerService>(LMRolesManagerService.Create);
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
@@ -30,7 +34,7 @@ namespace LibraryManagement.Web
                 {
                     // Enables the application to validate the security stamp when the user logs in.
                     // This is a security feature which is used when you change a password or add an external login to your account.  
-                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
+                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<LMUserManagerService, LMUser>(
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }

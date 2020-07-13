@@ -1218,6 +1218,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LibraryManagement.Data\LibraryManagement.Data.csproj">
+      <Project>{5C24BAA4-8889-44DA-B890-C29001D59947}</Project>
+      <Name>LibraryManagement.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LibraryManagement.Entities\LibraryManagement.Entities.csproj">
       <Project>{2e6ef636-8bc7-4887-a5c0-7f5799d8969e}</Project>
       <Name>LibraryManagement.Entities</Name>

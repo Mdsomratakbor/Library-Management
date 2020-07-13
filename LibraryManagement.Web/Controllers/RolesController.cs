@@ -10,8 +10,9 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LibraryManagement.Web.Areas.Dashboard.Controllers
+namespace LibraryManagement.Web.Controllers
 {
+    [HandleError]
     public class RolesController : Controller
     {
         private LMSignInManagerService _signInManager;

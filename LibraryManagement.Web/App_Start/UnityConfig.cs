@@ -1,13 +1,18 @@
+using LibraryManagement.Entities;
 using LibraryManagement.Services;
 using LibraryManagement.Services.Interfaces;
+using LibraryManagement.Web.Controllers;
 using LibraryManagement.Web.ViewModels;
 using LibraryManagement.Web.ViewModels.CategoryInterfaces;
 using LibraryManagement.Web.ViewModels.DepartmentInterfaces;
 using LibraryManagement.Web.ViewModels.Interfaces;
 using LibraryManagement.Web.ViewModels.StaffInterfaces;
 using LibraryManagement.Web.ViewModels.StudentInterfaces;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Web.Mvc;
 using Unity;
+using Unity.Injection;
 using Unity.Mvc5;
 
 namespace LibraryManagement.Web
@@ -16,12 +21,12 @@ namespace LibraryManagement.Web
     {
         public static void RegisterComponents()
         {
-			var container = new UnityContainer();
-            
+            var container = new UnityContainer();
+
             // register all your components with the container here
             // it is NOT necessary to register your controllers
-            
-             container.RegisterType<IStudentServices, StudentServices>();
+
+            container.RegisterType<IStudentServices, StudentServices>();
             container.RegisterType<IStudent, StudentActionModel>();
             container.RegisterType<IDepartmentServices, DepartmentServices>();
             container.RegisterType<IStaffServices, StaffServices>();
@@ -32,6 +37,10 @@ namespace LibraryManagement.Web
             container.RegisterType<ICategoryService, CategoryServices>();
             container.RegisterType<IDepartment, DepartmentActionModel>();
             container.RegisterType<ICategory, CategoryActionModel>();
+            container.RegisterType<RolesController>(new InjectionConstructor());
+            container.RegisterType<UsersController>(new InjectionConstructor());
+    
+
 
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
