@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -213,10 +216,11 @@ namespace LibraryManagement.Web.Controllers
                 var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account",
             new { UserId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Reset Password",
-            "Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
-                var result = await UserManager.ConfirmEmailAsync(user.Id, code);
-                if (result.Succeeded)
+                //    await UserManager.SendEmailAsync(user.Id, "Reset Password",
+                //"Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
+                //    var result = await UserManager.ConfirmEmailAsync(user.Id, code);
+                var result = SendMail(user.Email, "Reset Password","Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
+                if (result)
                 {
                     return View("ConfirmEmail");
                 }
@@ -409,6 +413,29 @@ namespace LibraryManagement.Web.Controllers
             return View();
         }
 
+        public bool SendMail(string email, string suject, string bodytext)
+        {
+            try
+            {
+                string senderMail = System.Configuration.ConfigurationManager.AppSettings["senderMail"].ToString();
+                string senderPassword = System.Configuration.ConfigurationManager.AppSettings["senderPassword"].ToString();
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                client.EnableSsl = true;
+                client.Timeout = 100000;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential(senderMail.Trim(), senderPassword.Trim());
+                MailMessage mailMessage = new MailMessage(senderMail, email, suject, bodytext);
+                mailMessage.IsBodyHtml = true;
+                mailMessage.BodyEncoding = UTF8Encoding.UTF8;
+                client.Send(mailMessage);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
