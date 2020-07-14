@@ -207,18 +207,9 @@ namespace LibraryManagement.Web.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByEmailAsync(model.Email);
-                //if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
-                //{
-                //    // Don't reveal that the user does not exist or is not confirmed
-                //    return View("ForgotPasswordConfirmation");
-                //}
-
                 var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account",
             new { UserId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                //    await UserManager.SendEmailAsync(user.Id, "Reset Password",
-                //"Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
-                //    var result = await UserManager.ConfirmEmailAsync(user.Id, code);
                 var result = SendMail(user.Email, "Reset Password","Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
                 if (result)
                 {
@@ -226,6 +217,7 @@ namespace LibraryManagement.Web.Controllers
                 }
                 return View("ForgotPasswordConfirmation");
             }
+
 
             // If we got this far, something failed, redisplay form
             return View(model);
