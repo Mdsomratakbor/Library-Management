@@ -104,6 +104,8 @@
     <Compile Include="DepartmentServices.cs" />
     <Compile Include="DesignationServices.cs" />
     <Compile Include="Enums\GenderEnums.cs" />
+    <Compile Include="Interfaces\IIssuServices.cs" />
+    <Compile Include="IssueServices.cs" />
     <Compile Include="LMRolesManagerService.cs" />
     <Compile Include="LMSignInManagerService.cs" />
     <Compile Include="LMUserManagerService.cs" />
