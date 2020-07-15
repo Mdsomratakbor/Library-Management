@@ -37,13 +37,10 @@ namespace LibraryManagement.Web
             container.RegisterType<ICategoryService, CategoryServices>();
             container.RegisterType<IDepartment, DepartmentActionModel>();
             container.RegisterType<ICategory, CategoryActionModel>();
+            container.RegisterType<IIssuServices, IssueServices>();
             container.RegisterType<RolesController>(new InjectionConstructor());
             container.RegisterType<UsersController>(new InjectionConstructor());
             container.RegisterType<AccountController>(new InjectionConstructor());
-
-
-
-
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

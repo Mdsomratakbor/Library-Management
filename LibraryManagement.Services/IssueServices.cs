@@ -48,5 +48,12 @@ namespace LibraryManagement.Services
                 return issues;
             }
         }
+        public override Issue GetDataById(int id)
+        {
+            using (var _LMContext = new LMContext())
+            {
+                return _LMContext.Issues.Where(x => x.ID == id).Include(y => y.Books).Include(w => w.Students).FirstOrDefault();
+            }
+        }
     }
 }
