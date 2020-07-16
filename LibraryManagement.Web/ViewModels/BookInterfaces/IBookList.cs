@@ -7,7 +7,7 @@ using LibraryManagement.Entities;
 
 namespace LibraryManagement.Web.ViewModels.Interfaces
 {
-    interface IBookList
+    public interface IBookList
     {
         List<Book> Books { get; set; }
         

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.StudentInterfaces
 {
-    interface IStudentList
+    public interface IStudentList
     {
          List<Student> Students { get; set; }
     }

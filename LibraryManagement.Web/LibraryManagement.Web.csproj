@@ -242,6 +242,9 @@
     <Compile Include="ViewModels\DesignationViewModels.cs" />
     <Compile Include="ViewModels\GenderInterfaces\IGender.cs" />
     <Compile Include="ViewModels\ImageInterfaces\IPicture.cs" />
+    <Compile Include="ViewModels\IssueInterfaces\IIssue.cs" />
+    <Compile Include="ViewModels\IssueInterfaces\IIssueList.cs" />
+    <Compile Include="ViewModels\IssueViewModels.cs" />
     <Compile Include="ViewModels\Pagination.cs" />
     <Compile Include="ViewModels\RolesModels.cs" />
     <Compile Include="ViewModels\SharedViewModel.cs" />
