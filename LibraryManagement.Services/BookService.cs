@@ -60,6 +60,13 @@ namespace LibraryManagement.Services
 
         }
 
+        public override List<Book> GetAllData()
+        {
+            using (var _LMContext = new LMContext())
+            {
+                return _LMContext.Books.Where(x=>x.BookQty>0).Include(y => y.BookPictures.Select(x => x.Pictures)).ToList();
+            }
+        }
         public override Book GetDataById(int id)
         {
             using (var _LMContext = new LMContext())

@@ -13,7 +13,7 @@ namespace LibraryManagement.Services
 {
     public class IssueServices : LibraryManagementServices<Issue>, IIssuServices
     {
-        private IBookService _IBookService;
+        private readonly IBookService _IBookService;
         public IssueServices(IBookService bookService)
         {
             _IBookService = bookService;

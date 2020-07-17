@@ -18,9 +18,9 @@
     <div class="card-body">
         <form id="issueForm">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label class="font-weight-bold" for="StudentID">Student</label>
-                    <select class="form-control select2bs4" name="StudentID">
+                    <select class="form-control select2bs4" name="StudentID" style="width:100%">
                         <option selected disabled>Please select student</option>
                         @foreach (var student in Model.Students)
                         {
@@ -29,9 +29,9 @@
                         }
                     </select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label class="font-weight-bold" for="BookID">Book</label>
-                    <select class="form-control select2bs4" name="BookID">
+                    <select class="form-control select2bs4" name="BookID" style="width:100%">
                         <option selected disabled>Please select book</option>
                         @foreach (var book in Model.Books)
                         {
@@ -41,7 +41,7 @@
                     </select>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label class="font-weight-bold" for="reservation"> Issue Date </label>
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -53,7 +53,7 @@
                     </div>
                     <!-- /.input group -->
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label class="font-weight-bold" for="reservation"> Expirary Date </label>
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -61,7 +61,7 @@
                                 <i class="far fa-calendar-alt"></i>
                             </span>
                         </div>
-                        <input type="text" name="ExpiraryDate" class="form-control" id="reservation" value="@Model.ExpiraryDate" />
+                        <input type="text" name="ExpiraryDate" class="form-control" id="expiraryDate" value="@Model.ExpiraryDate" />
                     </div>
                     <!-- /.input group -->
                 </div>
@@ -92,6 +92,9 @@
         $('#reservation').datepicker({
             format: 'mm/dd/yyyy'
         })
+    $('#expiraryDate').datepicker({
+        format: 'mm/dd/yyyy'
+    })
         $("#btnSave").on('click', function () {
         $.ajax({
             method:'Post',

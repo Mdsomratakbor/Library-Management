@@ -13,6 +13,7 @@ namespace LibraryManagement.Services
 {
     public class StudentServices :LibraryManagementServices<Student>, IStudentServices
     {
+        
         public List<Student> GetAllData(int displayLength, int displayStart, int sortCol, string sortDir, string search)
         {
 
@@ -65,7 +66,6 @@ namespace LibraryManagement.Services
                 return _LMContext.Students.Where(x => x.ID == id).Include(y => y.StudentPictures.Select(x => x.Pictures)).Include(w=>w.Departments).FirstOrDefault();
             }
         }
-
         public override bool UpdateData(Student model)
         {
             using (var _LMContext = new LMContext())
