@@ -13,7 +13,6 @@ using System.Web.Mvc;
 namespace LibraryManagement.Web.Controllers
 {
     [HandleError]
-    [Authorize]
     public class RolesController : Controller
     {
         private LMSignInManagerService _signInManager;
@@ -66,10 +65,12 @@ namespace LibraryManagement.Web.Controllers
             }
         }
         // GET: Dashboard/Users
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public PartialViewResult Listing(string searchTearm, int? pageNo, int? pageSize)
         {
             RolesListingModel model = new RolesListingModel();
@@ -83,6 +84,7 @@ namespace LibraryManagement.Web.Controllers
             model.PageSize = pageSize.Value;
             return PartialView("_Listing", model);
         }
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<PartialViewResult> Action(string id)
         {
@@ -97,6 +99,7 @@ namespace LibraryManagement.Web.Controllers
             }
             return PartialView("_Action", model);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<JsonResult> Action(RolesModel model)
         {
@@ -146,7 +149,7 @@ namespace LibraryManagement.Web.Controllers
             return result;
 
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<JsonResult> Delete(string id)
         {
             JsonResult result = new JsonResult();

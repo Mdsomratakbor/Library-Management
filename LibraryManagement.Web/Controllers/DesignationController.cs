@@ -14,7 +14,6 @@ using System.Web.Mvc;
 namespace LibraryManagement.Web.Controllers
 {
     [HandleError]
-    [Authorize]
     public class DesignationController : Controller
     {
         // GET: Designation
@@ -27,10 +26,12 @@ namespace LibraryManagement.Web.Controllers
             _IDesignation = new DesignationActionModel();
             _designation = new Designation();
         }
+        [Authorize(Roles = "Admin, Users")]
         public ActionResult Index()
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Action(int? id)
         {
             if (id > 0)
@@ -41,6 +42,7 @@ namespace LibraryManagement.Web.Controllers
             }
             return View(_IDesignation);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<JsonResult> Action(DepartmentActionModel model)
         {
@@ -111,7 +113,7 @@ namespace LibraryManagement.Web.Controllers
             };
             return result;
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<JsonResult> Delete(int id)
         {
             JsonResult result = new JsonResult

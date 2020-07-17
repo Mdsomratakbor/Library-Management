@@ -14,7 +14,6 @@ using System.Web.Mvc;
 namespace LibraryManagement.Web.Controllers
 {
     [HandleError]
-    [Authorize]
     public class StaffController : Controller
     {
         // GET: Staff
@@ -32,10 +31,12 @@ namespace LibraryManagement.Web.Controllers
             _IDesigantionServices = designationServices;
         }
         // GET: Book
+        [Authorize(Roles = "Admin,Users")]
         public ActionResult Index()
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Action(int? id)
         {
             if (id > 0)
@@ -56,6 +57,7 @@ namespace LibraryManagement.Web.Controllers
             _IStaff.Genders = Enum.GetValues(typeof(GenderEnums)).Cast<GenderEnums>().ToList();
             return View(_IStaff);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<JsonResult> Action(StaffActionModel model)
         {
@@ -150,7 +152,7 @@ namespace LibraryManagement.Web.Controllers
             };
             return result;
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<JsonResult> Delete(int id)
         {
             JsonResult result = new JsonResult

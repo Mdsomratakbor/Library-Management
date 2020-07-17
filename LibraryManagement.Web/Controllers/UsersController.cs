@@ -66,10 +66,12 @@ namespace LibraryManagement.Web.Controllers
             }
         }
         // GET: Dashboard/Users
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public PartialViewResult Listing(string searchTearm, string roleID, int? pageNo, int? pageSize)
         {
             UserListingModel model = new UserListingModel();
@@ -85,6 +87,7 @@ namespace LibraryManagement.Web.Controllers
             model.PageSize = pageSize.Value;
             return PartialView("_Listing", model);
         }
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<PartialViewResult> Action(string id)
         {
@@ -100,6 +103,8 @@ namespace LibraryManagement.Web.Controllers
             }
             return PartialView("_Action", model);
         }
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<JsonResult> Action(UserModel model)
         {
@@ -161,7 +166,7 @@ namespace LibraryManagement.Web.Controllers
             return result;
 
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<JsonResult> Delete(string id)
         {
             JsonResult result = new JsonResult();
@@ -196,7 +201,7 @@ namespace LibraryManagement.Web.Controllers
 
             return result;
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<PartialViewResult> UserRoles(string id)
         {
@@ -213,7 +218,7 @@ namespace LibraryManagement.Web.Controllers
             }
             return PartialView("_UserRoles", model);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<JsonResult> UserRoleOperation(string userId, string roleId, bool isDelete = false)
         {
