@@ -15,8 +15,7 @@
                     <th>BookName</th>
                     <th>Student Name</th>
                     <th>Staff Name</th>
-                    <th>IssueDate</th>
-                    <th>Expirary Date</th>
+                    <th>Return Date</th>
                     <th>Action</th>
                     @*<th>EntryDate</th>*@
                 </tr>
@@ -36,7 +35,7 @@
                 { 'data': 'Students.Name' },
                 { 'data': 'Staffs.Name' },
                 {
-                    'data': 'ExpiraryDate',
+                    'data': 'ReturnDate',
                     'render': function (jsonDate) {
                         var date = new Date(parseInt(jsonDate.substr(6)));
                         var month = date.getMonth() + 1;
