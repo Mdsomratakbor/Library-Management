@@ -35,22 +35,23 @@ namespace LibraryManagement.Services
                 else if (sortCol == 1 && sortDir == "dsc") columnNameDsc = "StudentID";
                 if (sortDir == "asc" && string.IsNullOrEmpty(search) == false)
                 {
-                    issues = _LMContext.Issues.OrderBy(x => columnNameAsc).Where(x => x.Books.BookName.ToString().ToLower().Contains(search.ToLower()) || x.IssueDate.ToString().ToLower().Contains(search.ToLower()) || x.ExpiraryDate.ToString().ToLower().Contains(search.ToLower()) || x.Students.Name.ToString().ToLower().Contains(search.ToLower())).Include(y=>y.Students).Include(z=>z.Books.Categories).Include(z => z.Books.BookPictures).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).ToList();
+                    issues = _LMContext.Issues.OrderBy(x => columnNameAsc).Where(x => x.Books.BookName.ToString().ToLower().Contains(search.ToLower()) || x.IssueDate.ToString().ToLower().Contains(search.ToLower()) || x.ExpiraryDate.ToString().ToLower().Contains(search.ToLower()) || x.Students.Name.ToString().ToLower().Contains(search.ToLower())).Include(y=>y.Students).Include(z=>z.Books.Categories).Include(z => z.Books.BookPictures.Select(y=> y.Pictures)).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).ToList();
                 }
 
                 else if (sortDir == "dsc" && string.IsNullOrEmpty(search) == false)
                 {
-                    issues = _LMContext.Issues.OrderBy(x => columnNameDsc).Where(x => x.Books.BookName.ToString().ToLower().Contains(search.ToLower()) || x.IssueDate.ToString().ToLower().Contains(search.ToLower()) || x.ExpiraryDate.ToString().ToLower().Contains(search.ToLower()) || x.Students.Name.ToString().ToLower().Contains(search.ToLower())).Include(y => y.Students).Include(z => z.Books).Include(z => z.Books.Categories).Include(z => z.Books.BookPictures).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).ToList();
+                    issues = _LMContext.Issues.OrderBy(x => columnNameDsc).Where(x => x.Books.BookName.ToString().ToLower().Contains(search.ToLower()) || x.IssueDate.ToString().ToLower().Contains(search.ToLower()) || x.ExpiraryDate.ToString().ToLower().Contains(search.ToLower()) || x.Students.Name.ToString().ToLower().Contains(search.ToLower())).Include(y => y.Students).Include(z => z.Books).Include(z => z.Books.Categories).Include(z => z.Books.BookPictures.Select(y => y.Pictures)).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).ToList();
                 }
                 else if (sortDir == "asc")
                 {
-                    issues = _LMContext.Issues.OrderBy(x => columnNameAsc).Include(y => y.Students).Include(z => z.Books).Include(z => z.Books.Categories).Include(z => z.Books.BookPictures).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).ToList();
+                    issues = _LMContext.Issues.OrderBy(x => columnNameAsc).Include(y => y.Students).Include(z => z.Books).Include(z => z.Books.Categories).Include(z => z.Books.BookPictures.Select(y => y.Pictures)).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).ToList();
                 }
                 else
                 {
-                    issues = _LMContext.Issues.OrderBy(x => columnNameDsc).Include(y => y.Students).Include(z => z.Books).Include(z => z.Books.Categories).Include(z => z.Books.BookPictures).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).ToList();
+                    issues = _LMContext.Issues.OrderBy(x => columnNameDsc).Include(y => y.Students).Include(z => z.Books).Include(z => z.Books.Categories).Include(z => z.Books.BookPictures.Select(y => y.Pictures)).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).ToList();
                 }
-                return issues;
+                
+                 return issues;
             }
         }
         public override Issue GetDataById(int id)

@@ -30,10 +30,24 @@
 
         $("#issuetable").DataTable({
              columns: [
-                { 'data': 'IssueDate' },
-                { 'data': 'IssueDate' },
-                { 'data': 'IssueDate' },
-                { 'data': 'ExpiraryDate' },
+                { 'data': 'Books.BookName' },
+                { 'data': 'Students.Name' },
+                {
+                    'data': 'IssueDate',
+                    'render': function (jsonDate) {
+                        var date = new Date(parseInt(jsonDate.substr(6)));
+                        var month = date.getMonth() + 1;
+                        return date.getDate() + "/" + month + "/" + date.getFullYear();
+                    }
+                },
+                {
+                    'data': 'ExpiraryDate',
+                    'render': function (jsonDate) {
+                        var date = new Date(parseInt(jsonDate.substr(6)));
+                        var month = date.getMonth() + 1;
+                        return date.getDate() + "/" + month + "/" + date.getFullYear();
+                    }
+                },
                   {
                     'data': null,
                       render: function (data, type, row) {
@@ -55,8 +69,8 @@
             "autoWidth": true,
             "lengthChange": true,
             bServerSide: true,
-            sAjaxSource: '@Url.Action("ListOfIssue", "Issue")'
-
+            sAjaxSource: '@Url.Action("ListOfIssue", "Issue")',
+      
         })
         $('.dataTable').on('click','.btn-trash',function () {
             let bookId = $(this).attr('data-id');

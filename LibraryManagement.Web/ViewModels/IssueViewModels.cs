@@ -18,6 +18,7 @@ namespace LibraryManagement.Web.ViewModels
         [Required(ErrorMessage = "Enter the Student Name")]
         public int StudentID { get; set; }
         [Required(ErrorMessage = "Enter the Book Name")]
+
         public int BookID { get; set; }       
         public DateTime? EntryDate { get; set; }
         public int? LUserID { get; set; }

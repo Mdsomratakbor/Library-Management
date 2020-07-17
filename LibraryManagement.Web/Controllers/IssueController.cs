@@ -62,7 +62,7 @@ namespace LibraryManagement.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (model.ID > 0)
+                    if (model.ID > 0 )
                     {
                         _Issue.ID = model.ID;
                         _Issue.IssueDate = model.IssueDate;
