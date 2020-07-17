@@ -75,5 +75,19 @@ namespace LibraryManagement.Services
                 return value;
             }
         }
+        public override bool UpdateData(Return model)
+        {
+            using (var _LMContext = new LMContext())
+            {
+                int bookId = model.BookID;
+                int bookQty = _LMContext.Books.Where(x => x.ID == bookId).Select(x => x.BookQty).FirstOrDefault();
+                bookQty += 1;
+                var book = _IBookService.GetDataById(bookId);
+                book.BookQty = bookQty;
+                _IBookService.UpdateData(book);
+                var value = base.UpdateData(model);
+                return value;
+            }
+        }
     }
 }
