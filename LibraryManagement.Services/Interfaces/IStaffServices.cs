@@ -9,5 +9,6 @@ namespace LibraryManagement.Services.Interfaces
 {
     public interface IStaffServices : IServices<Staff>
     {
+        List<Staff> GetAllData();
     }
 }
