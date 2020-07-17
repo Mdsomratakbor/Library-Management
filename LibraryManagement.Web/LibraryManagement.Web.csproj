@@ -1221,11 +1221,12 @@
     <Content Include="Views\Users\_UserRoles.cshtml" />
     <Content Include="Views\Issue\Index.cshtml" />
     <Content Include="Views\Issue\Action.cshtml" />
+    <Content Include="Views\Return\Index.cshtml" />
+    <Content Include="Views\Return\Action.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\BookImage\" />
-    <Folder Include="Views\Return\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
