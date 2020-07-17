@@ -13,6 +13,11 @@ namespace LibraryManagement.Services
 {
     public class IssueServices : LibraryManagementServices<Issue>, IIssuServices
     {
+        private IBookService _IBookService;
+        public IssueServices(IBookService bookService)
+        {
+            _IBookService = bookService;
+        }
         public List<Issue> GetAllData(int displayLength, int displayStart, int sortCol, string sortDir, string search = null)
         {
             using(var _LMContext = new LMContext())
@@ -55,6 +60,27 @@ namespace LibraryManagement.Services
                 return _LMContext.Issues.Where(x => x.ID == id).Include(y => y.Books).Include(w => w.Students).FirstOrDefault();
             }
         }
-        
+        public override bool SaveData(Issue model)
+        {
+            using (var _LMContext = new LMContext())
+            {
+                int bookId = model.BookID;
+                int bookQty = _LMContext.Books.Where(x=>x.ID==bookId).Select(x=>x.BookQty).FirstOrDefault();
+                bookQty -= 1;
+                var book = _IBookService.GetDataById(bookId);
+                book.BookQty = bookQty;
+                _IBookService.UpdateData(book);
+               var value = base.SaveData(model);
+                return value;
+            }
+        }
+        public override bool UpdateData(Issue model)
+        {
+            using (var _LMContext = new LMContext())
+            {
+                return base.SaveData(model);
+            }
+        }
+
     }
 }
