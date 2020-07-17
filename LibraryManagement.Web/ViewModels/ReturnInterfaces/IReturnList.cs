@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.ReturnInterfaces
 {
-    interface IReturnList
+    public interface IReturnList
     {
+        List<Return> Returns { get; set; }
     }
 }

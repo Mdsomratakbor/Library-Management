@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.ReturnInterfaces
 {
-    interface IReturn
+    public interface IReturn : IBaseEntities
     {
+       
     }
 }
