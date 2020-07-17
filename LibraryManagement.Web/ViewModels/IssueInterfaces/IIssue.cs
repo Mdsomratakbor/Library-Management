@@ -14,6 +14,5 @@ namespace LibraryManagement.Web.ViewModels.IssueInterfaces
          DateTime ExpiraryDate { get; set; }
         int StudentID { get; set; }
         int BookID { get; set; }
-        int BookID { get; set; }
     }
 }

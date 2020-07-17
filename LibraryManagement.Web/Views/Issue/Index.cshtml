@@ -1,7 +1,113 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
+﻿<style>
+    table.dataTable {
+        width: 100% !important;
+    }
+</style>
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Book Issue List</h4>
+    </div>
+    <div class="card-body">
+        <table id="booktable" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>BookName</th>
+                    <th>Student Name</th>
+                    <th>IssueDate</th>
+                    <th>Expirary Date</th>
+                    <th>Action</th>
+                    @*<th>EntryDate</th>*@
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
 
-<h2>Index</h2>
+
+<script>
+    $(document).ready(function () {
+
+        $("#booktable").DataTable({
+             columns: [
+                { 'data': 'BookName' },
+                 { 'data': 'Name' },
+                { 'data': 'IssueDate' },
+                { 'data': 'ExpiraryDate' },
+                //{
+                //    'data': 'PurchaseDate',
+                //    //'render': function (jsonDate) {
+                //    //    var date = new Date(parseInt(jsonDate.substr(6)));
+                //    //    var month = date.getMonth() + 1;
+                //    //    return date.getDate() + "/" + month + "/" + date.getFullYear();
+                //    //}
+                //},
+                  {
+                    'data': null,
+                      render: function (data, type, row) {
+                          return '<a href ="../Issue/Action/' + row.ID + '" class="btn btn-xs btn-info mr-1"><i class="fas fa-edit"></i></a>'+
+                             '<button class="btn-trash btn btn-danger btn-xs" data-id="' + row.ID +'"> <i class="fas fa-trash"></i></button>';
+                    }
+                },
+                //{
+                //    'data': 'EntryDate',
+                //    //'render': function (jsonDate) {
+                //    //    var date = new Date(parseInt(jsonDate.substr(6)));
+                //    //    var month = date.getMonth() + 1;
+                //    //    return date.getDate() + "/" + month + "/" + date.getFullYear();
+                //    //}
+                //},
+            ],
+
+            "responsive": true,
+            "autoWidth": true,
+            "lengthChange": true,
+            bServerSide: true,
+            sAjaxSource: '@Url.Action("ListOfIssue", "Issue")'
+
+        })
+        $('.dataTable').on('click','.btn-trash',function () {
+            let bookId = $(this).attr('data-id');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        method: 'Get',
+                        url: '@Url.Action("Delete", "Issue")',
+                        data: { id: bookId }
+                    }).done(function (response) {
+                        if (response.Success) {
+                            Swal.fire(
+                                'Deleted!',
+                                response.Message,
+                                'success'
+                            )
+                            window.setTimeout(function () {
+                                window.location.reload();
+                            }, 1500)
+                        }
+                        else {
+                            Swal.fire(
+                                'Deleted!',
+                                response.Message,
+                                'warning'
+                            )
+                        }
+                    })
+                }
+            })
+        })
+    });
+
+</script>
+
+
+
 

@@ -9,6 +9,6 @@ namespace LibraryManagement.Services.Interfaces
 {
     public interface IStudentServices: IServices<Student>
     {
-     
+        List<Student> GetAllData();
     }
 }

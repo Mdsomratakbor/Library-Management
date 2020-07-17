@@ -1,6 +1,7 @@
 ﻿using LibraryManagement.Entities;
 using LibraryManagement.Services.Interfaces;
 using LibraryManagement.Web.ViewModels;
+using LibraryManagement.Web.ViewModels.IssueInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,17 +15,18 @@ namespace LibraryManagement.Web.Controllers
     {
         // GET: Issue
         private Issue _Issue;
-        //private readonly IIssue _IIssue;
+        private readonly IIssue _IIssue;
         private readonly IIssuServices _IIssuServices;
         private readonly IStudentServices _IStudentServices;
         private readonly IBookService _IBookService;
 
-        public IssueController(IIssuServices IssueService, IStudentServices studentService, IBookService bookservices)
+        public IssueController(IIssuServices IssueService, IStudentServices studentService, IBookService bookservices, IIssue Issuemodel)
         {
             _Issue = new Issue();
             _IIssuServices = IssueService;
             _IStudentServices = studentService;
             _IBookService = bookservices;
+            _IIssue = Issuemodel;
         }
         // GET: Issue
         public ActionResult Index()
@@ -37,22 +39,18 @@ namespace LibraryManagement.Web.Controllers
             if (id > 0)
             {
                 _Issue = await Task.Run(() => _IIssuServices.GetDataById(id.Value));
-                //_IIssue.ID = _Issue.ID;
-                //_IIssue.Isbn = _Issue.Isbn;
-                //_IIssue.IssueName = _Issue.IssueName;
-                //_IIssue.AuthorName = _Issue.AuthorName;
-                //_IIssue.IssueEdition = _Issue.IssueEdition;
-                //_IIssue.IssuePublish = _Issue.IssuePublish;
-                //_IIssue.PurchaseDate = _Issue.PurchaseDate;
-                //_IIssue.Price = _Issue.Price;
-                //_IIssue.Pictures = _Issue.IssuePictures;
-                //_IIssue.CategoryID = _Issue.CategoryID;
+                _IIssue.ID = _Issue.ID;
+                _IIssue.IssueDate = _Issue.IssueDate;
+                _IIssue.ExpiraryDate = _Issue.ExpiraryDate;
+                _IIssue.StudentID = _Issue.StudentID;
+                _IIssue.BookID = _Issue.BookID;
             }
-            //_IIssue.Categories = await Task.Run(() => _ICategoryService.GetAllData());
+            _IIssue.Students = await Task.Run(() => _IStudentServices.GetAllData());
+            _IIssue.Books = await Task.Run(() => _IBookService.GetAllData());
             return View();
         }
         [HttpPost]
-        public async Task<JsonResult> Action(BookActionModel model)
+        public async Task<JsonResult> Action(IssueActionModel model)
         {
             JsonResult result = new JsonResult
             {
@@ -60,48 +58,29 @@ namespace LibraryManagement.Web.Controllers
             };
             var message = "";
             bool isSuccess = false;
-            List<Picture> pictures = new List<Picture>();
             try
             {
                 if (ModelState.IsValid)
                 {
-                    if (!string.IsNullOrEmpty(model.PictureIDs))
-                    {
-                        //List<int> picturesIDs = model.PictureIDs.Split(',').Select(x => int.Parse(x)).ToList();
-                        //pictures = await Task.Run(() => PictureServices.Instance.GetPicturesByIDs(picturesIDs));
-                    }
                     if (model.ID > 0)
                     {
-                        _Issue = await Task.Run(() => _IIssuServices.GetDataById(model.ID));
-                        //_Issue.IssuePictures.Clear();
-                        //_Issue.IssuePictures = new List<IssuePicture>();
-                        //_Issue.IssuePictures.AddRange(pictures.Select(x => new IssuePicture() { PictureID = x.ID, IssueID = model.ID }));
-                        //_Issue.IssueName = model.IssueName;
-                        //_Issue.AuthorName = model.AuthorName;
-                        //_Issue.PurchaseDate = model.PurchaseDate;
-                        //_Issue.Isbn = model.Isbn;
-                        //_Issue.IssuePublish = model.IssuePublish;
-                        //_Issue.Price = model.Price;
-                        //_Issue.IssueEdition = model.IssueEdition;
-                        //_Issue.IssueQty = model.IssueQty;
-                        //_Issue.CategoryID = model.CategoryID;
-                        isSuccess = _IIssuServices.UpdateData(_Issue);
+                        _Issue.IssueDate = model.IssueDate;
+                        _Issue.ExpiraryDate = model.ExpiraryDate;
+                        _Issue.StudentID = model.StudentID;
+                        _Issue.BookID = model.BookID;
+                        _Issue.UpdateDate = model.UpdateDate;
+                        _Issue.UpdateLUserID = model.UpdateLUserID;
+                        isSuccess = await Task.Run(()=> _IIssuServices.UpdateData(_Issue));
                     }
                     else
                     {
-                        //_Issue.IssuePictures = new List<IssuePicture>();
-                        //_Issue.IssuePictures.AddRange(pictures.Select(x => new IssuePicture() { PictureID = x.ID }));
-                        //_Issue.ID = model.ID;
-                        //_Issue.IssueName = model.IssueName;
-                        //_Issue.AuthorName = model.AuthorName;
-                        //_Issue.PurchaseDate = model.PurchaseDate;
-                        //_Issue.Isbn = model.Isbn;
-                        //_Issue.IssuePublish = model.IssuePublish;
-                        //_Issue.Price = model.Price;
-                        //_Issue.IssueEdition = model.IssueEdition;
-                        //_Issue.IssueQty = model.IssueQty;
-                        //_Issue.CategoryID = model.CategoryID;
-                        isSuccess = _IIssuServices.SaveData(_Issue);
+                        _Issue.IssueDate = model.IssueDate;
+                        _Issue.ExpiraryDate = model.ExpiraryDate;
+                        _Issue.StudentID = model.StudentID;
+                        _Issue.BookID = model.BookID;
+                        _Issue.EntryDate = model.EntryDate;
+                        _Issue.LUserID = model.LUserID;
+                        isSuccess = await Task.Run(() => _IIssuServices.SaveData(_Issue));
                     }
                 }
                 else

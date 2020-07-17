@@ -9,6 +9,6 @@ namespace LibraryManagement.Services.Interfaces
 {
     public interface IBookService: IServices<Book>
     {
-        
+        List<Book> GetAllData();
     }
 }

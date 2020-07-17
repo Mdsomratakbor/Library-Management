@@ -6,6 +6,7 @@ using LibraryManagement.Web.ViewModels;
 using LibraryManagement.Web.ViewModels.CategoryInterfaces;
 using LibraryManagement.Web.ViewModels.DepartmentInterfaces;
 using LibraryManagement.Web.ViewModels.Interfaces;
+using LibraryManagement.Web.ViewModels.IssueInterfaces;
 using LibraryManagement.Web.ViewModels.StaffInterfaces;
 using LibraryManagement.Web.ViewModels.StudentInterfaces;
 using Microsoft.AspNet.Identity;
@@ -38,6 +39,7 @@ namespace LibraryManagement.Web
             container.RegisterType<IDepartment, DepartmentActionModel>();
             container.RegisterType<ICategory, CategoryActionModel>();
             container.RegisterType<IIssuServices, IssueServices>();
+            container.RegisterType<IIssue, IssueActionModel>();
             container.RegisterType<RolesController>(new InjectionConstructor());
             container.RegisterType<UsersController>(new InjectionConstructor());
             container.RegisterType<AccountController>(new InjectionConstructor());

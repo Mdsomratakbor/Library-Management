@@ -52,7 +52,7 @@ namespace LibraryManagement.Services.Abstractclass
                 return _LMContext.Set<T>().Find(id);
             }
         }
-        public List<T> GetAllData()
+        public virtual List<T> GetAllData()
         {
             using (var _LMContext = new LMContext())
             {
