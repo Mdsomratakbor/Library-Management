@@ -75,13 +75,7 @@ namespace LibraryManagement.Services
                 return value;
             }
         }
-        public override bool UpdateData(Issue model)
-        {
-            using (var _LMContext = new LMContext())
-            {
-                return base.SaveData(model);
-            }
-        }
+    
 
     }
 }
