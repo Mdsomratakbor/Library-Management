@@ -8,7 +8,7 @@
         <h4 class="card-title">Book Issue List</h4>
     </div>
     <div class="card-body">
-        <table id="booktable" class="table table-bordered table-hover">
+        <table id="issuetable" class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th>BookName</th>
@@ -28,20 +28,12 @@
 <script>
     $(document).ready(function () {
 
-        $("#booktable").DataTable({
+        $("#issuetable").DataTable({
              columns: [
-                { 'data': 'BookName' },
-                 { 'data': 'Name' },
+                { 'data': 'IssueDate' },
+                { 'data': 'IssueDate' },
                 { 'data': 'IssueDate' },
                 { 'data': 'ExpiraryDate' },
-                //{
-                //    'data': 'PurchaseDate',
-                //    //'render': function (jsonDate) {
-                //    //    var date = new Date(parseInt(jsonDate.substr(6)));
-                //    //    var month = date.getMonth() + 1;
-                //    //    return date.getDate() + "/" + month + "/" + date.getFullYear();
-                //    //}
-                //},
                   {
                     'data': null,
                       render: function (data, type, row) {

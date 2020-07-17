@@ -1,96 +1,72 @@
-﻿@model LibraryManagement.Web.ViewModels.BookActionModel
+﻿@model LibraryManagement.Web.ViewModels.IssueActionModel
 <div class="card mt-1">
     <section class="card-header">
         <div class="row">
             <div class="col-sm-12">
                 @if (Model.ID > 0)
                 {
-                    <h4>Book Edit</h4>
+                    <h4>Issue Edit</h4>
                 }
                 else
                 {
-                    <h4>Book Add</h4>
+                <h4>Issue Add</h4>
                 }
 
             </div>
         </div>
     </section>
     <div class="card-body">
-        <form id="bookForm">
+        <form id="issueForm">
             <div class="row">
-
                 <div class="col-md-4">
-                    <label class="font-weight-bold" for="BookName"> Book Name </label>
-                    <input type="text" name="BookName" autocomplete="off" class="form-control" value="@Model.BookName" id="BookName" placeholder="Please enter Book Name" />
-
-                </div>
-                <div class="col-md-4">
-                    <label class="font-weight-bold" for="Isbn">ISBN</label>
-                    <input type="text" name="Isbn" class="form-control" id="Isbn" value="@Model.Isbn" placeholder="Please enter Book ISBN" />
-
-                </div>
-                <div class="col-md-4">
-                    <label class="font-weight-bold" for="AuthorName"> Author Name </label>
-                    <input type="text" name="AuthorName" class="form-control" id="AuthorName" value="@Model.AuthorName" placeholder="Please enter Book Author Name" />
-
-                </div>
-                <div class="col-md-4">
-                    <label class="font-weight-bold" for="CategoryID">Category</label>
-                    <select class="form-control select2bs4" name="CategoryID">
-                        <option selected disabled>Please select category</option>
-                        @foreach (var category in Model.Categories)
+                    <label class="font-weight-bold" for="StudentID">Student</label>
+                    <select class="form-control select2bs4" name="StudentID">
+                        <option selected disabled>Please select student</option>
+                        @foreach (var student in Model.Students)
                         {
-                            var selected = Model.CategoryID == category.ID ? "selected" : string.Empty;
-                            <option value="@category.ID" @selected>@category.Name</option>
+                            var selected = Model.StudentID == student.ID ? "selected" : string.Empty;
+                            <option value="@student.ID" @selected>@student.Name</option>
                         }
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <label class="font-weight-bold" for="BookPublish">Book Publisher</label>
-                    <input type="text" name="BookPublish" autocomplete="off" class="form-control" id="BookPublish" value="@Model.BookPublish" placeholder="Please enter Book Publisher " />
-
+                    <label class="font-weight-bold" for="BookID">Book</label>
+                    <select class="form-control select2bs4" name="BookID">
+                        <option selected disabled>Please select book</option>
+                        @foreach (var book in Model.Books)
+                        {
+                            var selected = Model.BookID == book.ID ? "selected" : string.Empty;
+                            <option value="@book.ID" @selected>@book.BookName</option>
+                        }
+                    </select>
                 </div>
+
                 <div class="col-md-4">
-                    <label class="font-weight-bold" for="reservation"> Purchase Date </label>
+                    <label class="font-weight-bold" for="reservation"> Issue Date </label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
                                 <i class="far fa-calendar-alt"></i>
                             </span>
                         </div>
-                        <input type="text" name="PurchaseDate" class="form-control" id="reservation" value="@Model.PurchaseDate" />
+                        <input type="text" name="IssueDate" class="form-control" id="reservation" value="@Model.IssueDate" />
                     </div>
                     <!-- /.input group -->
                 </div>
                 <div class="col-md-4">
-                    <label class="font-weight-bold" for="Price"> Price </label>
-                    <input type="text" name="Price" class="form-control" id="Price" value="@Model.Price" placeholder="Please enter Book Price" />
+                    <label class="font-weight-bold" for="reservation"> Expirary Date </label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="far fa-calendar-alt"></i>
+                            </span>
+                        </div>
+                        <input type="text" name="ExpiraryDate" class="form-control" id="reservation" value="@Model.ExpiraryDate" />
+                    </div>
+                    <!-- /.input group -->
                 </div>
 
-
-                <div class="col-md-4">
-                    <label class="font-weight-bold" for="BookEdition"> Book Edition </label>
-                    <input type="text" name="BookEdition" autocomplete="off" class="form-control" id="BookEdition" value="@Model.BookEdition" placeholder="Please enter Book Edition" />
-                </div>
-                <div class="col-md-4">
-                    <label class="font-weight-bold" for="BookQty"> Book Qty </label>
-                    <input type="number" name="BookQty" class="form-control" id="BookQty" value="@Model.BookQty" placeholder="Please enter Book Qty" />
-
-                </div>
-                <div class="col-md-4">
-                    <label for="exampleFormControlFile1">Pictures</label>
-                    <input id="selectFile" type="file" class="form-control-file" multiple>
-                </div>
-                <div class="col-md-8 p-2 mt-2" id="pictureArea">
-                    @if (Model.Pictures != null && Model.Pictures.Count > 0)
-                    {
-                        foreach (var picture in Model.Pictures)
-                        {
-                            <img src="/Content/images/BookImage/@picture.Pictures.URL" class="img-fluid img-thumbnail p-1" style="width:200px; height:200px; cursor:pointer; border:1px solid black" onclick="removeMe(this)" data-id="@picture.PictureID" />
-                        }
-                    }
-                    <input type="hidden" id="pictueIDs" name="PictureIDs" />
-                </div>
+         
             </div>
 
         </form>
@@ -98,11 +74,9 @@
     </div>
     <div class="card-footer">
         <button id="btnSave" class="btn btn-success btn-sm"><i class="fas fa-save"></i> Save</button>
-        <a class="btn btn-danger btn-sm" href="@Url.Action("Index","Book")"><i class="fas fa-arrow-alt-circle-left"></i> Back To List</a>
+        <a class="btn btn-danger btn-sm" href="@Url.Action("Index","Issue")"><i class="fas fa-arrow-alt-circle-left"></i> Back To List</a>
     </div>
-    <div id="imageTemplate">
-        <img src="" class="img-fluid" style="width:200px;" onclick="removeMe(this)" />
-    </div>
+
 </div>
 
 <script>
@@ -119,16 +93,10 @@
             format: 'mm/dd/yyyy'
         })
         $("#btnSave").on('click', function () {
-            var imageIDs = [];
-            $("#pictureArea img").each(function () {
-                var imageID = $(this).attr("data-id");
-                imageIDs.push(imageID);
-            });
-            $("#pictueIDs").val(imageIDs.join());
         $.ajax({
             method:'Post',
-            url: '@Url.Action("Action","Book")',
-            data: $("#bookForm").serialize()
+            url: '@Url.Action("Action","Issue")',
+            data: $("#issueForm").serialize()
         }).done(function (response) {
             if (response.Success) {
                 Swal.fire({
@@ -155,36 +123,6 @@
         })
 
     })
-    $("#selectFile").on("change", function () {
-        var pictures = this.files;
-        var formData = new FormData();
-        for (var i = 0; i < pictures.length; i++) {
-            formData.append("Picture ",pictures[i]);
-        }
-        $.ajax({
-            method:'Post',
-            url: '@Url.Action("UploadPicture", "Picture")',
-            data: formData,
-            dataType: 'json',
-            processData: false,
-            contentType:false
-        }).done(function (response) {
-            for (var i = 0; i < response.pictuerJSON.length; i++) {
-                var picture = response.pictuerJSON[i];
-                var $imgHTML = $("#imageTemplate").clone();
-                $imgHTML.find('img').attr('src', '/Content/images/BookImage/' + picture.URL).addClass('img-thumbnail').css({ 'cursor': 'pointer', 'height': 200, 'border': '1px solid black' });
-                $imgHTML.find('img').attr('data-id',picture.ID );
-                $("#pictureArea").append($imgHTML.html());
-            }
 
-        }).fail(function (xhr, status, error) {
-            alert("Some error");
-            console.log(error);
-        })
-
-    })
-    function removeMe(element) {
-        element.remove();
-    }
 </script>
 

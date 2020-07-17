@@ -47,7 +47,7 @@ namespace LibraryManagement.Web.Controllers
             }
             _IIssue.Students = await Task.Run(() => _IStudentServices.GetAllData());
             _IIssue.Books = await Task.Run(() => _IBookService.GetAllData());
-            return View();
+            return View(_IIssue);
         }
         [HttpPost]
         public async Task<JsonResult> Action(IssueActionModel model)
@@ -64,6 +64,7 @@ namespace LibraryManagement.Web.Controllers
                 {
                     if (model.ID > 0)
                     {
+                        _Issue.ID = model.ID;
                         _Issue.IssueDate = model.IssueDate;
                         _Issue.ExpiraryDate = model.ExpiraryDate;
                         _Issue.StudentID = model.StudentID;
