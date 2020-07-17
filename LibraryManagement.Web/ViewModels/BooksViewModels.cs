@@ -8,11 +8,7 @@ using System.Web;
 
 namespace LibraryManagement.Web.ViewModels
 {
-    public class BooksViewModel : IBookList
-    {
-        public List<Book> Books { get; set; }
-    }
-    public class BookActionModel : IBook
+   public class BookActionModel : IBook
     {
         public int ID { get; set; }
         public DateTime? EntryDate { get; set; }

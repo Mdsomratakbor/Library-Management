@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.StaffInterfaces
 {
-    interface IStaffList
+    public interface IStaffList
     {
+        int StaffID { get; set; }
         List<Staff> Staffs { get; set; }
     }
 }

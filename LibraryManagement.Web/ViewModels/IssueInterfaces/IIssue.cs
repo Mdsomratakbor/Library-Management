@@ -12,7 +12,6 @@ namespace LibraryManagement.Web.ViewModels.IssueInterfaces
     {
          DateTime IssueDate { get; set; }
          DateTime ExpiraryDate { get; set; }
-        int StudentID { get; set; }
-        int BookID { get; set; }
+   
     }
 }

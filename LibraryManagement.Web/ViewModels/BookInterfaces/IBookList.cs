@@ -9,6 +9,7 @@ namespace LibraryManagement.Web.ViewModels.Interfaces
 {
     public interface IBookList
     {
+        int BookID { get; set; }
         List<Book> Books { get; set; }
         
     }

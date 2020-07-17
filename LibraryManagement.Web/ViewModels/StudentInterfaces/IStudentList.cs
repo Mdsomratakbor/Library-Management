@@ -9,6 +9,7 @@ namespace LibraryManagement.Web.ViewModels.StudentInterfaces
 {
     public interface IStudentList
     {
-         List<Student> Students { get; set; }
+        int StudentID { get; set; }
+        List<Student> Students { get; set; }
     }
 }
