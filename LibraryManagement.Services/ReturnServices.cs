@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services
 {
-    public class Return
+    public class ReturnServices
     {
     }
 }
