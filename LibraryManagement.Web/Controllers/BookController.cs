@@ -13,6 +13,7 @@ using System.Web.Mvc;
 namespace LibraryManagement.Web.Controllers
 {
     [HandleError]
+   
     public class BookController : Controller
     {
         private Book _Book;
@@ -28,11 +29,13 @@ namespace LibraryManagement.Web.Controllers
             _ICategoryService = categoryService;
         }
         // GET: Book
+        [Authorize(Roles ="Admin , User")]
         public ActionResult Index()
         {
 
             return View();
         }
+        [Authorize(Roles ="Admin")]
         public async Task<ActionResult> Action(int? id)
         {
             if (id > 0)
@@ -52,6 +55,8 @@ namespace LibraryManagement.Web.Controllers
             _IBook.Categories = await Task.Run(() => _ICategoryService.GetAllData());
             return View(_IBook);
         }
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<JsonResult> Action(BookActionModel model)
         {
@@ -149,7 +154,7 @@ namespace LibraryManagement.Web.Controllers
             };
             return result;
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<JsonResult> Delete(int id)
         {
             JsonResult result = new JsonResult

@@ -14,6 +14,7 @@ using System.Web.Mvc;
 namespace LibraryManagement.Web.Controllers
 {
     [HandleError]
+    [Authorize]
     public class StudentController : Controller
     {
         // GET: Student

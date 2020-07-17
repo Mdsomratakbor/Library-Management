@@ -13,6 +13,7 @@ using System.Web.Mvc;
 namespace LibraryManagement.Web.Controllers
 {
     [HandleError]
+    [Authorize]
     public class RolesController : Controller
     {
         private LMSignInManagerService _signInManager;

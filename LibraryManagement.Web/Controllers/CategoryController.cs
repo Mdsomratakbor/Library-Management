@@ -13,6 +13,7 @@ using System.Web.Mvc;
 namespace LibraryManagement.Web.Controllers
 {
     [HandleError]
+    [Authorize]
     public class CategoryController : Controller, IDisposable
     {
         private ICategoryService _ICategoryService;

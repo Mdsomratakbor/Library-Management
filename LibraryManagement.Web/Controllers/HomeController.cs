@@ -6,6 +6,8 @@ using System.Web.Mvc;
 
 namespace LibraryManagement.Web.Controllers
 {
+    [HandleError]
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()

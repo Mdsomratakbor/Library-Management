@@ -11,6 +11,8 @@ using System.Web.Mvc;
 
 namespace LibraryManagement.Web.Controllers
 {
+    [HandleError]
+    [Authorize]
     public class IssueController : Controller
     {
         // GET: Issue

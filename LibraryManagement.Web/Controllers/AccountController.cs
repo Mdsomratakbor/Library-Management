@@ -16,6 +16,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 namespace LibraryManagement.Web.Controllers
 {
+    [HandleError]
     [Authorize]
     public class AccountController : Controller
     {
@@ -61,7 +62,7 @@ namespace LibraryManagement.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            ViewBag.ReturnUrl = Url.Action("Index","Home");
             return View();
         }
 
