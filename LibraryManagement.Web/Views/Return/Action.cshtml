@@ -1,7 +1,128 @@
-﻿
-@{
-    ViewBag.Title = "Action";
-}
+﻿@model LibraryManagement.Web.ViewModels.ReturnActionModel
+<div class="card mt-1">
+    <section class="card-header">
+        <div class="row">
+            <div class="col-sm-12">
+                @if (Model.ID > 0)
+                {
+                    <h4>Return Edit</h4>
+                }
+                else
+                {
+                    <h4>Return Add</h4>
+                }
 
-<h2>Action</h2>
+            </div>
+        </div>
+    </section>
+    <div class="card-body">
+        <form id="issueForm">
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="font-weight-bold" for="StudentID">Student</label>
+                    <select class="form-control select2bs4" name="StudentID" style="width:100%">
+                        <option selected disabled>Please select student</option>
+                        @foreach (var student in Model.Students)
+                        {
+                            var selected = Model.StudentID == student.ID ? "selected" : string.Empty;
+                            <option value="@student.ID" @selected>@student.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="font-weight-bold" for="BookID">Book</label>
+                    <select class="form-control select2bs4" name="BookID" style="width:100%">
+                        <option selected disabled>Please select book</option>
+                        @foreach (var book in Model.Books)
+                        {
+                            var selected = Model.BookID == book.ID ? "selected" : string.Empty;
+                            <option value="@book.ID" @selected>@book.BookName</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="font-weight-bold" for="BookID">Staff</label>
+                    <select class="form-control select2bs4" name="StaffID" style="width:100%">
+                        <option selected disabled>Please select staff</option>
+                        @foreach (var staff in Model.Staffs)
+                        {
+                            var selected = Model.StaffID == staff.ID ? "selected" : string.Empty;
+                            <option value="@staff.ID" @selected>@staff.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="font-weight-bold" for="reservation"> Return Date </label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="far fa-calendar-alt"></i>
+                            </span>
+                        </div>
+                        <input type="text" name="ReturnDate" class="form-control" id="reservation" value="@Model.ReturnDate" />
+                    </div>
+                    <!-- /.input group -->
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="card-footer">
+        <button id="btnSave" class="btn btn-success btn-sm"><i class="fas fa-save"></i> Save</button>
+        <a class="btn btn-danger btn-sm" href="@Url.Action("Index","Return")"><i class="fas fa-arrow-alt-circle-left"></i> Back To List</a>
+    </div>
+
+</div>
+
+<script>
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+
+    //    //Date range picker
+        $('#reservation').datepicker({
+            format: 'mm/dd/yyyy'
+        })
+
+        $("#btnSave").on('click', function () {
+        $.ajax({
+            method:'Post',
+            url: '@Url.Action("Action","Return")',
+            data: $("#issueForm").serialize()
+        }).done(function (response) {
+            if (response.Success) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: response.Message,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                window.setTimeout(function () {
+                    window.location.reload();
+                }, 1500)
+            }
+            else {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: response.Message,
+                    showConfirmButton: true,
+
+                })
+            }
+
+        })
+
+    })
+
+</script>
+
+
 

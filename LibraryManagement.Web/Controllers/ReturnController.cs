@@ -112,15 +112,15 @@ namespace LibraryManagement.Web.Controllers
             }
             return result;
         }
-        public async Task<JsonResult> ListOfIssue(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
+        public async Task<JsonResult> ListOfReturn(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
         {
             int rowNumber;
             int totalRecord;
-            List<Return> Issues = new List<Return>();
-            Issues = await Task.Run(() => _IReturnServices.GetAllData(iDisplayLength, iDisplayStart, iSortCol_0, sSortDir_0, sSearch));
+            List<Return> returns = new List<Return>();
+            returns = await Task.Run(() => _IReturnServices.GetAllData(iDisplayLength, iDisplayStart, iSortCol_0, sSortDir_0, sSearch));
             totalRecord = await Task.Run(() => _IReturnServices.TotalRowCount());
-            rowNumber = Issues.Count();
-            Issues = Issues.Skip(iDisplayStart).Take(iDisplayLength).ToList();
+            rowNumber = returns.Count();
+            returns = returns.Skip(iDisplayStart).Take(iDisplayLength).ToList();
             JsonResult result = new JsonResult
             {
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
@@ -128,7 +128,7 @@ namespace LibraryManagement.Web.Controllers
                 {
                     iTotalRecords = totalRecord,
                     iTotalDisplayRecords = rowNumber,
-                    aaData = Issues
+                    aaData = returns
                 }
             };
             return result;

@@ -35,20 +35,20 @@ namespace LibraryManagement.Services
                 else if (sortCol == 1 && sortDir == "dsc") columnNameDsc = "StudentID";
                 if (sortDir == "asc" && string.IsNullOrEmpty(search) == false)
                 {
-                    Returns = _LMContext.Returns.OrderBy(x => columnNameAsc).Where(x => x.Books.BookName.ToString().ToLower().Contains(search.ToLower()) || x.ReturnDate.ToString().ToLower().Contains(search.ToLower()) || x.Students.Name.ToString().ToLower().Contains(search.ToLower())).Include(y => y.Students).Include(z => z.Books.Categories).Include(z => z.Books.BookPictures.Select(y => y.Pictures)).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).Include(x=>x.Staffs).Include(x=>x.Staffs.StaffPictures.Select(y=>y.Pictures)).ToList();
+                    Returns = _LMContext.Returns.OrderBy(x => columnNameAsc).Where(x => x.Books.BookName.ToString().ToLower().Contains(search.ToLower()) || x.ReturnDate.ToString().ToLower().Contains(search.ToLower()) || x.Students.Name.ToString().ToLower().Contains(search.ToLower())).Include(y => y.Students).Include(z => z.Books.Categories).Include(z => z.Books.BookPictures.Select(y => y.Pictures)).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).Include(x=>x.Staffs).Include(x=>x.Staffs.StaffPictures.Select(y=>y.Pictures)).Include(x => x.Staffs.Designations).ToList();
                 }
 
                 else if (sortDir == "dsc" && string.IsNullOrEmpty(search) == false)
                 {
-                    Returns = _LMContext.Returns.OrderBy(x => columnNameDsc).Where(x => x.Books.BookName.ToString().ToLower().Contains(search.ToLower()) || x.ReturnDate.ToString().ToLower().Contains(search.ToLower()) || x.Students.Name.ToString().ToLower().Contains(search.ToLower())).Include(y => y.Students).Include(z => z.Books).Include(z => z.Books.Categories).Include(z => z.Books.BookPictures.Select(y => y.Pictures)).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).Include(x => x.Staffs).Include(x => x.Staffs.StaffPictures.Select(y => y.Pictures)).ToList();
+                    Returns = _LMContext.Returns.OrderBy(x => columnNameDsc).Where(x => x.Books.BookName.ToString().ToLower().Contains(search.ToLower()) || x.ReturnDate.ToString().ToLower().Contains(search.ToLower()) || x.Students.Name.ToString().ToLower().Contains(search.ToLower())).Include(y => y.Students).Include(z => z.Books).Include(z => z.Books.Categories).Include(z => z.Books.BookPictures.Select(y => y.Pictures)).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).Include(x => x.Staffs).Include(x => x.Staffs.StaffPictures.Select(y => y.Pictures)).Include(x=>x.Staffs.Designations).ToList();
                 }
                 else if (sortDir == "asc")
                 {
-                    Returns = _LMContext.Returns.OrderBy(x => columnNameAsc).Include(y => y.Students).Include(z => z.Books).Include(z => z.Books.Categories).Include(z => z.Books.BookPictures.Select(y => y.Pictures)).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).Include(x => x.Staffs).Include(x => x.Staffs.StaffPictures.Select(y => y.Pictures)).ToList();
+                    Returns = _LMContext.Returns.OrderBy(x => columnNameAsc).Include(y => y.Students).Include(z => z.Books).Include(z => z.Books.Categories).Include(z => z.Books.BookPictures.Select(y => y.Pictures)).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).Include(x => x.Staffs).Include(x => x.Staffs.StaffPictures.Select(y => y.Pictures)).Include(x => x.Staffs.Designations).ToList();
                 }
                 else
                 {
-                    Returns = _LMContext.Returns.OrderBy(x => columnNameDsc).Include(y => y.Students).Include(z => z.Books).Include(z => z.Books.Categories).Include(z => z.Books.BookPictures.Select(y => y.Pictures)).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).Include(x => x.Staffs).Include(x => x.Staffs.StaffPictures.Select(y => y.Pictures)).ToList();
+                    Returns = _LMContext.Returns.OrderBy(x => columnNameDsc).Include(y => y.Students).Include(z => z.Books).Include(z => z.Books.Categories).Include(z => z.Books.BookPictures.Select(y => y.Pictures)).Include(z => z.Students.StudentPictures).Include(z => z.Students.Departments).Include(x => x.Staffs).Include(x => x.Staffs.StaffPictures.Select(y => y.Pictures)).Include(x => x.Staffs.Designations).ToList();
                 }
 
                 return Returns;
