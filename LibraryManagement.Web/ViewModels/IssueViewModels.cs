@@ -26,5 +26,6 @@ namespace LibraryManagement.Web.ViewModels
         public int? UpdateLUserID { get; set; }
         public List<Student> Students { get; set; }
         public List<Book> Books { get; set; }
+        public bool IsIssue { get; set; }
     }
 }

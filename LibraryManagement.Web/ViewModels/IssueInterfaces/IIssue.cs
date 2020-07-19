@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.IssueInterfaces
 {
-    public interface IIssue:IBaseEntities, IStudentList, IBookList
+    public interface IIssue : IBaseEntities, IStudentList, IBookList
     {
-         DateTime IssueDate { get; set; }
-         DateTime ExpiraryDate { get; set; }
-   
+        DateTime IssueDate { get; set; }
+        DateTime ExpiraryDate { get; set; }
+        bool IsIssue { get; set; }
+
     }
 }

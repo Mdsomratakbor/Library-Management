@@ -15,6 +15,6 @@ namespace LibraryManagement.Entities
         public DateTime ExpiraryDate { get; set; }
         public int StudentID { get; set; }
         public virtual Student Students { get; set; }
-        
+        public bool IsIssue { get; set; }        
     }
 }
