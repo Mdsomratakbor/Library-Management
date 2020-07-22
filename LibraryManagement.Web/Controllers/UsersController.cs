@@ -23,7 +23,6 @@ namespace LibraryManagement.Web.Controllers
         public UsersController()
         {
         }
-
         public UsersController(LMUserManagerService userManager, LMSignInManagerService signInManager, LMRolesManagerService roleManager)
         {
             UserManager = userManager;
@@ -104,7 +103,7 @@ namespace LibraryManagement.Web.Controllers
             return PartialView("_Action", model);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,User")]
         [HttpPost]
         public async Task<JsonResult> Action(UserModel model)
         {

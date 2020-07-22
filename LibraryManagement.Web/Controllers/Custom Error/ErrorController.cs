@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace LibraryManagement.Web.Controllers.Custom_Error
 {
+    [Authorize]
     public class ErrorController : Controller
     {
         public ActionResult NotFoundPage()
