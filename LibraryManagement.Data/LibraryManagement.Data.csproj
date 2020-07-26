@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LibraryManagementDBInitializer.cs" />
     <Compile Include="LMContext.cs" />
     <Compile Include="Migrations\202006171641061_Initial.cs" />
     <Compile Include="Migrations\202006171641061_Initial.designer.cs">
