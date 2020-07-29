@@ -1,7 +1,91 @@
-﻿
-@{
-    ViewBag.Title = "Action";
-}
+﻿@model LibraryManagement.Web.ViewModels.MenuActionModel
+<div class="card mt-1">
+    <section class="card-header">
+        <div class="row">
+            <div class="col-sm-12">
+                @if (Model.ID > 0)
+                {
+                    <h4>Menu Edit</h4>
+                }
+                else
+                {
+            <h4>Menu Add</h4>
+                }
 
-<h2>Action</h2>
+            </div>
+        </div>
+    </section>
+    <div class="card-body">
+        <form id="menuForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="font-weight-bold" for="MenuName"> Menu Name </label>
+                    <input type="text" name="MenuName" autocomplete="off" class="form-control" value="@Model.MenuName" id="MenuName" placeholder="Please enter Menu Name" />
+                </div>
+                <div class="col-md-4">
+                    <label class="font-weight-bold" for="Controller"> Controller Name </label>
+                    <input type="text" name="Controller" autocomplete="off" class="form-control" value="@Model.Controller" id="Controller" placeholder="Please enter Controller" />
+                </div>
+                <div class="col-md-4">
+                    <label class="font-weight-bold" for="Action"> Action Name </label>
+                    <input type="text" name="Action" autocomplete="off" class="form-control" value="@Model.Action" id="Action" placeholder="Please enter Action Name" />
+                </div>
+                <div class="col-md-4">
+                    <label class="font-weight-bold" for="Icon"> Menu Icon </label>
+                    <input type="text" name="Icon" autocomplete="off" class="form-control" value="@Model.Icon" id="Icon" placeholder="Please enter Icon" />
+                </div>
+                <div class="col-md-4 mt-4">
+                    <label class="font-weight-bold" for="Icon"> Is Parent ? </label>
+                    <input type="checkbox" name="IsParent"  value="@Model.IsParent" id="IsParent" />
+                </div>
+                @*<div class="col-md-4  mt-4">
+                    <label class="font-weight-bold" for="IsActive"> Is Active ? </label>
+                    <input type="checkbox" name="IsActive"   value="@Model.IsActive" id="IsActive" />
+                </div>*@
+            </div>
+
+        </form>
+
+    </div>
+    <div class="card-footer">
+        <button id="btnSave" class="btn btn-success btn-sm"><i class="fas fa-save"></i> Save</button>
+        <a class="btn btn-danger btn-sm" href="@Url.Action("Index","Menu")"><i class="fas fa-arrow-alt-circle-left"></i> Back To List</a>
+    </div>
+</div>
+
+<script>
+
+        $("#btnSave").on('click', function () {
+        $.ajax({
+            method:'Post',
+            url: '@Url.Action("Action","Menu")',
+            data: $("#menuForm").serialize()
+        }).done(function (response) {
+            if (response.Success) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: response.Message,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                window.setTimeout(function () {
+                    window.location.href = "@Url.Action("Index", "Menu")";
+                }, 1500)
+            }
+            else {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: response.Message,
+                    showConfirmButton: true,
+
+                })
+            }
+
+        })
+
+    })
+</script>
+
 

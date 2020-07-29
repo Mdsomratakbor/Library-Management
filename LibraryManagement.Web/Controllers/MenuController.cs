@@ -41,7 +41,6 @@ namespace LibraryManagement.Web.Controllers
                 _IMenu.IsActive = _menu.IsActive;
                 _IMenu.ParentId = _menu.ParentId;
                 _IMenu.Icon = _menu.Icon;
-                _IMenu.ProjectName = _menu.ProjectName;
             }
             return View(_IMenu);
         }
@@ -69,12 +68,11 @@ namespace LibraryManagement.Web.Controllers
                         _menu.IsActive = model.IsActive;
                         _menu.ParentId = model.ParentId;
                         _menu.Icon = model.Icon;
-                        _menu.ProjectName = model.ProjectName;
+                        _menu.UpdateDate = DateTime.Now;
                         isSuccess = _IMenuServices.UpdateData(_menu);
                     }
                     else
                     {
-                        _menu = _IMenuServices.GetDataById(model.ID);
                         _menu.MenuName = model.MenuName;
                         _menu.Controller = model.Controller;
                         _menu.Action = model.Action;
@@ -82,7 +80,8 @@ namespace LibraryManagement.Web.Controllers
                         _menu.IsActive = model.IsActive;
                         _menu.ParentId = model.ParentId;
                         _menu.Icon = model.Icon;
-                        _menu.ProjectName = model.ProjectName;
+                        _menu.EntryDate = DateTime.Now;
+                        _menu.ProjectName = "Library Management System";
                         isSuccess = await Task.Run(() => _IMenuServices.SaveData(_menu));
                     }
                 }
@@ -110,7 +109,7 @@ namespace LibraryManagement.Web.Controllers
             return result;
         }
 
-        public async Task<JsonResult> ListOfMenus(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
+        public async Task<JsonResult> ListOfMenu(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
         {
             int rowNumber;
             int totalRecord;
