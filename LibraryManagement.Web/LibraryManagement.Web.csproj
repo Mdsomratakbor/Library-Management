@@ -1234,11 +1234,12 @@
     <Content Include="Views\Return\Action.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\Menu\Action.cshtml" />
+    <Content Include="Views\MenuRole\Index.cshtml" />
+    <Content Include="Views\MenuRole\Action.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\BookImage\" />
-    <Folder Include="Views\MenuRole\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

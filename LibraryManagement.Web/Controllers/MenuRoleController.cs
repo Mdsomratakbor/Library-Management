@@ -1,7 +1,9 @@
 ﻿using LibraryManagement.Entities;
+using LibraryManagement.Services;
 using LibraryManagement.Services.Interfaces;
 using LibraryManagement.Web.ViewModels;
 using LibraryManagement.Web.ViewModels.MenuRoleInterfaces;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +18,25 @@ namespace LibraryManagement.Web.Controllers
         private IMenuRoleService _IMenuRoleService;
         private IMenuServices _IMenuServices;
         private IMenuRole _IMenuRole;
+        private LMRolesManagerService _roleManager;
         private MenuRole _menuRole;
-        public MenuRoleController(IMenuRoleService menuroleService, IMenuRole menurole, IMenuServices menuservice)
+        public LMRolesManagerService RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().GetUserManager<LMRolesManagerService>();
+            }
+            private set
+            {
+                _roleManager = value;
+            }
+        }
+        public MenuRoleController(IMenuRoleService menuroleService, IMenuRole menurole, IMenuServices menuservice, LMRolesManagerService roleManager)
         {
             _IMenuRoleService = menuroleService;
             _IMenuServices = menuservice;
             _IMenuRole = menurole;
+            RoleManager = roleManager;
             _menuRole = new MenuRole();
         }
         [Authorize(Roles = "Admin, Users")]
@@ -43,6 +58,8 @@ namespace LibraryManagement.Web.Controllers
                 _IMenuRole.IsCreate = _menuRole.IsCreate;
             }
             _IMenuRole.Menus = _IMenuServices.GetAllData();
+            var roles = RoleManager.Roles.AsQueryable();
+            _IMenuRole.Roles = roles.Select(x => x).ToList();
             return View(_IMenuRole);
         }
         [Authorize(Roles = "Admin")]
