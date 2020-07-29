@@ -90,6 +90,10 @@
     <Compile Include="Migrations\202007291324198_AddMenus.designer.cs">
       <DependentUpon>202007291324198_AddMenus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007291349523_AddMenuRole.cs" />
+    <Compile Include="Migrations\202007291349523_AddMenuRole.designer.cs">
+      <DependentUpon>202007291349523_AddMenuRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -127,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007291324198_AddMenus.resx">
       <DependentUpon>202007291324198_AddMenus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007291349523_AddMenuRole.resx">
+      <DependentUpon>202007291349523_AddMenuRole.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
