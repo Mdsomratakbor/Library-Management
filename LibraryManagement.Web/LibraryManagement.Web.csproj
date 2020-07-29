@@ -247,6 +247,8 @@
     <Compile Include="ViewModels\IssueInterfaces\IIssue.cs" />
     <Compile Include="ViewModels\IssueInterfaces\IIssueList.cs" />
     <Compile Include="ViewModels\IssueViewModels.cs" />
+    <Compile Include="ViewModels\MenuInterfaces\IMenu.cs" />
+    <Compile Include="ViewModels\MenuInterfaces\IMenuList.cs" />
     <Compile Include="ViewModels\Pagination.cs" />
     <Compile Include="ViewModels\ReturnInterfaces\IReturn.cs" />
     <Compile Include="ViewModels\ReturnInterfaces\IReturnList.cs" />
