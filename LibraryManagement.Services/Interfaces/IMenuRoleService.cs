@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Services.Interfaces
 {
-    public interface IMenuRole:IServices<MenuRole>
+    public interface IMenuRoleService:IServices<MenuRole>
     {
         List<MenuRole> GetAllData();
     }
