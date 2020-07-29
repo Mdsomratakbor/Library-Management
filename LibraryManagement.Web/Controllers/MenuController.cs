@@ -1,5 +1,6 @@
 ﻿using LibraryManagement.Entities;
 using LibraryManagement.Services.Interfaces;
+using LibraryManagement.Web.ViewModels;
 using LibraryManagement.Web.ViewModels.MenuInterfaces;
 using System;
 using System.Collections.Generic;
@@ -37,15 +38,16 @@ namespace LibraryManagement.Web.Controllers
                 _IMenu.Controller = _menu.Controller;
                 _IMenu.Action = _menu.Action;
                 _IMenu.IsParent = _menu.IsParent;
-                _IMenu.isa = _menu.MenuName;
-                _IMenu.MenuName = _menu.MenuName;
-                _IDepartment.Name = _menu.Name;
+                _IMenu.IsActive = _menu.IsActive;
+                _IMenu.ParentId = _menu.ParentId;
+                _IMenu.Icon = _menu.Icon;
+                _IMenu.ProjectName = _menu.ProjectName;
             }
-            return View(_IDepartment);
+            return View(_IMenu);
         }
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<JsonResult> Action(DepartmentActionModel model)
+        public async Task<JsonResult> Action(MenuActionModel model)
         {
             JsonResult result = new JsonResult
             {
@@ -60,12 +62,27 @@ namespace LibraryManagement.Web.Controllers
                     if (model.ID > 0)
                     {
                         _menu = _IMenuServices.GetDataById(model.ID);
-                        _menu.Name = model.Name;
+                        _menu.MenuName = model.MenuName;
+                        _menu.Controller = model.Controller;
+                        _menu.Action = model.Action;
+                        _menu.IsParent = model.IsParent;
+                        _menu.IsActive = model.IsActive;
+                        _menu.ParentId = model.ParentId;
+                        _menu.Icon = model.Icon;
+                        _menu.ProjectName = model.ProjectName;
                         isSuccess = _IMenuServices.UpdateData(_menu);
                     }
                     else
                     {
-                        _menu.Name = model.Name;
+                        _menu = _IMenuServices.GetDataById(model.ID);
+                        _menu.MenuName = model.MenuName;
+                        _menu.Controller = model.Controller;
+                        _menu.Action = model.Action;
+                        _menu.IsParent = model.IsParent;
+                        _menu.IsActive = model.IsActive;
+                        _menu.ParentId = model.ParentId;
+                        _menu.Icon = model.Icon;
+                        _menu.ProjectName = model.ProjectName;
                         isSuccess = await Task.Run(() => _IMenuServices.SaveData(_menu));
                     }
                 }
@@ -93,11 +110,11 @@ namespace LibraryManagement.Web.Controllers
             return result;
         }
 
-        public async Task<JsonResult> ListOfDepartment(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
+        public async Task<JsonResult> ListOfMenus(int iDisplayLength, int iDisplayStart, int iSortCol_0, string sSortDir_0, string sSearch)
         {
             int rowNumber;
             int totalRecord;
-            List<Department> deparments = new List<Department>();
+            List<Menu> deparments = new List<Menu>();
             deparments = await Task.Run(() => _IMenuServices.GetAllData(iDisplayLength, iDisplayStart, iSortCol_0, sSortDir_0, sSearch));
             totalRecord = await Task.Run(() => _IMenuServices.TotalRowCount());
             rowNumber = deparments.Count();
@@ -160,11 +177,11 @@ namespace LibraryManagement.Web.Controllers
             if (isDisposing)
             {
                 _IMenuServices = null;
-                _IDepartment = null;
+                _IMenu = null;
                 _menu = null;
             }
         }
-        ~DepartmentController()
+        ~MenuController()
         {
             Dispose(false);
         }

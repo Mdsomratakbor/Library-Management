@@ -1227,11 +1227,12 @@
     <Content Include="Views\Issue\Action.cshtml" />
     <Content Include="Views\Return\Index.cshtml" />
     <Content Include="Views\Return\Action.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Menu\Action.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\BookImage\" />
-    <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
