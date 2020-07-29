@@ -105,6 +105,7 @@
     <Compile Include="DesignationServices.cs" />
     <Compile Include="Enums\GenderEnums.cs" />
     <Compile Include="Interfaces\IIssuServices.cs" />
+    <Compile Include="Interfaces\IMenuRoleService.cs" />
     <Compile Include="Interfaces\IMenuServices.cs" />
     <Compile Include="Interfaces\IReturnServices.cs" />
     <Compile Include="IssueServices.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Interfaces\IServices.cs" />
     <Compile Include="Interfaces\IStaffServices.cs" />
     <Compile Include="Interfaces\IStudentServices.cs" />
+    <Compile Include="MenuRoleServices.cs" />
     <Compile Include="MenuServices.cs" />
     <Compile Include="PictureServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
