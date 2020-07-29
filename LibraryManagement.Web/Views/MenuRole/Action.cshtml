@@ -16,14 +16,14 @@
                         <option selected disabled>Please select Role</option>
                         @foreach (var role in Model.Roles)
                         {
-                            var selected = Model.RoleId.ToString() == role.Id ? "selected" : string.Empty;
+                            var selected = Model.RoleId == role.Id ? "selected" : string.Empty;
                             <option value="@role.Id" @selected>@role.Name</option>
                         }
                     </select>
                 </div>
                 <div class="col-md-4">
                     <label class="font-weight-bold" for="CategoryID">Menus</label>
-                    <select class="form-control select2bs3" name="CategoryID">
+                    <select class="form-control select2bs3" name="MenuId">
                         <option selected disabled>Please select Menu</option>
                         @foreach (var menu in Model.Menus)
                         {

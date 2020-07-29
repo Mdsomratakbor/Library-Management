@@ -102,6 +102,10 @@
     <Compile Include="Migrations\202007291438222_AddIsActiveColumnInMenu1.designer.cs">
       <DependentUpon>202007291438222_AddIsActiveColumnInMenu1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007291851399_RelationWithRoleTable.cs" />
+    <Compile Include="Migrations\202007291851399_RelationWithRoleTable.designer.cs">
+      <DependentUpon>202007291851399_RelationWithRoleTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -148,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007291438222_AddIsActiveColumnInMenu1.resx">
       <DependentUpon>202007291438222_AddIsActiveColumnInMenu1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007291851399_RelationWithRoleTable.resx">
+      <DependentUpon>202007291851399_RelationWithRoleTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
