@@ -59,6 +59,7 @@ namespace LibraryManagement.Services
             using (var _LMContext = new LMContext())
             {
                 return _LMContext.Issues.Where(x => x.ID == id).Include(y => y.Books).Include(w => w.Students).FirstOrDefault();
+                //return _LMContext.Issues.SqlQuery("Select * from Issues where ID ="+id).FirstOrDefault();
             }
         }
         public override bool SaveData(Issue model)

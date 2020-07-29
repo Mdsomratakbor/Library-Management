@@ -11,7 +11,7 @@ namespace LibraryManagement.Entities
     {
         public int ID { get; set; }
         public int BookID { get; set; }
-        public int PictureID { get; set; }    
+        public int PictureID { get; set; }     
         public virtual Picture Pictures { get; set; }
         
     }

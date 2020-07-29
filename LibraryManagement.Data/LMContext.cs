@@ -13,7 +13,7 @@ namespace LibraryManagement.Data
     {
          public LMContext() : base("LMConnectionString")
         {
-            System.Data.Entity.Database.SetInitializer<LMContext>(new LibraryManagementDBInitializer());
+            Database.SetInitializer<LMContext>(new LibraryManagementDBInitializer());
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
