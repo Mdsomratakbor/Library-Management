@@ -37,6 +37,8 @@ namespace LibraryManagement.Data
         public DbSet<StudentPicture> StudentPictures { get; set; }
         public DbSet<StaffPicture> StaffPictures { get; set; }
         public DbSet<Designation> Designations { get; set; }
+        public DbSet<Menu> Menus { get; set; }
+        public DbSet<MenuRole> MenuRoles { get; set; }
         public static LMContext Create()
         {
             return new LMContext();
