@@ -258,6 +258,7 @@
     <Compile Include="ViewModels\ReturnInterfaces\IReturn.cs" />
     <Compile Include="ViewModels\ReturnInterfaces\IReturnList.cs" />
     <Compile Include="ViewModels\ReturnViewModels.cs" />
+    <Compile Include="ViewModels\RoleInterfaces\IRoleList.cs" />
     <Compile Include="ViewModels\RolesModels.cs" />
     <Compile Include="ViewModels\SharedViewModel.cs" />
     <Compile Include="ViewModels\StaffInterfaces\IStaff.cs" />
