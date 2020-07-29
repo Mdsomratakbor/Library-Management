@@ -13,7 +13,7 @@ namespace LibraryManagement.Services
 {
     public class MenuRoleServices : LibraryManagementServices<MenuRole>, IMenuRoleService
     {
-        private LMContext _LMContext;
+        private readonly LMContext _LMContext;
         public MenuRoleServices()
         {
             _LMContext = new LMContext();

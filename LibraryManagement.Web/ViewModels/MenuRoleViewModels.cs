@@ -13,7 +13,7 @@ namespace LibraryManagement.Web.ViewModels
     public class MenuRoleActionModel : IMenuRole, IMenuList, IRoleList
     {
         public int ID { get; set; }
-        public int RoleId { get; set; }
+        public string RoleId { get; set; }
         public int MenuId { get; set; }
         public bool IsUpdate { get; set; }
         public bool IsDelete { get; set; }
@@ -24,6 +24,6 @@ namespace LibraryManagement.Web.ViewModels
         public int? LUserID { get; set; }
         public DateTime? UpdateDate { get; set; }
         public int? UpdateLUserID { get; set; }
-        List<System.Web.UI.WebControls.Menu> IMenuRole.Menus { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+   
     }
 }

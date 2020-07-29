@@ -15,11 +15,11 @@ namespace LibraryManagement.Web.Controllers
 {
     public class MenuRoleController : Controller
     {
-        private IMenuRoleService _IMenuRoleService;
-        private IMenuServices _IMenuServices;
-        private IMenuRole _IMenuRole;
-        private LMRolesManagerService _roleManager;
-        private MenuRole _menuRole;
+        private  IMenuRoleService _IMenuRoleService;
+        private  IMenuServices _IMenuServices;
+        private  IMenuRole _IMenuRole;
+        private  LMRolesManagerService _roleManager;
+        private  MenuRole _menuRole;
         public LMRolesManagerService RoleManager
         {
             get
@@ -31,12 +31,16 @@ namespace LibraryManagement.Web.Controllers
                 _roleManager = value;
             }
         }
-        public MenuRoleController(IMenuRoleService menuroleService, IMenuRole menurole, IMenuServices menuservice, LMRolesManagerService roleManager)
+        public MenuRoleController()
+        {
+           
+        }
+        public MenuRoleController(IMenuRoleService menuroleService, IMenuRole menurole, IMenuServices menuservice)
         {
             _IMenuRoleService = menuroleService;
             _IMenuServices = menuservice;
             _IMenuRole = menurole;
-            RoleManager = roleManager;
+           
             _menuRole = new MenuRole();
         }
         [Authorize(Roles = "Admin, Users")]
@@ -57,8 +61,11 @@ namespace LibraryManagement.Web.Controllers
                 _IMenuRole.IsDelete = _menuRole.IsDelete;
                 _IMenuRole.IsCreate = _menuRole.IsCreate;
             }
-            _IMenuRole.Menus = _IMenuServices.GetAllData();
+           
             var roles = RoleManager.Roles.AsQueryable();
+            //List<MenuRole> allRoleMenu = _IMenuRoleService.GetAllData();
+            //List<Menu> menus= _IMenuServices.GetAllData();
+            _IMenuRole.Menus = _IMenuServices.GetAllData();
             _IMenuRole.Roles = roles.Select(x => x).ToList();
             return View(_IMenuRole);
         }

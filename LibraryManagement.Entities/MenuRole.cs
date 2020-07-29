@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ namespace LibraryManagement.Entities
 {
     public class MenuRole : BaseEntities
     {
-        public int RoleId { get; set; }
+        public string  RoleId { get; set; }
+        public virtual IdentityRole Roles { get; set; }
         public int MenuId { get; set; }
         public virtual Menu Menus{get;set;}
         public bool IsUpdate { get; set; }

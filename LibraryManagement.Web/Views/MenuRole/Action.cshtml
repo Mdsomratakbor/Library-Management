@@ -1,1 +1,106 @@
-﻿
+﻿@model LibraryManagement.Web.ViewModels.MenuRoleActionModel
+<div class="card mt-1">
+    <section class="card-header">
+        <div class="row">
+            <div class="col-sm-12">
+                    <h4>Role Menu Add</h4>
+            </div>
+        </div>
+    </section>
+    <div class="card-body">
+        <form id="menuRoleForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="font-weight-bold" for="RoleId">Roles</label>
+                    <select class="form-control select2bs4" name="RoleId" id="role">
+                        <option selected disabled>Please select Role</option>
+                        @foreach (var role in Model.Roles)
+                        {
+                            var selected = Model.RoleId.ToString() == role.Id ? "selected" : string.Empty;
+                            <option value="@role.Id" @selected>@role.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="font-weight-bold" for="CategoryID">Menus</label>
+                    <select class="form-control select2bs3" name="CategoryID">
+                        <option selected disabled>Please select Menu</option>
+                        @foreach (var menu in Model.Menus)
+                        {
+                            var selected = Model.MenuId == menu.ID ? "selected" : string.Empty;
+                            <option value="@menu.ID" @selected>@menu.MenuName</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4 mt-4">
+                    <label class="font-weight-bold" for="IsUpdate"> Is Update ? </label>
+                    <input type="checkbox" name="IsUpdate" value="@Model.IsUpdate" id="IsUpdate" />
+                </div>
+                <div class="col-md-4 mt-4">
+                    <label class="font-weight-bold" for="IsDelete"> Is Delete ? </label>
+                    <input type="checkbox" name="IsDelete" value="@Model.IsDelete" id="IsDelete" />
+                </div>
+                <div class="col-md-4 mt-4">
+                    <label class="font-weight-bold" for="IsCreate"> Is Create ? </label>
+                    <input type="checkbox" name="IsCreate" value="@Model.IsCreate" id="IsCreate" />
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="card-footer">
+        <button id="btnSave" class="btn btn-success btn-sm"><i class="fas fa-save"></i> Save</button>
+        <a class="btn btn-danger btn-sm" href="@Url.Action("Index","MenuRole")"><i class="fas fa-arrow-alt-circle-left"></i> Back To List</a>
+    </div>
+</div>
+
+<script>
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+        $('.select2bs3').select2({
+            theme: 'bootstrap4'
+        })
+
+        $("#btnSave").on('click', function () {
+        $.ajax({
+            method:'Post',
+            url: '@Url.Action("Action","MenuRole")',
+            data: $("#menuRoleForm").serialize()
+        }).done(function (response) {
+            if (response.Success) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: response.Message,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                window.setTimeout(function () {
+                    window.location.reload();
+                }, 1500)
+            }
+            else {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'warning',
+                    title: response.Message,
+                    showConfirmButton: true,
+
+                })
+            }
+        })
+        })
+    //$("#role").on('click', function () {
+    //    var roleId = 
+    //})
+
+
+</script>
+
+

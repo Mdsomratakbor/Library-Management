@@ -11,7 +11,7 @@ namespace LibraryManagement.Web.ViewModels.MenuRoleInterfaces
 {
     public interface IMenuRole: IBaseEntities
     {
-         int RoleId { get; set; }
+         string RoleId { get; set; }
          int MenuId { get; set; }
          bool IsUpdate { get; set; }
          bool IsDelete { get; set; }

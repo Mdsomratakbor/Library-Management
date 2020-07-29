@@ -51,6 +51,7 @@ namespace LibraryManagement.Web
             container.RegisterType<IMenu, MenuActionModel>();
             container.RegisterType<RolesController>(new InjectionConstructor());
             container.RegisterType<UsersController>(new InjectionConstructor());
+            //container.RegisterType<MenuRoleController>(new InjectionConstructor());
             container.RegisterType<AccountController>(new InjectionConstructor());
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
