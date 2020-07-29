@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryManagement.Web.ViewModels.MenuInterfaces
 {
-    interface IMneuList
+    public interface IMenuList
     {
     }
 }
