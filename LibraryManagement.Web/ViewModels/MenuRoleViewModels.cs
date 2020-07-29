@@ -24,5 +24,6 @@ namespace LibraryManagement.Web.ViewModels
         public int? LUserID { get; set; }
         public DateTime? UpdateDate { get; set; }
         public int? UpdateLUserID { get; set; }
+        List<System.Web.UI.WebControls.Menu> IMenuRole.Menus { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
 }
