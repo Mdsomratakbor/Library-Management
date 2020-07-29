@@ -215,6 +215,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IssueController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\MenuRoleController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\ReturnController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -1233,6 +1234,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\BookImage\" />
+    <Folder Include="Views\MenuRole\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
