@@ -15,5 +15,6 @@ namespace LibraryManagement.Entities
         public int ParentId { get; set; }
         public bool IsParent { get; set; }
         public string Icon { get; set; }
+        public bool IsActive { get; set; }
     }
 }

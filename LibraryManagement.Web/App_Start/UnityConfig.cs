@@ -7,6 +7,7 @@ using LibraryManagement.Web.ViewModels.CategoryInterfaces;
 using LibraryManagement.Web.ViewModels.DepartmentInterfaces;
 using LibraryManagement.Web.ViewModels.Interfaces;
 using LibraryManagement.Web.ViewModels.IssueInterfaces;
+using LibraryManagement.Web.ViewModels.MenuInterfaces;
 using LibraryManagement.Web.ViewModels.ReturnInterfaces;
 using LibraryManagement.Web.ViewModels.StaffInterfaces;
 using LibraryManagement.Web.ViewModels.StudentInterfaces;
@@ -43,6 +44,8 @@ namespace LibraryManagement.Web
             container.RegisterType<IIssue, IssueActionModel>();
             container.RegisterType<IReturnServices, ReturnServices>();
             container.RegisterType<IReturn, ReturnActionModel>();
+            container.RegisterType<IMenuServices, MenuServices>();
+            container.RegisterType<IMenu, MenuActionModel>();
             container.RegisterType<RolesController>(new InjectionConstructor());
             container.RegisterType<UsersController>(new InjectionConstructor());
             container.RegisterType<AccountController>(new InjectionConstructor());

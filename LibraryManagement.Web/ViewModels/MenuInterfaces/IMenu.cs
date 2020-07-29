@@ -15,6 +15,7 @@ namespace LibraryManagement.Web.ViewModels.MenuInterfaces
          string ProjectName { get; set; }
          int ParentId { get; set; }
          bool IsParent { get; set; }
+         bool IsActive { get; set; }
          string Icon { get; set; }
     }
 }
