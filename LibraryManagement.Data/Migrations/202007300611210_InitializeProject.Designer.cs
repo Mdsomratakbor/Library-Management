@@ -7,13 +7,13 @@ namespace LibraryManagement.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddgenderColumn : IMigrationMetadata
+    public sealed partial class InitializeProject : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddgenderColumn));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitializeProject));
         
         string IMigrationMetadata.Id
         {
-            get { return "202007111654432_AddgenderColumn"; }
+            get { return "202007300611210_InitializeProject"; }
         }
         
         string IMigrationMetadata.Source

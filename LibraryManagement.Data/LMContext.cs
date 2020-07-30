@@ -39,6 +39,7 @@ namespace LibraryManagement.Data
         public DbSet<Designation> Designations { get; set; }
         public DbSet<Menu> Menus { get; set; }
         public DbSet<MenuRole> MenuRoles { get; set; }
+        public DbSet<RoleOfMenu> RoleOfMenus { get; set; }
         public static LMContext Create()
         {
             return new LMContext();

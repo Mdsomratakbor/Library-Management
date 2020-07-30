@@ -53,13 +53,13 @@ namespace LibraryManagement.Services
             try
             {
                 List<MenuRole> menuRole = new List<MenuRole>();
-                var user = _LMContext.Users.Where(x => x.UserName == userName).FirstOrDefault();
-                var userRoles = user.Roles.Select(x => x.RoleId).ToList();
-                menuRole = _LMContext.MenuRoles.Where(x => userRoles.Contains(x.RoleId)).Include(y => y.Menus).ToList();
-                foreach (var data in menuRole)
-                {
-                    GetAllData();
-                }
+                //var user = _LMContext.Users.Where(x => x.UserName == userName).FirstOrDefault();
+                //var userRoles = user.Roles.Select(x => x.RoleId).ToList();
+                //menuRole = _LMContext.MenuRoles.Where(x => userRoles.Contains(x.RoleId)).Include(y => y.Menus).ToList();
+                //foreach (var data in menuRole)
+                //{
+                //    GetAllData();
+                //}
                 return menuRole;
             }
             catch(Exception ex)

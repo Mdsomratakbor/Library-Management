@@ -55,11 +55,11 @@ namespace LibraryManagement.Web.Controllers
             {
                 _menuRole = await Task.Run(() => _IMenuRoleService.GetDataById(id.Value));
                 _IMenuRole.ID = _menuRole.ID;
-                _IMenuRole.RoleId = _menuRole.RoleId;
-                _IMenuRole.MenuId = _menuRole.MenuId;
-                _IMenuRole.IsUpdate = _menuRole.IsUpdate;
-                _IMenuRole.IsDelete = _menuRole.IsDelete;
-                _IMenuRole.IsCreate = _menuRole.IsCreate;
+                //_IMenuRole.RoleId = _menuRole.RoleId;
+                //_IMenuRole.MenuId = _menuRole.MenuId;
+                //_IMenuRole.IsUpdate = _menuRole.IsUpdate;
+                //_IMenuRole.IsDelete = _menuRole.IsDelete;
+                //_IMenuRole.IsCreate = _menuRole.IsCreate;
             }
            
             var roles = RoleManager.Roles.AsQueryable();
@@ -86,21 +86,21 @@ namespace LibraryManagement.Web.Controllers
                     if (model.ID > 0)
                     {
                         _menuRole = _IMenuRoleService.GetDataById(model.ID);
-                        _menuRole.RoleId = model.RoleId;
-                        _menuRole.MenuId = model.MenuId;
-                        _menuRole.IsUpdate = model.IsUpdate;
-                        _menuRole.IsDelete = model.IsDelete;
-                        _menuRole.IsCreate = model.IsCreate;
+                        //_menuRole.RoleId = model.RoleId;
+                        //_menuRole.MenuId = model.MenuId;
+                        //_menuRole.IsUpdate = model.IsUpdate;
+                        //_menuRole.IsDelete = model.IsDelete;
+                        //_menuRole.IsCreate = model.IsCreate;
                         _menuRole.UpdateDate = DateTime.Now;
                         isSuccess = _IMenuRoleService.UpdateData(_menuRole);
                     }
                     else
                     {
-                        _menuRole.RoleId = model.RoleId;
-                        _menuRole.MenuId = model.MenuId;
-                        _menuRole.IsUpdate = model.IsUpdate;
-                        _menuRole.IsDelete = model.IsDelete;
-                        _menuRole.IsCreate = model.IsCreate;
+                        //_menuRole.RoleId = model.RoleId;
+                        //_menuRole.MenuId = model.MenuId;
+                        //_menuRole.IsUpdate = model.IsUpdate;
+                        //_menuRole.IsDelete = model.IsDelete;
+                        //_menuRole.IsCreate = model.IsCreate;
                         _menuRole.EntryDate = DateTime.Now;
                         isSuccess = await Task.Run(() => _IMenuRoleService.SaveData(_menuRole));
                     }

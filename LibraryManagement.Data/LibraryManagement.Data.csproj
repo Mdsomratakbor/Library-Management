@@ -58,57 +58,9 @@
   <ItemGroup>
     <Compile Include="LibraryManagementDBInitializer.cs" />
     <Compile Include="LMContext.cs" />
-    <Compile Include="Migrations\202006171641061_Initial.cs" />
-    <Compile Include="Migrations\202006171641061_Initial.designer.cs">
-      <DependentUpon>202006171641061_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007011624464_SetBookNameString.cs" />
-    <Compile Include="Migrations\202007011624464_SetBookNameString.designer.cs">
-      <DependentUpon>202007011624464_SetBookNameString.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007071818145_AddCategory.cs" />
-    <Compile Include="Migrations\202007071818145_AddCategory.designer.cs">
-      <DependentUpon>202007071818145_AddCategory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007111654432_AddgenderColumn.cs" />
-    <Compile Include="Migrations\202007111654432_AddgenderColumn.designer.cs">
-      <DependentUpon>202007111654432_AddgenderColumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007111751142_DesignationIdIntConvert.cs" />
-    <Compile Include="Migrations\202007111751142_DesignationIdIntConvert.designer.cs">
-      <DependentUpon>202007111751142_DesignationIdIntConvert.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007131357380_userinformationChange.cs" />
-    <Compile Include="Migrations\202007131357380_userinformationChange.designer.cs">
-      <DependentUpon>202007131357380_userinformationChange.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007190423581_IsIssueColumnadd.cs" />
-    <Compile Include="Migrations\202007190423581_IsIssueColumnadd.designer.cs">
-      <DependentUpon>202007190423581_IsIssueColumnadd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007291324198_AddMenus.cs" />
-    <Compile Include="Migrations\202007291324198_AddMenus.designer.cs">
-      <DependentUpon>202007291324198_AddMenus.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007291349523_AddMenuRole.cs" />
-    <Compile Include="Migrations\202007291349523_AddMenuRole.designer.cs">
-      <DependentUpon>202007291349523_AddMenuRole.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007291435580_AddIsActiveColumnInMenu.cs" />
-    <Compile Include="Migrations\202007291435580_AddIsActiveColumnInMenu.designer.cs">
-      <DependentUpon>202007291435580_AddIsActiveColumnInMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007291438222_AddIsActiveColumnInMenu1.cs" />
-    <Compile Include="Migrations\202007291438222_AddIsActiveColumnInMenu1.designer.cs">
-      <DependentUpon>202007291438222_AddIsActiveColumnInMenu1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007291851399_RelationWithRoleTable.cs" />
-    <Compile Include="Migrations\202007291851399_RelationWithRoleTable.designer.cs">
-      <DependentUpon>202007291851399_RelationWithRoleTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007292134144_changes.cs" />
-    <Compile Include="Migrations\202007292134144_changes.designer.cs">
-      <DependentUpon>202007292134144_changes.cs</DependentUpon>
+    <Compile Include="Migrations\202007300611210_InitializeProject.cs" />
+    <Compile Include="Migrations\202007300611210_InitializeProject.designer.cs">
+      <DependentUpon>202007300611210_InitializeProject.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -124,44 +76,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202006171641061_Initial.resx">
-      <DependentUpon>202006171641061_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007011624464_SetBookNameString.resx">
-      <DependentUpon>202007011624464_SetBookNameString.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007071818145_AddCategory.resx">
-      <DependentUpon>202007071818145_AddCategory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007111654432_AddgenderColumn.resx">
-      <DependentUpon>202007111654432_AddgenderColumn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007111751142_DesignationIdIntConvert.resx">
-      <DependentUpon>202007111751142_DesignationIdIntConvert.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007131357380_userinformationChange.resx">
-      <DependentUpon>202007131357380_userinformationChange.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007190423581_IsIssueColumnadd.resx">
-      <DependentUpon>202007190423581_IsIssueColumnadd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007291324198_AddMenus.resx">
-      <DependentUpon>202007291324198_AddMenus.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007291349523_AddMenuRole.resx">
-      <DependentUpon>202007291349523_AddMenuRole.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007291435580_AddIsActiveColumnInMenu.resx">
-      <DependentUpon>202007291435580_AddIsActiveColumnInMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007291438222_AddIsActiveColumnInMenu1.resx">
-      <DependentUpon>202007291438222_AddIsActiveColumnInMenu1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007291851399_RelationWithRoleTable.resx">
-      <DependentUpon>202007291851399_RelationWithRoleTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007292134144_changes.resx">
-      <DependentUpon>202007292134144_changes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007300611210_InitializeProject.resx">
+      <DependentUpon>202007300611210_InitializeProject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

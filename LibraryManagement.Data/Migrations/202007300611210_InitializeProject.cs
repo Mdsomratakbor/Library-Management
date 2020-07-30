@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class InitializeProject : DbMigration
     {
         public override void Up()
         {
@@ -35,7 +35,7 @@
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        BookName = c.Int(nullable: false),
+                        BookName = c.String(),
                         Isbn = c.Int(nullable: false),
                         AuthorName = c.String(),
                         BookPublish = c.String(),
@@ -43,10 +43,27 @@
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         BookEdition = c.String(),
                         BookQty = c.Int(nullable: false),
-                        EntryDate = c.DateTime(nullable: false),
-                        LUserID = c.Int(nullable: false),
-                        UpdateDate = c.DateTime(nullable: false),
-                        UpdateLUserID = c.Int(nullable: false),
+                        CategoryID = c.Int(nullable: false),
+                        EntryDate = c.DateTime(),
+                        LUserID = c.Int(),
+                        UpdateDate = c.DateTime(),
+                        UpdateLUserID = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Categories", t => t.CategoryID, cascadeDelete: true)
+                .Index(t => t.CategoryID);
+            
+            CreateTable(
+                "dbo.Categories",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Description = c.String(),
+                        EntryDate = c.DateTime(),
+                        LUserID = c.Int(),
+                        UpdateDate = c.DateTime(),
+                        UpdateLUserID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -56,10 +73,10 @@
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        EntryDate = c.DateTime(nullable: false),
-                        LUserID = c.Int(nullable: false),
-                        UpdateDate = c.DateTime(nullable: false),
-                        UpdateLUserID = c.Int(nullable: false),
+                        EntryDate = c.DateTime(),
+                        LUserID = c.Int(),
+                        UpdateDate = c.DateTime(),
+                        UpdateLUserID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -69,10 +86,10 @@
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        EntryDate = c.DateTime(nullable: false),
-                        LUserID = c.Int(nullable: false),
-                        UpdateDate = c.DateTime(nullable: false),
-                        UpdateLUserID = c.Int(nullable: false),
+                        EntryDate = c.DateTime(),
+                        LUserID = c.Int(),
+                        UpdateDate = c.DateTime(),
+                        UpdateLUserID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -85,10 +102,11 @@
                         IssueDate = c.DateTime(nullable: false),
                         ExpiraryDate = c.DateTime(nullable: false),
                         StudentID = c.Int(nullable: false),
-                        EntryDate = c.DateTime(nullable: false),
-                        LUserID = c.Int(nullable: false),
-                        UpdateDate = c.DateTime(nullable: false),
-                        UpdateLUserID = c.Int(nullable: false),
+                        IsIssue = c.Boolean(nullable: false),
+                        EntryDate = c.DateTime(),
+                        LUserID = c.Int(),
+                        UpdateDate = c.DateTime(),
+                        UpdateLUserID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Books", t => t.BookID, cascadeDelete: true)
@@ -110,10 +128,10 @@
                         City = c.String(),
                         Phone = c.String(),
                         DepartmentID = c.Int(nullable: false),
-                        EntryDate = c.DateTime(nullable: false),
-                        LUserID = c.Int(nullable: false),
-                        UpdateDate = c.DateTime(nullable: false),
-                        UpdateLUserID = c.Int(nullable: false),
+                        EntryDate = c.DateTime(),
+                        LUserID = c.Int(),
+                        UpdateDate = c.DateTime(),
+                        UpdateLUserID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Departments", t => t.DepartmentID, cascadeDelete: true)
@@ -134,6 +152,56 @@
                 .Index(t => t.PictureID);
             
             CreateTable(
+                "dbo.MenuRoles",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        RoleId = c.String(),
+                        EntryDate = c.DateTime(),
+                        LUserID = c.Int(),
+                        UpdateDate = c.DateTime(),
+                        UpdateLUserID = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.RoleOfMenus",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        MenuRoleId = c.Int(nullable: false),
+                        MenuId = c.Int(nullable: false),
+                        IsUpdate = c.Boolean(nullable: false),
+                        IsDelete = c.Boolean(nullable: false),
+                        IsCreate = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Menus", t => t.MenuId, cascadeDelete: true)
+                .ForeignKey("dbo.MenuRoles", t => t.MenuRoleId, cascadeDelete: true)
+                .Index(t => t.MenuRoleId)
+                .Index(t => t.MenuId);
+            
+            CreateTable(
+                "dbo.Menus",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        MenuName = c.String(),
+                        Controller = c.String(),
+                        Action = c.String(),
+                        ProjectName = c.String(),
+                        ParentId = c.Int(nullable: false),
+                        IsParent = c.Boolean(nullable: false),
+                        Icon = c.String(),
+                        IsActive = c.Boolean(nullable: false),
+                        EntryDate = c.DateTime(),
+                        LUserID = c.Int(),
+                        UpdateDate = c.DateTime(),
+                        UpdateLUserID = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
                 "dbo.Returns",
                 c => new
                     {
@@ -142,10 +210,10 @@
                         ReturnDate = c.DateTime(nullable: false),
                         StudentID = c.Int(nullable: false),
                         StaffID = c.Int(nullable: false),
-                        EntryDate = c.DateTime(nullable: false),
-                        LUserID = c.Int(nullable: false),
-                        UpdateDate = c.DateTime(nullable: false),
-                        UpdateLUserID = c.Int(nullable: false),
+                        EntryDate = c.DateTime(),
+                        LUserID = c.Int(),
+                        UpdateDate = c.DateTime(),
+                        UpdateLUserID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Books", t => t.BookID, cascadeDelete: true)
@@ -161,21 +229,21 @@
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        DesignationID = c.String(),
+                        DesignationID = c.Int(nullable: false),
                         Contact = c.String(),
                         Address = c.String(),
                         City = c.String(),
                         Email = c.String(),
                         Phone = c.String(),
-                        EntryDate = c.DateTime(nullable: false),
-                        LUserID = c.Int(nullable: false),
-                        UpdateDate = c.DateTime(nullable: false),
-                        UpdateLUserID = c.Int(nullable: false),
-                        Designations_ID = c.Int(),
+                        Gender = c.String(),
+                        EntryDate = c.DateTime(),
+                        LUserID = c.Int(),
+                        UpdateDate = c.DateTime(),
+                        UpdateLUserID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Designations", t => t.Designations_ID)
-                .Index(t => t.Designations_ID);
+                .ForeignKey("dbo.Designations", t => t.DesignationID, cascadeDelete: true)
+                .Index(t => t.DesignationID);
             
             CreateTable(
                 "dbo.StaffPictures",
@@ -220,9 +288,6 @@
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         FullName = c.String(),
-                        Country = c.String(),
-                        City = c.String(),
-                        Address = c.String(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -275,13 +340,16 @@
             DropForeignKey("dbo.Returns", "StaffID", "dbo.Staffs");
             DropForeignKey("dbo.StaffPictures", "StaffID", "dbo.Staffs");
             DropForeignKey("dbo.StaffPictures", "PictureID", "dbo.Pictures");
-            DropForeignKey("dbo.Staffs", "Designations_ID", "dbo.Designations");
+            DropForeignKey("dbo.Staffs", "DesignationID", "dbo.Designations");
             DropForeignKey("dbo.Returns", "BookID", "dbo.Books");
+            DropForeignKey("dbo.RoleOfMenus", "MenuRoleId", "dbo.MenuRoles");
+            DropForeignKey("dbo.RoleOfMenus", "MenuId", "dbo.Menus");
             DropForeignKey("dbo.Issues", "StudentID", "dbo.Students");
             DropForeignKey("dbo.StudentPictures", "StudentID", "dbo.Students");
             DropForeignKey("dbo.StudentPictures", "PictureID", "dbo.Pictures");
             DropForeignKey("dbo.Students", "DepartmentID", "dbo.Departments");
             DropForeignKey("dbo.Issues", "BookID", "dbo.Books");
+            DropForeignKey("dbo.Books", "CategoryID", "dbo.Categories");
             DropForeignKey("dbo.BookPictures", "BookID", "dbo.Books");
             DropForeignKey("dbo.BookPictures", "PictureID", "dbo.Pictures");
             DropIndex("dbo.UserLogin", new[] { "UserId" });
@@ -292,15 +360,18 @@
             DropIndex("dbo.Role", "RoleNameIndex");
             DropIndex("dbo.StaffPictures", new[] { "PictureID" });
             DropIndex("dbo.StaffPictures", new[] { "StaffID" });
-            DropIndex("dbo.Staffs", new[] { "Designations_ID" });
+            DropIndex("dbo.Staffs", new[] { "DesignationID" });
             DropIndex("dbo.Returns", new[] { "StaffID" });
             DropIndex("dbo.Returns", new[] { "StudentID" });
             DropIndex("dbo.Returns", new[] { "BookID" });
+            DropIndex("dbo.RoleOfMenus", new[] { "MenuId" });
+            DropIndex("dbo.RoleOfMenus", new[] { "MenuRoleId" });
             DropIndex("dbo.StudentPictures", new[] { "PictureID" });
             DropIndex("dbo.StudentPictures", new[] { "StudentID" });
             DropIndex("dbo.Students", new[] { "DepartmentID" });
             DropIndex("dbo.Issues", new[] { "StudentID" });
             DropIndex("dbo.Issues", new[] { "BookID" });
+            DropIndex("dbo.Books", new[] { "CategoryID" });
             DropIndex("dbo.BookPictures", new[] { "PictureID" });
             DropIndex("dbo.BookPictures", new[] { "BookID" });
             DropTable("dbo.UserLogin");
@@ -311,11 +382,15 @@
             DropTable("dbo.StaffPictures");
             DropTable("dbo.Staffs");
             DropTable("dbo.Returns");
+            DropTable("dbo.Menus");
+            DropTable("dbo.RoleOfMenus");
+            DropTable("dbo.MenuRoles");
             DropTable("dbo.StudentPictures");
             DropTable("dbo.Students");
             DropTable("dbo.Issues");
             DropTable("dbo.Designations");
             DropTable("dbo.Departments");
+            DropTable("dbo.Categories");
             DropTable("dbo.Books");
             DropTable("dbo.Pictures");
             DropTable("dbo.BookPictures");

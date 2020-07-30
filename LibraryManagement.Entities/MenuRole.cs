@@ -9,13 +9,7 @@ namespace LibraryManagement.Entities
 {
     public class MenuRole : BaseEntities
     {
-        public string  RoleId { get; set; }
-        public int MenuId { get; set; }
-        public virtual Menu Menu { get; set; }
-        public virtual List<Menu> Menus{get;set;}
-        public bool IsUpdate { get; set; }
-        public bool IsDelete { get; set; }
-        public bool IsCreate { get; set; }
-
+        public string  RoleId { get; set; }      
+        public virtual List<RoleOfMenu> RoleOfMenus{get;set;}
     }
 }
