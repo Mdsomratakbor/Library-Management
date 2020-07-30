@@ -10,5 +10,6 @@ namespace LibraryManagement.Services.Interfaces
     public interface IMenuRoleService:IServices<MenuRole>
     {
         List<MenuRole> GetAllData();
+        List<MenuRole> GetAllMenu(string userName);
     }
 }

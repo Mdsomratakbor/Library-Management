@@ -1,4 +1,9 @@
-﻿  <!-- Main Sidebar Container -->
+﻿@using LibraryManagement.Entities;
+@{ 
+    var list = Session["Menus"] as List<MenuRole>;
+    int t= 21;
+}
+  <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
@@ -20,95 +25,23 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                @if (list != null) {
+                    foreach (var data in list)
+                    {
+                        foreach (var menu in data.Menus)
+                        {
+                        <li class="nav-item">
+                            <a href="@Url.Action(menu.Action, menu.Controller)" class="nav-link">
+                                <i class="@menu.Icon"></i>
+                                <p>
+                                    @menu.MenuName
+                                </p>
+                            </a>
+                        </li>
+                        }
 
-                <li class="nav-item">
-                    <a href="@Url.Action("Index","Dashboard")" class="nav-link">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("Index","Student")" class="nav-link">
-                        <i class="fas fa-user"></i>
-                        <p>
-                            Students
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("Index","Book")" class="nav-link">
-                        <i class="fas fa-book"></i>
-                        <p>
-                            Books
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("Index","Department")" class="nav-link">
-                        <i class="fas fa-person-booth"></i>
-                        <p>
-                            Departments
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("Index","Issue")" class="nav-link">
-                        <i class="fas fa-person-booth"></i>
-                        <p>
-                            Issue Book
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("Index","Return")" class="nav-link">
-                        <i class="fas fa-person-booth"></i>
-                        <p>
-                            Return Book
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("Index","Categoy")" class="nav-link">
-                        <i class="fas fa-person-booth"></i>
-                        <p>
-                            Category
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("Index","Department")" class="nav-link">
-                        <i class="fas fa-person-booth"></i>
-                        <p>
-                            Department
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("Index","Designation")" class="nav-link">
-                        <i class="fas fa-person-booth"></i>
-                        <p>
-                            Designation
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("Index","Users")" class="nav-link">
-                        <i class="fas fa-users"></i>
-                        <p>
-                            Users
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="@Url.Action("Index","Roles")" class="nav-link">
-                        <i class="fas fa-users-cog"></i>
-                        <p>
-                            Roles
-                        </p>
-                    </a>
-                </li>
+                    }
+                }
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

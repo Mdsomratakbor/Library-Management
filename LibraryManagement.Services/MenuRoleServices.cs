@@ -28,12 +28,13 @@ namespace LibraryManagement.Services
             else if (sortCol == 0 && sortDir == "dsc") columnNameDsc = "MenuName";
             if (sortDir == "asc" && string.IsNullOrEmpty(search) == false)
             {
-                menus = _LMContext.MenuRoles.OrderBy(x => columnNameAsc).Where(x => x.Menus.MenuName.ToString().ToLower().Contains(search.ToLower())).Include(y => y.Menus).ToList();
+                menus = _LMContext.MenuRoles.OrderBy(x => columnNameAsc).ToList();
             }
 
             else if (sortDir == "dsc" && string.IsNullOrEmpty(search) == false)
             {
-                menus = _LMContext.MenuRoles.OrderBy(x => columnNameDsc).Where(x => x.Menus.MenuName.ToString().ToLower().Contains(search.ToLower())).Include(y => y.Menus).ToList();
+                menus = _LMContext.MenuRoles.OrderBy(x => columnNameDsc).ToList();
+
             }
             else if (sortDir == "asc")
             {
@@ -45,6 +46,27 @@ namespace LibraryManagement.Services
             }
             return menus;
 
+        }
+
+        public List<MenuRole> GetAllMenu(string userName)
+        {
+            try
+            {
+                List<MenuRole> menuRole = new List<MenuRole>();
+                var user = _LMContext.Users.Where(x => x.UserName == userName).FirstOrDefault();
+                var userRoles = user.Roles.Select(x => x.RoleId).ToList();
+                menuRole = _LMContext.MenuRoles.Where(x => userRoles.Contains(x.RoleId)).Include(y => y.Menus).ToList();
+                foreach (var data in menuRole)
+                {
+                    GetAllData();
+                }
+                return menuRole;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+           
         }
     }
 }

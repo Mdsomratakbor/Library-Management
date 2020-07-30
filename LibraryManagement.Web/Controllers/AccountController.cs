@@ -8,8 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using LibraryManagement.Data;
 using LibraryManagement.Entities;
 using LibraryManagement.Services;
+using LibraryManagement.Services.Interfaces;
 using LibraryManagement.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -22,15 +24,18 @@ namespace LibraryManagement.Web.Controllers
     {
         private LMSignInManagerService _signInManager;
         private LMUserManagerService _userManager;
+        private IMenuRoleService _IMenuRoleService;
 
         public AccountController()
         {
+            _IMenuRoleService = new MenuRoleServices();
         }
 
         public AccountController(LMUserManagerService userManager, LMSignInManagerService signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
+           
         }
 
         public LMSignInManagerService SignInManager
@@ -84,6 +89,7 @@ namespace LibraryManagement.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    Session["Menus"] = _IMenuRoleService.GetAllMenu(model.UserName);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
