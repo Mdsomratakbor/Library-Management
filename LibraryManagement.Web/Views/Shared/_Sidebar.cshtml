@@ -33,7 +33,7 @@
                         </p>
                     </a>
                 </li>
-                @if (User.IsInRole("Admin, Manager"))
+                @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                 {
                     <li class="nav-item">
                         <a href="@Url.Action("Index", "Category")" class="nav-link">
@@ -59,14 +59,7 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="@Url.Action("Index", "Book")" class="nav-link">
-                            <i class="fas fa-book"></i>
-                            <p>
-                                Books
-                            </p>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a href="@Url.Action("Index", "Issue")" class="nav-link">
                             <i class="fas fa-book"></i>
@@ -76,8 +69,16 @@
                         </a>
                     </li>
                 }
-                @if (User.IsInRole("Admin,User,Manager"))
+                @if (User.IsInRole("Admin") || User.IsInRole("User") || User.IsInRole("Manager"))
                 {
+                    <li class="nav-item">
+                        <a href="@Url.Action("Index", "Book")" class="nav-link">
+                            <i class="fas fa-book"></i>
+                            <p>
+                                Books
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="@Url.Action("Index", "Return")" class="nav-link">
                             <i class="fas fa-book"></i>

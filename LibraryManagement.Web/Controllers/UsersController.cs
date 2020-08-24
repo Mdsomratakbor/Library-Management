@@ -103,7 +103,7 @@ namespace LibraryManagement.Web.Controllers
             return PartialView("_Action", model);
         }
 
-        [Authorize(Roles = "Admin,User")]
+        //[Authorize(Roles = "Admin,User")]
         [HttpPost]
         public async Task<JsonResult> Action(UserModel model)
         {
@@ -153,7 +153,7 @@ namespace LibraryManagement.Web.Controllers
             }
             if (isSuccess)
             {
-                await UserManager.AddToRoleAsync(user.Id, "Users");
+                await UserManager.AddToRoleAsync(user.Id, "User");
                 message = "Data Save Successfully!!";
                 result.Data = new { Success = true, Message = message };
             }

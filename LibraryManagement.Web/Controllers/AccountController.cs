@@ -214,7 +214,10 @@ namespace LibraryManagement.Web.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByEmailAsync(model.Email);
-                var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                //decimal code;
+                
+                   var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                
                 var callbackUrl = Url.Action("ResetPassword", "Account",
             new { UserId = user.Id, code = code }, protocol: Request.Url.Scheme);
                 var result = SendMail(user.Email, "Reset Password","Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");

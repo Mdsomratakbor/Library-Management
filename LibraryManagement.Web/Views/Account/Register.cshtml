@@ -98,7 +98,8 @@
             method: 'post',
             url: '@Url.Action("Action", "Users")',
             data: $("#registerForm").serialize()
-            }).done(function (response) {
+        }).done(function (response) {
+                debugger
     if (response.Success) {
         Swal.fire({
             position: 'top-end',
