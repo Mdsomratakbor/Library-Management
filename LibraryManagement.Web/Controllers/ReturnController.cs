@@ -33,7 +33,7 @@ namespace LibraryManagement.Web.Controllers
             _IStaffServices = staffSevices;
         }
         // GET: Issue
-        [Authorize(Roles = "Admin, Users, Manager")]
+        [Authorize(Roles = "Admin, User, Manager")]
         public ActionResult Index()
         {
 

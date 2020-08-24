@@ -103,7 +103,7 @@ namespace LibraryManagement.Web.Controllers
             return PartialView("_Action", model);
         }
 
-        //[Authorize(Roles = "Admin,User")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<JsonResult> Action(UserModel model)
         {
