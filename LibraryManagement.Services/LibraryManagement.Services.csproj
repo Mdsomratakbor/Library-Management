@@ -104,6 +104,8 @@
     <Compile Include="DepartmentServices.cs" />
     <Compile Include="DesignationServices.cs" />
     <Compile Include="Enums\GenderEnums.cs" />
+    <Compile Include="HomeServices.cs" />
+    <Compile Include="Interfaces\IHomeServices.cs" />
     <Compile Include="Interfaces\IIssuServices.cs" />
     <Compile Include="Interfaces\IMenuRoleService.cs" />
     <Compile Include="Interfaces\IMenuServices.cs" />
