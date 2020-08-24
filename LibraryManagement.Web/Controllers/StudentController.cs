@@ -30,7 +30,7 @@ namespace LibraryManagement.Web.Controllers
             _IDepartmentServices = departmentServices;
         }
         // GET: Book
-        [Authorize(Roles = "Admin, Users")]
+        [Authorize(Roles = "Admin, User")]
         public ActionResult Index()
         {
             return View();

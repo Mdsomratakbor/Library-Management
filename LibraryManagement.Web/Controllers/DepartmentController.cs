@@ -24,7 +24,7 @@ namespace LibraryManagement.Web.Controllers
             _IDepartment = department;
             _deparment = new Department();
         }
-        [Authorize(Roles = "Admin, Users, Manager")]
+        [Authorize(Roles = "Admin, User, Manager")]
         public ActionResult Index()
         {
             return View();

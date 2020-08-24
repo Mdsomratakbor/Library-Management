@@ -23,7 +23,7 @@ namespace LibraryManagement.Web.Controllers
             _IMenu = menu;
             _menu = new Menu();
         }
-        [Authorize(Roles = "Admin, Users, Manager")]
+        [Authorize(Roles = "Admin, User, Manager")]
         public ActionResult Index()
         {
             return View();

@@ -26,7 +26,7 @@ namespace LibraryManagement.Web.Controllers
             _category = new Category();
         }
         // GET: Category
-        [Authorize(Roles = "Admin , Users, Manager")]
+        [Authorize(Roles = "Admin , User, Manager")]
         public ActionResult Index()
         {
             return View();

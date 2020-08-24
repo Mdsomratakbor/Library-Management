@@ -29,7 +29,7 @@ namespace LibraryManagement.Web.Controllers
             _ICategoryService = categoryService;
         }
         // GET: Book
-        [Authorize(Roles = "Admin , Users, Manager")]
+        [Authorize(Roles = "Admin , User, Manager")]
         public ActionResult Index()
         {
 

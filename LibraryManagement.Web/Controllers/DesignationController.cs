@@ -26,7 +26,7 @@ namespace LibraryManagement.Web.Controllers
             _IDesignation = new DesignationActionModel();
             _designation = new Designation();
         }
-        [Authorize(Roles = "Admin, Users, Manager")]
+        [Authorize(Roles = "Admin, User, Manager")]
         public ActionResult Index()
         {
             return View();
