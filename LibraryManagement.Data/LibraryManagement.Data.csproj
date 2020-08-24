@@ -62,6 +62,10 @@
     <Compile Include="Migrations\202007300611210_InitializeProject.designer.cs">
       <DependentUpon>202007300611210_InitializeProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008241039231_RoleMenuColumn.cs" />
+    <Compile Include="Migrations\202008241039231_RoleMenuColumn.designer.cs">
+      <DependentUpon>202008241039231_RoleMenuColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,6 +82,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202007300611210_InitializeProject.resx">
       <DependentUpon>202007300611210_InitializeProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008241039231_RoleMenuColumn.resx">
+      <DependentUpon>202008241039231_RoleMenuColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -31,13 +31,13 @@ namespace LibraryManagement.Web.Controllers
             _IIssue = Issuemodel;
         }
         // GET: Issue
-        [Authorize(Roles = "Admin, Users")]
+        [Authorize(Roles = "Admin, Users, Manager")]
         public ActionResult Index()
         {
 
             return View();
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<ActionResult> Action(int? id)
         {
             if (id > 0)
@@ -53,7 +53,7 @@ namespace LibraryManagement.Web.Controllers
             _IIssue.Books = await Task.Run(() => _IBookService.GetAllData());
             return View(_IIssue);
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Manager")]
         [HttpPost]
         public async Task<JsonResult> Action(IssueActionModel model)
         {
@@ -133,7 +133,7 @@ namespace LibraryManagement.Web.Controllers
             };
             return result;
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<JsonResult> Delete(int id)
         {
             JsonResult result = new JsonResult

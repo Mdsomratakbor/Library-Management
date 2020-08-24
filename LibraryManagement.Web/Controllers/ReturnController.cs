@@ -33,13 +33,13 @@ namespace LibraryManagement.Web.Controllers
             _IStaffServices = staffSevices;
         }
         // GET: Issue
-        [Authorize(Roles = "Admin, Users")]
+        [Authorize(Roles = "Admin, Users, Manager")]
         public ActionResult Index()
         {
 
             return View();
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<ActionResult> Action(int? id)
         {
             if (id > 0)
@@ -57,7 +57,7 @@ namespace LibraryManagement.Web.Controllers
             return View(_IReturn);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Manager")]
         [HttpPost]
         public async Task<JsonResult> Action(ReturnActionModel model)
         {
@@ -139,7 +139,7 @@ namespace LibraryManagement.Web.Controllers
             return result;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<JsonResult> Delete(int id)
         {
             JsonResult result = new JsonResult

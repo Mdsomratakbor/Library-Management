@@ -89,7 +89,7 @@ namespace LibraryManagement.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    Session["Menus"] = _IMenuRoleService.GetAllMenu(model.UserName);
+                    //Session["Menus"] = _IMenuRoleService.GetAllMenu(model.UserName);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

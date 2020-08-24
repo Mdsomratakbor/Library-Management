@@ -45,8 +45,11 @@
                                 <td>@data.Name</td>
                                 <td>@data.Users.Count</td>
                                 <td width="100">
+                                    @if (User.IsInRole("Admin"))
+                                    {
                                     <button data-href="@Url.Action("Action", "Roles", new { id = data.Id })" class="data-btn btn btn-success btn-sm"><i class="far fa-edit"></i></button>
                                     <button data-href="@Url.Action("Delete", "Roles", new { id = data.Id })" class="delete-btn btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                    }
                                 </td>
                             </tr>
 

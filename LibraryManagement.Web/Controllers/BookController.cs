@@ -29,13 +29,13 @@ namespace LibraryManagement.Web.Controllers
             _ICategoryService = categoryService;
         }
         // GET: Book
-        [Authorize(Roles = "Admin , Users")]
+        [Authorize(Roles = "Admin , Users, Manager")]
         public ActionResult Index()
         {
 
             return View();
         }
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<ActionResult> Action(int? id)
         {
             if (id > 0)
@@ -56,7 +56,7 @@ namespace LibraryManagement.Web.Controllers
             return View(_IBook);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Manager")]
         [HttpPost]
         public async Task<JsonResult> Action(BookActionModel model)
         {
@@ -80,7 +80,7 @@ namespace LibraryManagement.Web.Controllers
                     {
                         _Book = await Task.Run(() => _IBookService.GetDataById(model.ID));
                         _Book.BookPictures.Clear();
-                        _Book.BookPictures = new List<BookPicture>();
+                        //_Book.BookPictures = new List<BookPicture>();
                         _Book.BookPictures.AddRange(pictures.Select(x => new BookPicture() { PictureID = x.ID, BookID = model.ID }));
                         _Book.BookName = model.BookName;
                         _Book.AuthorName = model.AuthorName;
@@ -95,7 +95,7 @@ namespace LibraryManagement.Web.Controllers
                     }
                     else
                     {
-                        _Book.BookPictures = new List<BookPicture>();
+                        //_Book.BookPictures = new List<BookPicture>();
                         _Book.BookPictures.AddRange(pictures.Select(x => new BookPicture() { PictureID = x.ID }));
                         _Book.ID = model.ID;
                         _Book.BookName = model.BookName;
@@ -154,7 +154,7 @@ namespace LibraryManagement.Web.Controllers
             };
             return result;
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Manager")]
         public async Task<JsonResult> Delete(int id)
         {
             JsonResult result = new JsonResult
@@ -190,5 +190,7 @@ namespace LibraryManagement.Web.Controllers
 
             return result;
         }
+
+
     }
 }

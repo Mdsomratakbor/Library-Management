@@ -11,5 +11,8 @@ namespace LibraryManagement.Entities
     {
         public string  RoleId { get; set; }      
         public virtual List<RoleOfMenu> RoleOfMenus{get;set;}
+        public bool IsUpdate { get; set; }
+        public bool IsDelete { get; set; }
+        public bool IsCreate { get; set; }
     }
 }

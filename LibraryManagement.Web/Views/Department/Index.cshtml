@@ -7,7 +7,11 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Department List</h4>
-                    <a href="@Url.Action("Action","Department")" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i> Add New</a>
+                    @if (User.IsInRole("Admin, Manager"))
+                    {
+                        <a href="@Url.Action("Action","Department")" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i> Add New</a>
+                    }
+
                 </div>
                 <div class="card-body">
                     <table id="deparmenttable" class="table table-bordered table-hover">
@@ -23,7 +27,7 @@
                 </div>
             </div>
 
-<script>
+            <script>
     $(document).ready(function () {
 
         $("#deparmenttable").DataTable({
@@ -32,8 +36,7 @@
                   {
                     'data': null,
                       render: function (data, type, row) {
-                          return '<a href ="../Department/Action/' + row.ID + '" class="btn btn-xs btn-info mr-1"><i class="fas fa-edit"></i></a>'+
-                             '<button class="btn-trash btn btn-danger btn-xs" data-id="' + row.ID +'"> <i class="fas fa-trash"></i></button>';
+                          return ' @if (User.IsInRole("Admin, Manager")){<a href ="../Department/Action/' + row.ID + '" class="btn btn-xs btn-info mr-1"><i class="fas fa-edit"></i></a><button class="btn-trash btn btn-danger btn-xs" data-id="' + row.ID +'"> <i class="fas fa-trash"></i></button>}';
                     }
                 },
                 //{
@@ -93,6 +96,6 @@
         })
     });
 
-</script>
+            </script>
 
 
