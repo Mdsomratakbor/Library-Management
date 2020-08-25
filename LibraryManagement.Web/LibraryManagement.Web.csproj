@@ -285,6 +285,7 @@
     <Content Include="Content\dist\css\alt\adminlte.plugins.css" />
     <Content Include="Content\dist\css\alt\adminlte.plugins.min.css" />
     <Content Include="Content\dist\css\login-css.css" />
+    <Content Include="Content\dist\img\105410924_599649950934082_9069814994630033906_n.jpg" />
     <Content Include="Content\dist\img\45887176_2039127959482269_5993646807396122624_n.jpg" />
     <Content Include="Content\dist\img\AdminLTELogo.png" />
     <Content Include="Content\dist\img\avatar.png" />
