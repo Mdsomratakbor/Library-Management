@@ -1,59 +1,81 @@
 ﻿@model LibraryManagement.Web.ViewModels.HomeViewModel
-<div class="col-md-12 col-md-6">
-    <div class="card">
-        <div class="card-header">
-            Total Books
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-gradient-cyan">
+                    <i class="fas fa-book"></i> Total Books
+                </div>
+                <div class="card-body text-center">
+                    @Model.TotalBooks
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            @Model.TotalBooks
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-gradient-fuchsia">
+                  <i class="fas fa-users"></i> Total Students
+                </div>
+                <div class="card-body text-center">
+                    @Model.TotalStudents
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-primary">
+                    <i class="fas fa-users"></i> Total Staffs
+                </div>
+                <div class="card-body text-center">
+                    @Model.TotalStaffs
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-gradient-green">
+                    <i class="fas fa-users"></i> Total User
+                </div>
+                <div class="card-body text-center">
+                    @Model.TotalUsers
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-gradient-indigo">
+                    <i class="fas fa-user-tag"></i> Total Roles
+                </div>
+                <div class="card-body text-center">
+                    @Model.TotalRoles
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-gradient-danger">
+                    <i class="fas fa-book"></i> Total Issue Books
+                </div>
+                <div class="card-body text-center">
+                    @Model.TotalIssueBooks
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header bg-gradient-warning">
+                    <i class="fas fa-book"></i> Total Return Books
+                </div>
+                <div class="card-body text-center">
+                    @Model.TotalReturnBooks
+                </div>
+            </div>
         </div>
     </div>
-    <div class="card">
-        <div class="card-header">
-            Total Students
-        </div>
-        <div class="card-body">
-            @Model.TotalStudents
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header">
-            Total Staffs
-        </div>
-        <div class="card-body">
-            @Model.TotalStaffs
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header">
-            Total User
-        </div>
-        <div class="card-body">
-            @Model.TotalUsers
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header">
-            Total Roles
-        </div>
-        <div class="card-body">
-            @Model.TotalRoles
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header">
-            Total Issue Books
-        </div>
-        <div class="card-body">
-            @Model.TotalIssueBooks
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header">
-            Total Return Books
-        </div>
-        <div class="card-body">
-            @Model.TotalReturnBooks
-        </div>
-    </div>
+
+
 </div>
