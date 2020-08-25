@@ -5,6 +5,7 @@ using LibraryManagement.Web.Controllers;
 using LibraryManagement.Web.ViewModels;
 using LibraryManagement.Web.ViewModels.CategoryInterfaces;
 using LibraryManagement.Web.ViewModels.DepartmentInterfaces;
+using LibraryManagement.Web.ViewModels.HomeInterfaces;
 using LibraryManagement.Web.ViewModels.Interfaces;
 using LibraryManagement.Web.ViewModels.IssueInterfaces;
 using LibraryManagement.Web.ViewModels.MenuInterfaces;
@@ -50,6 +51,7 @@ namespace LibraryManagement.Web
             container.RegisterType<IHomeServices, HomeServices>();
             container.RegisterType<IMenuRole, MenuRoleActionModel>();
             container.RegisterType<IMenu, MenuActionModel>();
+            container.RegisterType<IHome, HomeViewModel>();
             container.RegisterType<RolesController>(new InjectionConstructor());
             container.RegisterType<UsersController>(new InjectionConstructor());
             //container.RegisterType<MenuRoleController>(new InjectionConstructor());

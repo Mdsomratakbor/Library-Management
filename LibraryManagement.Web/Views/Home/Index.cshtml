@@ -1,4 +1,59 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-
+﻿@model LibraryManagement.Web.ViewModels.HomeViewModel
+<div class="col-md-12 col-md-6">
+    <div class="card">
+        <div class="card-header">
+            Total Books
+        </div>
+        <div class="card-body">
+            @Model.TotalBooks
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            Total Students
+        </div>
+        <div class="card-body">
+            @Model.TotalStudents
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            Total Staffs
+        </div>
+        <div class="card-body">
+            @Model.TotalStaffs
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            Total User
+        </div>
+        <div class="card-body">
+            @Model.TotalUsers
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            Total Roles
+        </div>
+        <div class="card-body">
+            @Model.TotalRoles
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            Total Issue Books
+        </div>
+        <div class="card-body">
+            @Model.TotalIssueBooks
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            Total Return Books
+        </div>
+        <div class="card-body">
+            @Model.TotalReturnBooks
+        </div>
+    </div>
+</div>

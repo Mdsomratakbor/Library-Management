@@ -244,6 +244,8 @@
     <Compile Include="ViewModels\DesignationInterfaces\IDesignation.cs" />
     <Compile Include="ViewModels\DesignationViewModels.cs" />
     <Compile Include="ViewModels\GenderInterfaces\IGender.cs" />
+    <Compile Include="ViewModels\HomeInterfaces\IHome.cs" />
+    <Compile Include="ViewModels\HomeViewModels.cs" />
     <Compile Include="ViewModels\ImageInterfaces\IPicture.cs" />
     <Compile Include="ViewModels\IssueInterfaces\IIssue.cs" />
     <Compile Include="ViewModels\IssueInterfaces\IIssueList.cs" />

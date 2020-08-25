@@ -1,5 +1,6 @@
 ﻿using LibraryManagement.Services;
 using LibraryManagement.Services.Interfaces;
+using LibraryManagement.Web.ViewModels.HomeInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,22 @@ namespace LibraryManagement.Web.Controllers
     public class HomeController : Controller
     {
         private IHomeServices _homeServices;
-        public HomeController(IHomeServices homeServices)
+        private IHome _model;
+        public HomeController(IHomeServices homeServices, IHome model)
         {
             _homeServices = homeServices;
+            _model = model;
         }
         public ActionResult Index()
         {
-            return View();
+            _model.TotalBooks = _homeServices.TotalBooks();
+            _model.TotalIssueBooks = _homeServices.TotalIssueBooks();
+            _model.TotalReturnBooks = _homeServices.TotalReturnBooks();
+            _model.TotalRoles = _homeServices.TotalRoles();
+            _model.TotalStaffs = _homeServices.TotalStaffs();
+            _model.TotalStudents = _homeServices.TotalStudents();
+            _model.TotalUsers = _homeServices.TotalUsers();
+            return View(_model);
         }
 
         public ActionResult About()
