@@ -23,7 +23,7 @@ namespace LibraryManagement.Data
             var rolesInLibraryManagement = new List<IdentityRole>() 
             { 
                 new IdentityRole() {Name="Admin" },
-                new IdentityRole() { Name = "Student" }, 
+                new IdentityRole() { Name = "Manager" }, 
                 new IdentityRole() { Name = "User" }, 
             };
             var rolesStore = new RoleStore<IdentityRole>(context);
@@ -45,8 +45,8 @@ namespace LibraryManagement.Data
             var usersManager = new UserManager<LMUser>(usersStore);
             var user = new LMUser();
             {
-                user.Email = "admin@mail.com";
-                user.UserName = "admin2";
+                user.Email = "somrat876@gmail.com";
+                user.UserName = "admin";
             }
             var password = "admin1234";
             if (usersManager.FindByEmailAsync(user.Email) == null)
