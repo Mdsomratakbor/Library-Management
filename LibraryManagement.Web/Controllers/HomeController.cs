@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LibraryManagement.Services;
+using LibraryManagement.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +12,11 @@ namespace LibraryManagement.Web.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        private IHomeServices _homeServices;
+        public HomeController(IHomeServices homeServices)
+        {
+            _homeServices = homeServices;
+        }
         public ActionResult Index()
         {
             return View();

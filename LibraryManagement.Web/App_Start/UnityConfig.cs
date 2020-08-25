@@ -47,6 +47,7 @@ namespace LibraryManagement.Web
             container.RegisterType<IReturn, ReturnActionModel>();
             container.RegisterType<IMenuServices, MenuServices>();
             container.RegisterType<IMenuRoleService, MenuRoleServices>();
+            container.RegisterType<IHomeServices, HomeServices>();
             container.RegisterType<IMenuRole, MenuRoleActionModel>();
             container.RegisterType<IMenu, MenuActionModel>();
             container.RegisterType<RolesController>(new InjectionConstructor());
